@@ -1584,6 +1584,9 @@ img {
   background-color: #18181c;
   min-height: 100vh;
   padding: 0;
+  position: -webkit-sticky; /* safari対応 */
+  position: sticky;
+  top: 0px;
 }
 .menu_block .logo_box {
   text-align: center;

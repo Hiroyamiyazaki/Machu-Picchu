@@ -16,7 +16,7 @@
             <!--logo -->
             <div class="logo_box">
                 <a href="#">
-                    <img src="assets/img/logo.png" alt="cocoon">
+                    <img src="assets/img/logo.png" alt="Premori!">
                 </a>
             </div>
             <!--logo end-->
@@ -40,8 +40,28 @@
                         </a>
                     </li>
                     <li>
+                        <a href="signup.php">
+                            Profile
+                        </a>
+                    </li>
+                    <li>
                         <a href="search.php">
                             Album
+                        </a>
+                    </li>
+                    <li>
+                        <a href="search.php">
+                            Mypage
+                        </a>
+                    </li>
+                    <li>
+                        <a href="search.php">
+                            Update
+                        </a>
+                    </li>
+                    <li>
+                        <a href="search.php">
+                            Search
                         </a>
                     </li>
                 </ul>

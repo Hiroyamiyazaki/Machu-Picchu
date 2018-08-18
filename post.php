@@ -8,7 +8,7 @@
     <meta name="author" content="Pharaohlab">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- ========== Title ========== -->
-    <title> Cocoon -Portfolio</title>
+    <title></title>
     <!-- ========== Favicon Ico ========== -->
     <!--<link rel="icon" href="fav.ico">-->
     <!-- ========== STYLESHEETS ========== -->
@@ -62,30 +62,66 @@
                         <img src="assets/img/uses/index_top2.jpg" class="top_img2">
                      </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                      <div class="sub-contents">
-                         <h5>Post</h5>
-                      </div>
+                <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
+                      <div class="sub-contents2">
+                         <h2>Post</h2><br>
+                         <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" name="date" class="form-control">
+                        </div><br>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">相手<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼氏</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼女</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">お父さん</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">イベント<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">記念日</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">誕生日</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">クリスマス</a></li>
+                            </ul>
+                        </div><br><br>
+                        <div class="form-group">
+                            <label for="img_name">Photo</label>
+                            <input type="file" name="input_img_name" id="img_name">
+                        </div>
                 </div>
              </div>
 
             <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-12 top-wrapper3">
+                <div class="col-lg-12 col-md-12 col-12 top-wrapper4">
                     <div class="sub-contents">
-                        <h3>comment</h3>
+                        <div class="form-group">
+                            <label for="detail">Comment</label><br>
+                            <textarea name="detail" class="form-comment" rows="6">
+                                
+                            </textarea>
+
                     </div>
                 </div>
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-12 top-wrapper3">
+                <div class="col-lg-12 col-md-12 col-12 top-wrapper5">
                     <div class="sub-contents">
-                        <h3>secret comment</h3>
+                        <div class="form-group">
+                            <label for="detail">Secret Comment</label><br>
+                            <textarea name="detail" class="form-comment" rows="6">
+                                
+                            </textarea>
+
+                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper6">
                 <div class="sub-contents">
                      <button type="button" class="btn btn-primary btn-lg">投稿</button>
                 </div>

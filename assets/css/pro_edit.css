@@ -1,0 +1,13 @@
+
+
+.sub-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-wrapper1 {
+  padding: 0;
+  color: white;
+  border-bottom: 1px solid;
+}

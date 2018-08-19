@@ -1,6 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Cocoon -Portfolio">
+    <meta name="keywords" content="Cocoon , Portfolio">
+    <meta name="author" content="Pharaohlab">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- ========== Title ========== -->
+    <title></title>
+    <!-- ========== Favicon Ico ========== -->
+    <!--<link rel="icon" href="fav.ico">-->
+    <!-- ========== STYLESHEETS ========== -->
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts Icon CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/et-line.css" rel="stylesheet">
+    <link href="assets/css/ionicons.min.css" rel="stylesheet">
+    <!-- Carousel CSS -->
+    <link href="assets/css/slick.css" rel="stylesheet">
+    <!-- Magnific-popup -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Custom styles for this template -->
     <link href="assets/css/main.css" rel="stylesheet">
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
+
+    <link rel="stylesheet"  href="assets/css/edit.css">
+
 </head>
 <body>
 <div class="loader">
@@ -17,191 +47,86 @@
 
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
-            <!--=================== filter portfolio start====================-->
-            <div class="portfolio gutters grid img-container">
-                <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port1.png" title="project name 1">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port1.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding architecture  col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port2.png" title="project name 2">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port2.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  design col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port3.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port3.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  photography design col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port4.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding photography  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port5.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port5.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item   architecture design col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port6.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port6.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  photography architecture col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port7.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port7.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding design  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port8.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port8.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port9.png" title="project name 4">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port9.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  photography architecture col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port10.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port10.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding design  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port11.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port11.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port4.png" title="project name 4">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
+                    <div class="sub-contents">
+                        <h3>Edit</h3>
+                    </div>
                 </div>
             </div>
-            <!--=================== filter portfolio end====================-->
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
+                     <div class="sub-contents">
+                        <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+                     </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
+                      <div class="sub-contents2">
+                         <h2>Edit</h2><br>
+                         <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" name="date" class="form-control">
+                        </div><br>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">相手<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼氏</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼女</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">お父さん</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">イベント<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">記念日</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">誕生日</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">クリスマス</a></li>
+                            </ul>
+                        </div><br><br>
+                        <div class="form-group">
+                            <label for="img_name">Photo</label><br>
+                            <input type="file" name="input_img_name" id="img_name">
+                        </div>
+                </div>
+             </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12 col-12 top-wrapper4">
+                    <div class="sub-contents">
+                        <div class="form-group">
+                            <label for="detail">Comment</label><br>
+                            <textarea name="detail" class="form-comment" rows="6">
+                                
+                            </textarea>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12 col-12 top-wrapper5">
+                    <div class="sub-contents">
+                        <div class="form-group">
+                            <label for="detail">Secret Comment</label><br>
+                            <textarea name="detail" class="form-comment" rows="6">
+                                
+                            </textarea>
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper6">
+                <div class="sub-contents">
+                     <button type="button" class="btn btn-primary btn-lg">投稿</button>
+                </div>
+            </div>
+
         </div>
         <!--=================== content body end ====================-->
     </div>

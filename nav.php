@@ -21,6 +21,29 @@
             </div>
             <!--logo end-->
 
+
+            <!-- profile -->
+            <div class="profilearea">
+                <ul class="menu_nav pro_nav">
+                    <li>
+                        <p class="user_id">ID:TAKAHISAさん</p>
+                    </li>
+                    <li>
+                        <a href="mypage.php">
+                            My page
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pro_edit.php">
+                            Profile編集
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- profile end -->
+
             <!--main menu -->
             <div class="side_menu_section">
                 <ul class="menu_nav">
@@ -50,7 +73,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="search.php">
+                        <a href="mypage.php">
                             Mypage
                         </a>
                     </li>

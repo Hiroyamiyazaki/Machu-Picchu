@@ -23,7 +23,6 @@
 
 .top-wrapper1 {
   padding: 0;
-/*  background-color: #F4C662;*/
   color: white;
   border-bottom: 1px solid #C0A47F;
 }
@@ -31,6 +30,10 @@
 .top_img {
   width: 100%;
   height: auto;
+}
+
+.intro {
+  text-align: center;
 }
 
 .top-wrapper2 {

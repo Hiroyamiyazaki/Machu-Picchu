@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
                             <div class="sub-contents">
-                                <h5>あの人からのプレゼントを。</h5>
+                                <h5 class="intro">あの人からのプレゼントを。</h5>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <div class="sub-contents">
-                                <h5>あの人へのプレゼントを。</h5>
+                                <h5 class="intro">あの人へのプレゼントを。</h5>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">

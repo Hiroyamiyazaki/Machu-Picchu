@@ -88,7 +88,7 @@
                             </ul>
                         </div><br><br>
                         <div class="form-group">
-                            <label for="img_name">Photo</label>
+                            <label for="img_name">Photo</label><br>
                             <input type="file" name="input_img_name" id="img_name">
                         </div>
                 </div>

@@ -1,30 +1,13 @@
 /*index.php*/
 
-/*.back {
-    background-color: #F4C662;
-}
-*/
-
-* {
-  font-family: 'Hannotate SC','MS UI Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Comic Sans MS','Chalkboard SE',sans-serif;
-}
-
 
 .main-contents {
     padding: 0;
 }
 
-.sub-contents {
-    display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .top-wrapper1 {
   padding: 0;
-  color: white;
-  border-bottom: 1px solid #C0A47F;
 }
 
 .top_img {
@@ -33,10 +16,13 @@
 }
 
 .intro {
-  text-align: center;
+  padding: 0;
 }
 
 .top-wrapper2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 100px;
   padding-bottom: 100px;
   color: white;
@@ -48,13 +34,19 @@
 }
 
 .top-wrapper3 {
-      padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 100px;
   padding-bottom: 100px;
   color: white;
   border-bottom: 1px solid #C0A47F;
 }
 
 .top-wrapper4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 100px;
   padding-bottom: 50px;
   color: white;

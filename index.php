@@ -47,42 +47,38 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block align-text-center main-contents">
+=======
+        <div class="col-lg-10 col-md-9 col-12 body_block  main-contents">
             <div class="container-fluid back">
                 <div class="img_card">
 
                         <!-- content-explain -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper1">
-                            <div class="sub-contents">
-                                <img src="assets/img/uses/index_top.jpg" class="top_img">
-                            </div>
+
+                            <img src="assets/img/uses/index_top.jpg" class="top_img">
                        </div>
                     </div> 
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <div class="sub-contents">
-                                <img src="assets/img/uses/index_top2.jpg" class="top_img2">
-                            </div>
+                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <div class="sub-contents">
-                                <h5 class="intro">あの人からのプレゼントを。</h5>
-                            </div>
+                            <h5 class="intro">
+                                あの人からのプレゼントを<br>
+                                記録に残そう。
+                            </h5>
                         </div>
                     </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <div class="sub-contents">
-                                <h5 class="intro">あの人へのプレゼントを。</h5>
-                            </div>
+                            <h5 class="intro">あの人へのプレゼントを。</h5>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <div class="sub-contents">
-                                <img src="assets/img/uses/index_top2.jpg" class="top_img2">
-                            </div>
+                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+>>>>>>> master
                         </div>
                     </div>
 
@@ -94,9 +90,11 @@
                 </div>
 
                     <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                            <div class="sub-contents">
-                                <h3 >みんなの思い出</h3>
-                            </div>
+<<<<<<< HEAD
+
+=======
+                            <h3 >みんなの思い出</h3>
+>>>>>>> master
                     </div>
 
                 
@@ -118,10 +116,12 @@
                         </div>
                     </a>
                 </div>
+
                 <div class="grid-item  branding architecture  col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port2.png" title="project name 2">
                         <div class="project_box_one">
                             <img src="assets/img/portfolio/port2.png" alt="pro1" />
+
                             <div class="product_info">
                                 <div class="product_info_text">
                                     <div class="product_info_text_inner">
@@ -133,6 +133,7 @@
                         </div>
                     </a>
                 </div>
+
                 <div class="grid-item  design col-sm-12 col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port3.png" title="project name 5">
                         <div class="project_box_one">
@@ -148,6 +149,7 @@
                         </div>
                     </a>
                 </div>
+>>>>>>> master
                 <div class="grid-item  photography design col-sm-12 col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port4.png" title="project name 5">
                         <div class="project_box_one">

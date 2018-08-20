@@ -1,6 +1,12 @@
 <?php 
 
 
+    session_start();
+    require('dbconnect.php');
+
+
+
+
 ?>
 
 
@@ -23,24 +29,31 @@
 
 
             <!-- profile -->
-            <div class="profilearea">
-                <ul class="menu_nav pro_nav">
-                    <li>
-                        <p class="user_id">ID:TAKAHISAさん</p>
-                    </li>
-                    <li>
-                        <a href="mypage.php">
-                            My page
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pro_edit.php">
-                            Profile編集
-                        </a>
-                    </li>
-                </ul>
-
-            </div>
+            <?php if(isset($_SESSION['id'])): ?>
+                <div class="profilearea">
+                    <ul class="menu_nav pro_nav">
+                        <li>
+                            <p class="user_id">ID:TAKAHISAさん</p>
+                        </li>
+                        <li>
+                            <a href="mypage.php">
+                                My page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pro_edit.php">
+                                Profile編集
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.php">
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+             <?php endif; ?> 
+>>>>>>> master
 
             <!-- profile end -->
 
@@ -52,6 +65,7 @@
                             Home
                         </a>
                     </li>
+                    <?php if(!isset($_SESSION['id'])): ?>
                     <li>
                         <a href="signin.php">
                             Login
@@ -62,6 +76,7 @@
                             Register
                         </a>
                     </li>
+                    <?php endif; ?>
                     <li>
                         <a href="signup.php">
                             Profile
@@ -73,11 +88,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="mypage.php">
-                            Mypage
-                        </a>
-                    </li>
-                    <li>
+
                         <a href="search.php">
                             Update
                         </a>
@@ -96,7 +107,8 @@
                         <h5>Search</h5>
                     </li>
                     <li>
-                        <div class="btn-group">
+
+                        <div>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">相手<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -104,8 +116,7 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼女</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">お父さん</a></li>
                             </ul>
-                        </div>
-                        <div class="btn-group">
+
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">年代<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -113,8 +124,7 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">20代</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">30代</a></li>
                             </ul>
-                        </div>
-                        <div class="btn-group">
+
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">職業<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -122,9 +132,7 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">妻</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">学生</a></li>
                             </ul>
-                        </div>
 
-                        <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">イベント<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -132,11 +140,10 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">誕生日</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">クリスマス</a></li>
                             </ul>
-                        </div>
 
-                        <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-lg">検索</button>
                         </div>
+
 
 
                     </li>

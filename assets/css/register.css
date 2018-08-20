@@ -1,0 +1,25 @@
+.thumbnail{
+    background-color:#F8EFBA;
+    border:none;
+}
+body{
+    background-color:#F8EFBA;
+}
+
+.row{
+    margin-bottom: 20px;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+.submit_center .btn{
+    text-align:center;
+}
+
+a{
+    border:2px solid;
+    background:#FFFFFF;
+};
+

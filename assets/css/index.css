@@ -1,13 +1,39 @@
 /*index.php*/
 
+<<<<<<< HEAD
+/*.back {
+    background-color: #F4C662;
+}
+*/
+
+* {
+  font-family: 'Hannotate SC','MS UI Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Comic Sans MS','Chalkboard SE',sans-serif;
+}
+
+=======
+>>>>>>> master
 
 .main-contents {
     padding: 0;
 }
 
+<<<<<<< HEAD
+.sub-contents {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .top-wrapper1 {
   padding: 0;
+  color: white;
+  border-bottom: 1px solid #C0A47F;
+=======
+
+.top-wrapper1 {
+  padding: 0;
+>>>>>>> master
 }
 
 .top_img {
@@ -16,6 +42,12 @@
 }
 
 .intro {
+<<<<<<< HEAD
+  text-align: center;
+}
+
+.top-wrapper2 {
+=======
   padding: 0;
 }
 
@@ -23,6 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+>>>>>>> master
   padding-top: 100px;
   padding-bottom: 100px;
   color: white;
@@ -34,19 +67,26 @@
 }
 
 .top-wrapper3 {
+<<<<<<< HEAD
+      padding-top: 100px;
+=======
   display: flex;
   justify-content: center;
   text-align: center;
   padding-top: 100px;
+>>>>>>> master
   padding-bottom: 100px;
   color: white;
   border-bottom: 1px solid #C0A47F;
 }
 
 .top-wrapper4 {
+<<<<<<< HEAD
+=======
   display: flex;
   justify-content: center;
   align-items: center;
+>>>>>>> master
   padding-top: 100px;
   padding-bottom: 50px;
   color: white;

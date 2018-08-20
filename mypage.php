@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- ========== Title ========== -->
     <title> MyPage</title>
+
+
     <!-- ========== Favicon Ico ========== -->
     <!--<link rel="icon" href="fav.ico">-->
     <!-- ========== STYLESHEETS ========== -->
@@ -44,7 +46,10 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center mypage_padding">
+            <header>
+                <h2>マイページ</h2>
+            </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
                 <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>

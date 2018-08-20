@@ -1,0 +1,68 @@
+/*index.php*/
+
+/*.back {
+    background-color: #F4C662;
+}
+*/
+
+* {
+  font-family: 'Hannotate SC','MS UI Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Comic Sans MS','Chalkboard SE',sans-serif;
+}
+
+
+.main-contents {
+    padding: 0;
+}
+
+.sub-contents {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.top-wrapper1 {
+  padding: 0;
+  color: white;
+  border-bottom: 1px solid #C0A47F;
+}
+
+.top_img {
+  width: 100%;
+  height: auto;
+}
+
+.intro {
+  text-align: center;
+}
+
+.top-wrapper2 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  color: white;
+  border-bottom: 1px solid #C0A47F;
+}
+
+.top-img2 {
+
+}
+
+.top-wrapper3 {
+      padding-top: 100px;
+  padding-bottom: 100px;
+  color: white;
+  border-bottom: 1px solid #C0A47F;
+}
+
+.top-wrapper4 {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  color: white;
+  border-bottom: 1px;
+}
+
+
+
+
+
+/*index.php end*/

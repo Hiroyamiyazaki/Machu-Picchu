@@ -63,11 +63,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="signup.php">
-                            Profile
-                        </a>
-                    </li>
-                    <li>
                         <a href="search.php">
                             Album
                         </a>

@@ -53,7 +53,6 @@
                     </ul>
                 </div>
              <?php endif; ?> 
->>>>>>> master
 
             <!-- profile end -->
 

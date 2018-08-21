@@ -1,3 +1,27 @@
+<?php
+
+
+    session_start();
+    require('dbconnect.php');
+    require('function.php');
+
+
+
+    // サインインユーザー取得
+    $signin_user = get_user($dbh, $_SESSION['id']);
+
+
+
+
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

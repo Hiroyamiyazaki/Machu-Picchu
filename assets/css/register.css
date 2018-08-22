@@ -1,13 +1,12 @@
-.thumbnail{
-    background-color:#F8EFBA;
-    border:none;
-}
+
 body{
     background-color:#F8EFBA;
 }
 
-.row{
-    margin-bottom: 20px;
+.log_con{
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 h2{

@@ -3,22 +3,21 @@ body{
     background-color:#F8EFBA;
 }
 
-.log_con{
-  margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
+
+
+.reg_title {
+  text-align: center;
 }
 
-h2{
-    margin-bottom: 20px;
+.btn-submit {
+  text-align: center;
+  padding: 15px;
 }
 
-.submit_center .btn{
-    text-align:center;
+.btn-sub2 {
+  text-align: center;
 }
 
-a{
-    border:2px solid;
-    background:#FFFFFF;
-};
-
+.btnn {
+  margin: 30px;
+}

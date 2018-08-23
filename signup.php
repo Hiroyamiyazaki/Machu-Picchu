@@ -6,6 +6,7 @@
     // PHPプログラム
     $user_id = '';
     $age_id = '';
+    $gender = '';
     $job_id = '';
     $brands = '';
     $errors = [];
@@ -13,6 +14,7 @@
     if (isset($_GET['action']) && $_GET['action'] == 'rewrite'){
         $_POST['input_user_id'] = $_SESSION['register']['user_id'];
         $_POST['input_age_id'] = $_SESSION['register']['age_id'];
+        $_POST['input_gender'] = $_SESSION['register']['gender'];
         $_POST['input_job_id'] = $_SESSION['register']['job_id'];
         $_POST['input_brands'] = $_SESSION['register']['brands'];
         $_POST['input_password'] = $_SESSION['register']['password'];
@@ -20,9 +22,11 @@
         $errors['rewrite'] = true;
     }
 
+
     if (!empty($_POST)){
         $user_id = $_POST['input_user_id'];
         $age_id = $_POST['input_age_id'];
+        $gender = $_POST['input_gender'];
         $job_id = $_POST['input_job_id'];
         $brands = $_POST['input_brands'];
         $password = $_POST['input_password'];
@@ -37,6 +41,9 @@
 
         if ($age_id == ''){
             $errors['age_id'] = 'blank';
+        }
+        if ($gender ==''){
+            $errors['gender'] = 'blank';
         }
         if ($job_id == ''){
             $errors['job_id'] = 'blank';
@@ -86,7 +93,8 @@
 
             $_SESSION['register']['user_id'] = $_POST['input_user_id'];
             $_SESSION['register']['password'] = $_POST['input_password'];
-            $_SESSION['register']['age_id'] = $_POST['input_gender'];
+            $_SESSION['register']['age_id'] = $_POST['input_age_id'];
+            $_SESSION['register']['gender'] = $_POST['input_gender'];
             $_SESSION['register']['job_id'] = $_POST['input_job_id'];
             $_SESSION['register']['brands'] = $_POST['input_brands'];
 
@@ -94,12 +102,16 @@
             exit();
         }
     }
+
+
+
     // $hoge = '';
     // カラかどうかのチェック
     // (empty($hoge))
     // 変数が存在するかどうかのチェック
     // (isset($hoge))
     // empty = !isset
+
 ?>
 
 <!DOCTYPE html>
@@ -139,23 +151,22 @@
             <div class="row justify-content-center">
                 <!-- ここにコンテンツ -->
                 <!-- ここから -->
-                <div class="col-ld-8 col-md-12 col-xs-12">
-                    <h2 >思い出を残そう</h2>
-                    <form method="POST" action="signup.php" enctype="multipart/form-data">
+                <div class="col-ld-12 col-md-12 col-xs-12">
+                    <h2 class="reg_title">思い出を残そう</h2>
+                    <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
-                            <label for="name">ID</label>
+                            <label for="name" class="control-label col-sm-2">ID</label>
+                            <div class="col-sm-10">
                                 <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($user_id); ?>">
                                     <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
                                         <p class = "text-danger">IDを入力してください</p>
                                     <?php endif; ?>
+                            </div>
                          </div>
 
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <label for="name">Pass</label>
-                            </div>
-                            <div class="col-xs-9">
-                                <div class="form-group">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">Pass</label>
+                                <div class="col-sm-10">
                                     <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
                                     <?php if (isset($errors['password']) && $errors['password'] == 'blank'):?>
                                         <p class = "text-danger">パスワードを入力してください</p>
@@ -167,52 +178,54 @@
                                     <?php if(!empty($errors)): ?> <p class = "text-danger">パスワードを再度入力して下さい</p> <?php endif; ?>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <label for="name">年代</label>
-                            </div>
-                            <div class="col-xs-9">
-                                <div class="form-group">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">年代</label>
+                                <div class="col-sm-10">
                                     <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($age_id); ?>">
                                     <!-- issetは入っているかどうか -->
                                     <?php if (isset($errors['age_id']) && $errors['age_id'] == 'blank'):?>
                                         <p class = "text-danger">年代を入力してください</p>
                                     <?php endif; ?>
                                 </div>
-                            </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <label for="name">職業</label>
-                            </div>
-                            <div class="col-xs-9">
-                                <div class="form-group">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">性別</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="input_gender" class="form-control" id="name" placeholder="女性" value = "<?php echo htmlspecialchars($gender); ?>">
+                                    <!-- issetは入っているかどうか -->
+                                    <?php if (isset($errors['gender']) && $errors['age_id'] == 'blank'):?>
+                                        <p class = "text-danger">性別を入力してください</p>
+                                    <?php endif; ?>
+                                </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">職業</label>
+                                <div class="col-sm-10">
                                     <input type="text" name="input_job_id" class="form-control" id="name" placeholder="OL" value = "<?php echo htmlspecialchars($job_id); ?>">
                                     <?php if (isset($errors['job_id']) && $errors['job_id'] == 'blank'):?>
                                         <p class = "text-danger">職業を入力してください</p>
                                     <?php endif; ?>
                                 </div>
-                            </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <label for="name">好きなもの</label>
-                            </div>
-                            <div class="col-xs-9">
-                                <div class="form-group">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-3">好きなもの</label>
+                                <div class="col-sm-10">
                                     <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($brands); ?>">
                                     <?php if (isset($errors['brands']) && $errors['brands'] == 'blank'):?>
                                         <p class = "text-danger">好きなものを入力してください</p>
                                     <?php endif; ?>
                                 </div>
-                                <input type="submit" class="btn btn-default-cente btn-lg" style="position:absolute;left:50%; right:50%; width:180px; "value="確認">
-                            </div>
-                        </div> 
-                        <a href="signin.php" style="float: right; padding-top: 6px;" class="text-success">サインイン</a>
+                        </div>
+
+
+                        <div class="form-group btn-submit">
+                            <input type="submit" class="btn btn-primary " value="確認">
+                            <a href="signin.php" class="btn btn-primary">サインイン</a>
+                        </div>
                     </form>
                 </div>
             <!-- ここまで -->

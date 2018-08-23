@@ -76,8 +76,8 @@
     </head>
     <body style="margin-top: 60px">
         <div class="container">
-            <div class="row">
-                <div class="col-xs-8 col-xs-offset-2 thumbnail">
+            <div class="row justify-content-center">
+                <div class="col-ld-12 col-md-12 col-xs-12 log_con">
                     <h2 class="text-center content_header">ログイン</h2>
                     <form method="POST" action="" enctype="multipart/form-data">
                          <?php if(isset($errors['signin']) && $errors['signin'] == 'blank'): ?>
@@ -87,18 +87,24 @@
                                     <p class = "text-danger">サインインに失敗しました</p>
                                 <?php endif; ?>
                         <div class="form-group">
-                            <label for="email">ID</label>
-                            <input type="email" name="input_email" class="form-control" id="email" placeholder="example@gmail.com">
+                            <label for="email" class="control-label col-sm-2">ID</label>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <input type="email" name="input_email" class="form-control" id="email" placeholder="example@gmail.com">
+                                </div>
                         </div>
                         <div class="form-group">
-                            <label for="password">Pass</label>
-                            <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
+                            <label for="password" class="control-label col-sm-2">Pass</label>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
+                                </div>
                         </div>
-                        <input type="submit" class="btn btn-info" value="ログイン">
+                        <input type="submit" class="btn btn-info btnn" value="ログイン">
                     </form>
                 </div>
             </div>
         </div>
+
+
             <script src="assets/js/jquery.min.js"></script>
             <!-- bootstrap -->
             <script src="assets/js/popper.js"></script>

@@ -47,7 +47,6 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-=======
         <div class="col-lg-10 col-md-9 col-12 body_block  main-contents">
             <div class="container-fluid back">
                 <div class="img_card">
@@ -78,7 +77,6 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <img src="assets/img/uses/index_top2.jpg" class="top_img2">
->>>>>>> master
                         </div>
                     </div>
 
@@ -90,14 +88,8 @@
                 </div>
 
                     <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-<<<<<<< HEAD
-
-=======
                             <h3 >みんなの思い出</h3>
->>>>>>> master
                     </div>
-
-                
 
             <div class="portfolio gutters grid img-container">
               <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
@@ -149,7 +141,6 @@
                         </div>
                     </a>
                 </div>
->>>>>>> master
                 <div class="grid-item  photography design col-sm-12 col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port4.png" title="project name 5">
                         <div class="project_box_one">

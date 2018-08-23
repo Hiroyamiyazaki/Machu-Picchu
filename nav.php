@@ -1,8 +1,8 @@
 <?php 
 
 
-    session_start();
     require('dbconnect.php');
+    require_once('function.php');
 
 
 
@@ -33,7 +33,7 @@
                 <div class="profilearea">
                     <ul class="menu_nav pro_nav">
                         <li>
-                            <p class="user_id">ID:TAKAHISAさん</p>
+                            <span class="user_id">ID:<?php echo $signin_user['user_id']; ?></span>
                         </li>
                         <li>
                             <a href="mypage.php">
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="index.php">
+                            <a href="signout.php">
                                 Sign out
                             </a>
                         </li>
@@ -76,11 +76,6 @@
                         </a>
                     </li>
                     <?php endif; ?>
-                    <li>
-                        <a href="signup.php">
-                            Profile
-                        </a>
-                    </li>
                     <li>
                         <a href="search.php">
                             Album

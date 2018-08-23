@@ -6,11 +6,39 @@
     require('function.php');
 
 
+    date_default_timezone_set("Asia/Manila");
+
+
 
     // サインインユーザー取得
     $signin_user = get_user($dbh, $_SESSION['id']);
 
+    if(!isset($_SESSION['id'])) {
+        header('Location:signup.php');
+        exit();
+    }
 
+
+
+
+    $date = '';
+    $relation_id = '';
+    $event_id = '';
+    $comment = '';
+    $sec_comment = '';
+    $errors = array();
+
+
+    if (isset($_GET['action']) && $_GET['action'] == 'rewrite') {
+        $_POST['date'] = $_SESSION['register']['date'];
+        $_POST['relation_id'] = $_SESSION['register']['relation_id'];
+        $_POST['event_id'] = $_SESSION['register']['event_id'];
+        $_POST['comment'] = $_SESSION['register']['comment'];
+        $_POST['sec_comment'] = $_SESSION['register']['sec_comment'];
+
+
+        $errors['rewrite'] = true;
+    }
 
 
 

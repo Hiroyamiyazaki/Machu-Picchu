@@ -8,12 +8,12 @@
         session_start();
 
         if (!empty($_POST)){
-            $email = $_POST["input_email"];
+            $user_id = $_POST["input_user_id"];
             $password = $_POST["input_password"];
 
-            if($email != '' && $password !=''){
-                $sql = 'SELECT*FROM `users` WHERE `email`=?';
-                $data = [$email];
+            if($user_id != '' && $password !=''){
+                $sql = 'SELECT*FROM `users` WHERE `user_id`=?';
+                $data = [$user_id];
                 $stmt = $dbh->prepare($sql);
                 $stmt->execute($data);
                 $record = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@
                     $_SESSION['id'] = $record['id'];
 
                     //timeline.phpに移動
-                    header("Location: timeline.php");
+                    header("Location: mypage.php");
                 }else{
                     //認証失敗
                     $errors['signin'] = 'failed';
@@ -81,15 +81,15 @@
                     <h2 class="text-center content_header">ログイン</h2>
                     <form method="POST" action="" enctype="multipart/form-data">
                          <?php if(isset($errors['signin']) && $errors['signin'] == 'blank'): ?>
-                                <p class="text-danger">メールアドレスとパスワードを正しく入力してください</p>
+                                <p class="text-danger">IDとパスワードを正しく入力してください</p>
                                 <?php endif; ?>
                                 <?php if(isset($errors['signin']) && $errors['signin'] == 'failed'): ?>
                                     <p class = "text-danger">サインインに失敗しました</p>
                                 <?php endif; ?>
                         <div class="form-group">
-                            <label for="email" class="control-label col-sm-2">ID</label>
+                            <label for="name" class="control-label col-sm-2">ID</label>
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <input type="email" name="input_email" class="form-control" id="email" placeholder="example@gmail.com">
+                                    <input type="text" name="input_user_id" class="form-control" id="name" placeholder="">
                                 </div>
                         </div>
                         <div class="form-group">

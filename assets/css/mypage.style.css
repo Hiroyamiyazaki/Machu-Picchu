@@ -1,0 +1,20 @@
+h2{
+    color:green;
+    text-align:center;
+}
+
+header{
+    position: fixed;
+    top:0;
+    width: 100%;
+    padding: 50px;
+    height: 150px;
+    background-color: #FFE9A2;
+    z-index: 10;
+    margin-left: 0;
+
+}
+.mypage_padding{
+    padding-left: 0;
+    padding-right: 0;
+}

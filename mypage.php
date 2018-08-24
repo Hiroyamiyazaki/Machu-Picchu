@@ -43,7 +43,9 @@
     <meta name="author" content="Pharaohlab">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- ========== Title ========== -->
-    <title>Premori! -Top-</title>
+    <title> MyPage</title>
+
+
     <!-- ========== Favicon Ico ========== -->
     <!--<link rel="icon" href="fav.ico">-->
     <!-- ========== STYLESHEETS ========== -->
@@ -62,9 +64,8 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/main.css" rel="stylesheet">
     <!-- Custom by us -->
-    <link href="assets/css/main.css" rel="stylesheet">
-        <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
+    <link rel="stylesheet"  href="assets/css/mypage.style.css">
 </head>
 <body>
 <div class="loader">
@@ -80,7 +81,10 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center mypage_padding">
+            <header>
+                <h2>マイページ</h2>
+            </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
                 <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>

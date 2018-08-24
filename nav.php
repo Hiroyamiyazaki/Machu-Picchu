@@ -5,8 +5,40 @@
     require_once('function.php');
 
 
+//相手欄のドロップダウンリストに表示
+    $sql = 'SELECT * FROM `relations`';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    $relations = array();
 
 
+
+    while (1) {
+        # code...
+        $record =$stmt->fetch(PDO::FETCH_ASSOC);
+        if($record==false){
+            break;
+        }
+        $relations[] = $record;
+    }
+
+
+    //年代欄のドロップダウンリストに表示
+    $sql = 'SELECT * FROM `ages`';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    $ages = array();
+
+      while (1) {
+        # code...
+        $agerec =$stmt->fetch(PDO::FETCH_ASSOC);
+        if($agerec==false){
+            break;
+        }
+        $ages[] = $agerec;
+    }
 ?>
 
 
@@ -52,7 +84,7 @@
                         </li>
                     </ul>
                 </div>
-             <?php endif; ?> 
+             <?php endif; ?>
 
             <!-- profile end -->
 
@@ -106,17 +138,20 @@
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">相手<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼氏</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼女</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">お父さん</a></li>
+                                <?php foreach($relations as $relation) {?>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?php echo $relation['relation_name']; ?></a></li>
+                                <?php } ?>
+
                             </ul>
 
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">年代<span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">10代</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">20代</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">30代</a></li>
+                                <?php foreach ($ages as $age) { ?>
+
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?php echo $age['generation']; ?></a></li>
+                            <?php } ?>
+
                             </ul>
 
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">職業<span class="caret"></span>
@@ -135,7 +170,7 @@
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">クリスマス</a></li>
                             </ul>
 
-                            <button type="button" class="btn btn-primary btn-lg">検索</button>
+                            <button type="button" class="btn btn-primary btn-lg"><a href='search.php'>検索</a></button>
                         </div>
 
 

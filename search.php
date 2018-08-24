@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <!-- ========== Meta Tags ========== -->
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <meta name="author" content="Pharaohlab">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- ========== Title ========== -->
-    <title> Cocoon -Portfolio</title>
+    <title> Premori! 検索</title>
     <!-- ========== Favicon Ico ========== -->
     <!--<link rel="icon" href="fav.ico">-->
     <!-- ========== STYLESHEETS ========== -->
@@ -28,6 +28,7 @@
     <link href="assets/css/main.css" rel="stylesheet">
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
+    <link rel="stylesheet"  href="assets/css/search.style.css">
 </head>
 <body>
 <div class="loader">
@@ -43,7 +44,11 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center search_padding">
+
+            <header>
+                <h2>検索「           」</h2>
+            </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
                 <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
@@ -213,6 +218,62 @@
                     </a>
                 </div>
                 <div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
+                    <a href="assets/img/portfolio/port4.png" title="project name 4">
+                        <div class="project_box_one">
+                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
+                            <div class="product_info">
+                                <div class="product_info_text">
+                                    <div class="product_info_text_inner">
+                                        <i class="ion ion-plus"></i>
+                                        <h4>project name</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
+                    <a href="assets/img/portfolio/port4.png" title="project name 4">
+                        <div class="project_box_one">
+                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
+                            <div class="product_info">
+                                <div class="product_info_text">
+                                    <div class="product_info_text_inner">
+                                        <i class="ion ion-plus"></i>
+                                        <h4>project name</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
+                    <a href="assets/img/portfolio/port4.png" title="project name 4">
+                        <div class="project_box_one">
+                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
+                            <div class="product_info">
+                                <div class="product_info_text">
+                                    <div class="product_info_text_inner">
+                                        <i class="ion ion-plus"></i>
+                                        <h4>project name</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
+                    <a href="assets/img/portfolio/port4.png" title="project name 4">
+                        <div class="project_box_one">
+                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
+                            <div class="product_info">
+                                <div class="product_info_text">
+                                    <div class="product_info_text_inner">
+                                        <i class="ion ion-plus"></i>
+                                        <h4>project name</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div><div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port4.png" title="project name 4">
                         <div class="project_box_one">
                             <img src="assets/img/portfolio/port4.png" alt="pro1" />

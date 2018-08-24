@@ -94,8 +94,6 @@
                             <h3 >みんなの思い出</h3>
                     </div>
 
-                
-
             <div class="portfolio gutters grid img-container">
               <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                 <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">

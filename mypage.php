@@ -87,7 +87,7 @@
                 <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port1.png" title="project name 1">
                         <div class="project_box_one">
-                            <img src="assets/img/portfolio/port1.png" alt="pro1" />
+                            <img src="assets/img/post_img/port1.png" alt="pro1" />
                             <div class="product_info">
                                 <div class="product_info_text">
                                     <div class="product_info_text_inner">

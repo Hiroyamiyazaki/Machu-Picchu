@@ -6,6 +6,7 @@
     // PHPプログラム
     $user_id = '';
     $age_id = '';
+    $gender = '';
     $job_id = '';
     $brands = '';
     $errors = [];
@@ -13,6 +14,7 @@
     if (isset($_GET['action']) && $_GET['action'] == 'rewrite'){
         $_POST['input_user_id'] = $_SESSION['register']['user_id'];
         $_POST['input_age_id'] = $_SESSION['register']['age_id'];
+        $_POST['input_gender'] = $_SESSION['register']['gender'];
         $_POST['input_job_id'] = $_SESSION['register']['job_id'];
         $_POST['input_brands'] = $_SESSION['register']['brands'];
         $_POST['input_password'] = $_SESSION['register']['password'];
@@ -20,9 +22,11 @@
         $errors['rewrite'] = true;
     }
 
+
     if (!empty($_POST)){
         $user_id = $_POST['input_user_id'];
         $age_id = $_POST['input_age_id'];
+        $gender = $_POST['input_gender'];
         $job_id = $_POST['input_job_id'];
         $brands = $_POST['input_brands'];
         $password = $_POST['input_password'];
@@ -37,6 +41,9 @@
 
         if ($age_id == ''){
             $errors['age_id'] = 'blank';
+        }
+        if ($gender ==''){
+            $errors['gender'] = 'blank';
         }
         if ($job_id == ''){
             $errors['job_id'] = 'blank';
@@ -86,7 +93,8 @@
 
             $_SESSION['register']['user_id'] = $_POST['input_user_id'];
             $_SESSION['register']['password'] = $_POST['input_password'];
-            $_SESSION['register']['age_id'] = $_POST['input_gender'];
+            $_SESSION['register']['age_id'] = $_POST['input_age_id'];
+            $_SESSION['register']['gender'] = $_POST['input_gender'];
             $_SESSION['register']['job_id'] = $_POST['input_job_id'];
             $_SESSION['register']['brands'] = $_POST['input_brands'];
 
@@ -94,116 +102,155 @@
             exit();
         }
     }
+
+
+
     // $hoge = '';
     // カラかどうかのチェック
     // (empty($hoge))
     // 変数が存在するかどうかのチェック
     // (isset($hoge))
     // empty = !isset
+
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <title>Premori</title>
-        <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/css/register.css">
+        <meta name="description" content="Cocoon -Portfolio">
+        <meta name="keywords" content="Cocoon , Portfolio">
+        <meta name="author" content="Pharaohlab">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- ========== Title ========== -->
+        <title>Premori! -Top-</title>
+        <!-- ========== Favicon Ico ========== -->
+        <!--<link rel="icon" href="fav.ico">-->
+        <!-- ========== STYLESHEETS ========== -->
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Fonts Icon CSS -->
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/et-line.css" rel="stylesheet">
+        <link href="assets/css/ionicons.min.css" rel="stylesheet">
+        <!-- Carousel CSS -->
+        <link href="assets/css/slick.css" rel="stylesheet">
+        <!-- Magnific-popup -->
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="assets/css/animate.min.css">
+        <!-- Custom styles for this template -->
+        <link href="assets/css/main.css" rel="stylesheet">
+        <!-- Custom by us -->
+         <link rel="stylesheet"  href="assets/css/style.css">
+
+         <link rel="stylesheet"  href="assets/css/register.css">
     </head>
     <body style="margin-top: 60px">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- ここにコンテンツ -->
                 <!-- ここから -->
-            <div class="col-xs-8 col-xs-offset-2 thumbnail">
-                <h2 class="text-center content_header">思い出を残そう</h2>
-                <form method="POST" action="signup.php" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <label for="name">ID</label>
-                        </div>
-                        <div class="col-xs-9">
-                            <div class="form-group">
+                <div class="col-ld-12 col-md-12 col-xs-12">
+                    <h2 class="reg_title">思い出を残そう</h2>
+                    <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">ID</label>
+                            <div class="col-sm-10">
                                 <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($user_id); ?>">
-                                <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
-                                    <p class = "text-danger">IDを入力してください</p>
-                                <?php endif; ?>
+                                    <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
+                                        <p class = "text-danger">IDを入力してください</p>
+                                    <?php endif; ?>
                             </div>
+                         </div>
+
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">Pass</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
+                                    <?php if (isset($errors['password']) && $errors['password'] == 'blank'):?>
+                                        <p class = "text-danger">パスワードを入力してください</p>
+                                    <?php endif; ?>
+                                    <?php if (isset($errors['password']) && $errors['password'] == 'length'):?>
+                                        <p class = "text-danger">4 ~ 16文字のパスワードを入力してください</p>
+                                    <?php endif; ?>
+                                    <!-- もし$errorsが空じゃなければエラーメッセージを出力する -->
+                                    <?php if(!empty($errors)): ?> <p class = "text-danger">パスワードを再度入力して下さい</p> <?php endif; ?>
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">年代</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($age_id); ?>">
+                                    <!-- issetは入っているかどうか -->
+                                    <?php if (isset($errors['age_id']) && $errors['age_id'] == 'blank'):?>
+                                        <p class = "text-danger">年代を入力してください</p>
+                                    <?php endif; ?>
+                                </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <label for="name">Pass</label>
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">性別</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="input_gender" class="form-control" id="name" placeholder="女性" value = "<?php echo htmlspecialchars($gender); ?>">
+                                    <!-- issetは入っているかどうか -->
+                                    <?php if (isset($errors['gender']) && $errors['age_id'] == 'blank'):?>
+                                        <p class = "text-danger">性別を入力してください</p>
+                                    <?php endif; ?>
+                                </div>
                         </div>
-                        <div class="col-xs-9">
-                    <div class="form-group">
-                        <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
-                        <?php if (isset($errors['password']) && $errors['password'] == 'blank'):?>
-                            <p class = "text-danger">パスワードを入力してください</p>
-                        <?php endif; ?>
-                        <?php if (isset($errors['password']) && $errors['password'] == 'length'):?>
-                            <p class = "text-danger">4 ~ 16文字のパスワードを入力してください</p>
-                        <?php endif; ?>
-                        <!-- もし$errorsが空じゃなければエラーメッセージを出力する -->
-                        <?php if(!empty($errors)): ?> <p class = "text-danger">パスワードを再度入力して下さい</p> <?php endif; ?>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-xs-3">
-                    <label for="name">年代</label>
-                </div>
-                        <div class="col-xs-9">
-                    <div class="form-group">
-                        <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($age_id); ?>">
-                        <!-- issetは入っているかどうか -->
-                        <?php if (isset($errors['age_id']) && $errors['age_id'] == 'blank'):?>
-                            <p class = "text-danger">年代を入力してください</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-2">職業</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="input_job_id" class="form-control" id="name" placeholder="OL" value = "<?php echo htmlspecialchars($job_id); ?>">
+                                    <?php if (isset($errors['job_id']) && $errors['job_id'] == 'blank'):?>
+                                        <p class = "text-danger">職業を入力してください</p>
+                                    <?php endif; ?>
+                                </div>
+                        </div>
 
-            <div class="row">
-                <div class="col-xs-3">
-                    <label for="name">職業</label>
-                </div>
-                <div class="col-xs-9">
-                    <div class="form-group">
-                        <input type="text" name="input_job_id" class="form-control" id="name" placeholder="OL" value = "<?php echo htmlspecialchars($job_id); ?>">
-                        <?php if (isset($errors['job_id']) && $errors['job_id'] == 'blank'):?>
-                            <p class = "text-danger">職業を入力してください</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-3">好きなもの</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($brands); ?>">
+                                    <?php if (isset($errors['brands']) && $errors['brands'] == 'blank'):?>
+                                        <p class = "text-danger">好きなものを入力してください</p>
+                                    <?php endif; ?>
+                                </div>
+                        </div>
 
-            <div class="row submit_center">
-                <div class="col-xs-3">
-                    <label for="name">好きなもの</label>
+
+                        <div class="form-group btn-submit">
+                            <input type="submit" class="btn btn-primary " value="確認">
+                            <a href="signin.php" class="btn btn-primary">サインイン</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-xs-9">
-                    <div class="form-group">
-                        <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($brands); ?>">
-                        <?php if (isset($errors['brands']) && $errors['brands'] == 'blank'):?>
-                            <p class = "text-danger">好きなものを入力してください</p>
-                        <?php endif; ?>
-                    </div>
-                    <input type="submit" class="btn btn-default-cente btn-lg" style="position:absolute;left:50%; right:50%; width:180px; "value="確認"></div>
-                </div>
-            </div> 
-                    <a href="signin.php" style="float: right; padding-top: 6px;" class="text-success">サインイン</a>
-                </form>
-            </div>
             <!-- ここまで -->
 
             </div>
         </div>
-        <script src="../Machu-Picchu/assets/js/jquery-3.1.1.js"></script>
-        <script src="../Machu-Picchu/assets/js/jquery-migrate-1.4.1.js"></script>
-        <script src="../Machu-Picchu/assets/js/bootstrap.js"></script>
+
+    <!-- jquery -->
+        <script src="assets/js/jquery.min.js"></script>
+        <!-- bootstrap -->
+        <script src="assets/js/popper.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/waypoints.min.js"></script>
+        <!--slick carousel -->
+        <script src="assets/js/slick.min.js"></script>
+        <!--Portfolio Filter-->
+        <script src="assets/js/imgloaded.js"></script>
+        <script src="assets/js/isotope.js"></script>
+        <!-- Magnific-popup -->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!--Counter-->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!-- WOW JS -->
+        <script src="assets/js/wow.min.js"></script>
+        <!-- Custom js -->
+        <script src="assets/js/main.js"></script>
     </body>
 </html>

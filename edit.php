@@ -1,3 +1,44 @@
+<?php
+
+
+    session_start();
+    require('dbconnect.php');
+    require('function.php');
+
+
+    $feed_id = $_GET["feed_id"];
+
+    $sql = "SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id WHERE `feeds`.`id` = $feed_id";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    $feed = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+    if (!empty($_POST)) {
+        $update_sql = "UPDATE `feeds` SET `feed` = ? WHERE `feeds`.`id` = ?";
+        $data = array($_POST["feed"],$feed_id);
+        $stmt = $dbh->prepare($update_sql);
+        $stmt->execute($data);
+
+        header("Location: mypage.php");
+        exit();
+    }
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +70,7 @@
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
 
-    <link rel="stylesheet"  href="assets/css/edit.css">
+    <link rel="stylesheet"  href="assets/css/post.css">
 
 </head>
 <body>
@@ -51,81 +92,88 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                     <div class="sub-contents">
-                        <h3>Edit</h3>
+                        <h3>Post</h3>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                     <div class="sub-contents">
-                        <img src="assets/img/uses/index_top2.jpg" class="top_img2">
-                     </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                      <div class="sub-contents2">
-                         <h2>Edit</h2><br>
-                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" name="date" class="form-control">
-                        </div><br>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">相手<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼氏</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">彼女</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">お父さん</a></li>
-                            </ul>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">イベント<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">記念日</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">誕生日</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">クリスマス</a></li>
-                            </ul>
-                        </div><br><br>
-                        <div class="form-group">
-                            <label for="img_name">Photo</label><br>
-                            <input type="file" name="input_img_name" id="img_name">
-                        </div>
-                </div>
-             </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-12 top-wrapper4">
-                    <div class="sub-contents">
-                        <div class="form-group">
-                            <label for="detail">Comment</label><br>
-                            <textarea name="detail" class="form-comment" rows="6">
-                                
-                            </textarea>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-12 top-wrapper5">
-                    <div class="sub-contents">
-                        <div class="form-group">
-                            <label for="detail">Secret Comment</label><br>
-                            <textarea name="detail" class="form-comment" rows="6">
-                                
-                            </textarea>
-
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
+                         <div class="sub-contents">
+                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
                          </div>
                     </div>
-                </div>
-            </div>
+                    <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
+                          <div class="sub-contents2">
+                             <h2>Post</h2><br>
+                             <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" name="date" class="form-control" value="<?php echo $date; ?>">
+                            </div><br>
 
-            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper6">
-                <div class="sub-contents">
-                     <button type="button" class="btn btn-primary btn-lg">投稿</button>
+                            <p>相手<br>
+                            <select name="relation_id">
+                                <option value="A">友人</option>
+                                <option value="B">B型</option>
+                                <option value="O">O型</option>
+                                <option value="AB">AB型</option>
+                            </select></p>
+                            <?php if (isset($errors['relation_id']) && $errors['relation_id'] == 'blank'): ?>
+                                    <p class="text-danger">相手を選んでください</p>
+                                <?php endif; ?>
+                           
+                           <p>イベント<br>
+                            <select name="event_id">
+                                <option value="A">記念日</option>
+                                <option value="B">B型</option>
+                                <option value="O">O型</option>
+                                <option value="AB">AB型</option>
+                            </select></p>
+                                <?php if (isset($errors['event_id']) && $errors['event_id'] == 'blank'): ?>
+                                    <p class="text-danger">イベントを選んでください</p>
+                                <?php endif; ?>
+                            </div><br><br>
+                            <div class="form-group">
+                                <label for="img_name">Photo</label><br>
+                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $file_name; ?>">
+                            </div>
+                    </div>
+                 </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-12 top-wrapper4">
+                        <div class="sub-contents">
+                            <div class="form-group">
+                                <label for="feed">Comment</label><br>
+                                <textarea name="feed" class="form-comment"rows="6"><?php echo htmlspecialchars($feed); ?></textarea>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-12 top-wrapper5">
+                        <div class="sub-contents">
+                            <div class="form-group">
+                                <label for="secret_feed">Secret Comment</label><br>
+                                <textarea name="secret_feed" class="form-comment" rows="6"><?php echo htmlspecialchars($secret_feed); ?></textarea>
+
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper6">
+                    <div class="sub-contents">
+                            <!-- ④ -->
+                        <a href="post.php?action=rewrite" class="btn btn-primary">&laquo;&nbsp;Back</a> | 
+                            <!-- ⑤ -->
+                        <input type="hidden" name="action" value="submit">
+                        <input type="submit" class="btn btn-primary" value="投稿">
+                    </div>
+                </div>
+            </form>
 
         </div>
         <!--=================== content body end ====================-->

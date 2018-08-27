@@ -97,7 +97,6 @@
         // move_uploaded_file（テンポラリパス、保存したい場所、ファイル名）
         move_uploaded_file($_FILES['input_img_name']['tmp_name'], './assets/img/post_img/'.$submit_file_name);
 
-var_dump($_FILES['input_img_name']['tmp_name'], 'img/post_img/'.$submit_file_name); die();
 
 
         $_SESSION['id']['date'] = $_POST['date'];
@@ -113,7 +112,7 @@ var_dump($_FILES['input_img_name']['tmp_name'], 'img/post_img/'.$submit_file_nam
 
         if($feed !='') {
 
-        create_feed($dbh, $date, $relation_id, $event_id, $file_name, $feed, $secret_feed, $signin_user['id']);
+        create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id']);
 
         header('Location: mypage.php');
         exit();
@@ -249,9 +248,7 @@ var_dump($_FILES['input_img_name']['tmp_name'], 'img/post_img/'.$submit_file_nam
                         <div class="sub-contents">
                             <div class="form-group">
                                 <label for="feed">Comment</label><br>
-                                <textarea name="feed" class="form-comment"rows="6">
-                                    <?php echo htmlspecialchars($feed); ?>
-                                </textarea>
+                                <textarea name="feed" cols="50" rows="6"><?php echo htmlspecialchars($feed); ?></textarea>
 
                         </div>
                     </div>
@@ -262,9 +259,7 @@ var_dump($_FILES['input_img_name']['tmp_name'], 'img/post_img/'.$submit_file_nam
                         <div class="sub-contents">
                             <div class="form-group">
                                 <label for="secret_feed">Secret Comment</label><br>
-                                <textarea name="secret_feed" class="form-comment" rows="6">
-                                    <?php echo htmlspecialchars($secret_feed); ?>
-                                </textarea>
+                                <textarea name="secret_feed" cols="50" rows="6"><?php echo htmlspecialchars($secret_feed); ?></textarea>
 
                              </div>
                         </div>

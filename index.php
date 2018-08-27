@@ -1,4 +1,39 @@
+<?php 
 
+
+  session_start();
+
+  require('dbconnect.php');
+  require('function.php');
+
+
+
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` RIGHT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
+    $data = [];
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+
+
+    $feeds = array();
+    while (1) {
+    // データを１件ずつ取得
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($rec == false) {
+           break;
+        }
+
+
+
+    $feeds[] = $rec;
+
+
+}
+
+
+
+
+ ?>
 
 
 <!DOCTYPE html>
@@ -92,194 +127,71 @@
 
                     <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                             <h3 >みんなの思い出</h3>
+
+                                            <a class="popup-modal" href="#inline-wrap">インライン情報を表示</a>
+                                            <div id="inline-wrap" class="mfp-hide">
+                                              <h1>画像とテキストを表示</h1>
+                                              <div class="image"><img src="assets/img/post_img/home-port3.png"></div>
+                                              <p>キャプションを付けたい時なんかに便利です。</p>
+                                              <p class="popup-modal-dismiss"><a href="#">閉じる</a></p>
+                                            </div>
+
+                                            <script>
+                                            $(function () {
+                                              $('.popup-modal').magnificPopup({
+                                                type: 'inline',
+                                                preloader: false
+                                              });
+                                              //閉じるリンクの設定
+                                              $(document).on('click', '.popup-modal-dismiss', function (e) { 
+                                                e.preventDefault();
+                                                $.magnificPopup.close();
+                                              });
+                                            });
+                                            </script>
+
                     </div>
 
-            <div class="portfolio gutters grid img-container">
-              <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port1.png" title="project name 1">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port1.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="grid-item  branding architecture  col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port2.png" title="project name 2">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port2.png" alt="pro1" />
+                    <?php foreach ($feeds as $feed): ?>
+                    <div class="portfolio gutters grid img-container">
+                      <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                        <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
+                            <a href="./assets/img/post_img/<?php echo $feed['img_name'] ?>" title="<?php echo $feed['user_id'] ?>さんの投稿">
+                                <div class="project_box_one">
+                                    <img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" alt="pic">
+                                    <div class="product_info">
+                                        <div class="product_info_text">
+                                            <div class="product_info_text_inner">
+                                                <i class="ion ion-plus"></i>
+                                                <h4></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
 
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
+                    <div class="portfolio gutters grid img-container">
+                        <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                        <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
+                            <a href="assets/img/post_img/port1.png" title="project name 1">
+                                <div class="project_box_one">
+                                    <img src="assets/img/post_img/port1.png" alt="pro1" />
+                                    <div class="product_info">
+                                        <div class="product_info_text">
+                                            <div class="product_info_text_inner">
+                                                <i class="ion ion-plus"></i>
+                                                <h4>project name</h4>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-
-                <div class="grid-item  design col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port3.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port3.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  photography design col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port4.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding photography  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port5.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port5.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item   architecture design col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port6.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port6.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  photography architecture col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port7.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port7.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding design  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port8.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port8.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port9.png" title="project name 4">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port9.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  photography architecture col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port10.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port10.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item  branding design  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port11.png" title="project name 5">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port11.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="grid-item architecture  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port4.png" title="project name 4">
-                        <div class="project_box_one">
-                            <img src="assets/img/portfolio/port4.png" alt="pro1" />
-                            <div class="product_info">
-                                <div class="product_info_text">
-                                    <div class="product_info_text_inner">
-                                        <i class="ion ion-plus"></i>
-                                        <h4>project name</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
             <!--=================== filter portfolio end====================-->
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">

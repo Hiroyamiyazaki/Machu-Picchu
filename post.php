@@ -95,7 +95,9 @@
         $date_str = date('YmdHis');
         $submit_file_name = $date_str.$file_name;
         // move_uploaded_file（テンポラリパス、保存したい場所、ファイル名）
-        move_uploaded_file($_FILES['input_img_name']['tmp_name'], 'aseets/img/post_img/'.$submit_file_name);
+        move_uploaded_file($_FILES['input_img_name']['tmp_name'], './assets/img/post_img/'.$submit_file_name);
+
+var_dump($_FILES['input_img_name']['tmp_name'], 'img/post_img/'.$submit_file_name); die();
 
 
         $_SESSION['id']['date'] = $_POST['date'];

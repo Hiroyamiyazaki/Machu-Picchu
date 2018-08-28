@@ -119,6 +119,7 @@
                         <div id="inline-wrap" class="mfp-hide">
                           <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
                           <p><?php echo $feed['feed'] ?></p>
+                          <p><?php echo $feed['user_id']['age_id']['gender'] ?></p>
                         </div>
                     </div>
 

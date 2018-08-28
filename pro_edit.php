@@ -1,3 +1,27 @@
+<?php
+
+  session_start();
+
+  require('dbconnect.php');
+  require('function.php');
+
+
+
+  $signin_user = get_user($dbh, $_SESSION['id']);
+
+
+
+  if(!isset($_SESSION['id'])) {
+    header('Location:signup.php');
+    exit();
+  }
+
+
+
+  ?>
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -59,6 +83,7 @@
                 </div>
             </div>
 
+            <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
             <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>
@@ -133,6 +158,7 @@
                             <a href="signin.php" class="btn btn-primary">サインイン</a>
                         </div>
                     </form>
+                </div>s
 
         </div>
         <!--=================== content body end ====================-->

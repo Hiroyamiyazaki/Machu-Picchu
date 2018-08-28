@@ -7,6 +7,16 @@
   require('function.php');
 
 
+  $signin_user = get_user($dbh, $_SESSION['id']);
+
+
+
+  if(!isset($_SESSION['id'])) {
+    header('Location:signup.php');
+    exit();
+  }
+
+
 
     $sql = 'SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` RIGHT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
     $data = [];

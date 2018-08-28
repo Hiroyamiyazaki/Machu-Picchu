@@ -11,7 +11,10 @@
 
 
     // サインインユーザー取得
+
     $signin_user = get_user($dbh, $_SESSION['id']);
+
+
 
     if(!isset($_SESSION['id'])) {
         header('Location:signup.php');
@@ -99,12 +102,12 @@
 
 
 
-        $_SESSION['id']['date'] = $_POST['date'];
-        $_SESSION['id']['relation_id'] = $_POST['relation_id'];
-        $_SESSION['id']['event_id'] = $_POST['event_id'];
-        $_SESSION['id']['feed'] = $_POST['feed'];
-        $_SESSION['id']['secret_feed'] = $_POST['secret_feed'];
-        $_SESSION['id']['img_name'] = $submit_file_name;
+        $_SESSION['hoge']['date'] = $_POST['date'];
+        $_SESSION['hoge']['relation_id'] = $_POST['relation_id'];
+        $_SESSION['hoge']['event_id'] = $_POST['event_id'];
+        $_SESSION['hoge']['feed'] = $_POST['feed'];
+        $_SESSION['hoge']['secret_feed'] = $_POST['secret_feed'];
+        $_SESSION['hoge']['img_name'] = $submit_file_name;
 
         }
 
@@ -112,7 +115,10 @@
 
         if($feed !='') {
 
+
+
         create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id']);
+
 
         header('Location: mypage.php');
         exit();

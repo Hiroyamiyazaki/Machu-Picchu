@@ -6,6 +6,16 @@
     require('function.php');
 
 
+    $signin_user = get_user($dbh, $_SESSION['id']);
+
+
+
+  if(!isset($_SESSION['id'])) {
+    header('Location:signup.php');
+    exit();
+  }
+
+
     $feed_id = $_GET["feed_id"];
 
     $sql = "SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id WHERE `feeds`.`id` = $feed_id";

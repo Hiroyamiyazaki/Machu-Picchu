@@ -18,7 +18,11 @@
 
     $feed_id = $_GET["feed_id"];
 
+
+
     $sql = "SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id WHERE `feeds`.`id` = $feed_id";
+
+        var_dump($feed_id); die();
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
 

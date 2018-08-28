@@ -18,6 +18,8 @@
 
 
    $sql = 'SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
+
+
     $data = [];
 
     $stmt = $dbh->prepare($sql);
@@ -38,7 +40,6 @@
 
 
 }
-
 
 
 
@@ -113,13 +114,18 @@
 
                 <?php foreach ($feeds as $feed): ?>
 
+
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                         <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
                         <a class="popup-modal" href="#inline-wrap"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></a>
                         <div id="inline-wrap" class="mfp-hide">
                           <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
                           <p><?php echo $feed['feed'] ?></p>
-                          <p><?php echo $feed['user_id']['age_id']['gender'] ?></p>
+                          <p><?php echo $feed['user_id']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                   
+                              <a href="edit.php?feed=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
+                              <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
+                        
                         </div>
                     </div>
 

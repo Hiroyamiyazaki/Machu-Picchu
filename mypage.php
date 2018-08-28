@@ -112,21 +112,16 @@
             <div class="portfolio gutters grid img-container">
 
                 <?php foreach ($feeds as $feed): ?>
-                
 
-            <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                <a class="popup-modal" href="#inline-wrap"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></a>
-                <div id="inline-wrap" class="mfp-hide">
-                  <h1>画像とテキストを表示</h1>
-                  <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
-                  <p>キャプションを付けたい時なんかに便利です。</p>
-                  <p class="popup-modal-dismiss"><a href="#">閉じる</a></p>
-                </div>
-            </div>
+                    <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                        <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
+                        <a class="popup-modal" href="#inline-wrap"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></a>
+                        <div id="inline-wrap" class="mfp-hide">
+                          <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
+                          <p><?php echo $feed['feed'] ?></p>
+                        </div>
+                    </div>
 
-                    
-                
                 <?php endforeach; ?>
 
 
@@ -141,21 +136,6 @@
 </div>
 
 
-
-<script>
-    $(function () {
-      $('.popup-modal').magnificPopup({
-        type: 'inline',
-        preloader: false
-      });
-      //閉じるリンクの設定
-      $(document).on('click', '.popup-modal-dismiss', function (e) { 
-        e.preventDefault();
-        $.magnificPopup.close();
-      });
-});
-
-</script>
 
 <!-- jquery -->
 <script src="assets/js/jquery.min.js"></script>
@@ -176,5 +156,7 @@
 <script src="assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="assets/js/main.js"></script>
+
+<script src="assets/js/app.js"></script>
 </body>
 </html>

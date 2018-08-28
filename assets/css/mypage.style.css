@@ -18,3 +18,17 @@ header{
     padding-left: 0;
     padding-right: 0;
 }
+
+#inline-wrap {
+    position: relative;
+    margin: 10px auto;
+    max-width: 700px;
+    background: #fff;
+    padding: 40px;
+}
+
+
+
+#inline-wrap .image, #inline-wrap .popup-modal-dismiss {
+    text-align: center;
+}

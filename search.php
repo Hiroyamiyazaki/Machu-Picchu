@@ -103,25 +103,23 @@
 
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                        <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
+                    <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
                         <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></a>
                         <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
-                          <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
-                          <p><?php echo $feed['feed'] ?></p>
-                          <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
+                            <p><?php echo $feed['feed'] ?></p>
+                            <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
                             <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
-                              <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
-                              <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
+                                <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
+                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
                             <?php endif; ?>
                         </div>
                     </div>
 
                 <?php endforeach; ?>
 
-
-
             </div>
- 
+
             <!--=================== filter portfolio end====================-->
         </div>
         <!--=================== content body end ====================-->

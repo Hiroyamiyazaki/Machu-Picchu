@@ -25,10 +25,20 @@ h3 {
     object-fit: cover;
 }
 
+.feed_con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mypage_padding{
     padding-left: 0;
     padding-right: 0;
 }
+
+
+/*modal css*/
+
 
 .hoge {
     position: relative;
@@ -43,3 +53,16 @@ h3 {
 .hoge .image, .hoge .popup-modal-dismiss {
     text-align: center;
 }
+
+.date_rec {
+    text-align: right;
+}
+
+.user_info {
+    text-align: right;
+}
+
+.btn_user {
+    text-align: right;
+}
+

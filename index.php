@@ -134,10 +134,11 @@
 
 
 
-             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                  <h3 >みんなの思い出</h3>
+                        <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                            <h3 >みんなの思い出</h3>
+                        </div>
 
-                            <div class="portfolio gutters grid img-container">
+                        <div class="portfolio gutters grid img-container">
 
                                 <?php foreach ($feeds as $feed): ?>
 
@@ -159,12 +160,6 @@
                                 <?php endforeach; ?>
                             </div>
 
-             </div>
-
-
-         </div>
-     </div>
-
 
 
             <!--=================== filter portfolio end====================-->
@@ -173,6 +168,7 @@
                      <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
                 </div>
             </div>
+           </div>
           </div>
         </div>
         <!--=================== content body end ====================-->

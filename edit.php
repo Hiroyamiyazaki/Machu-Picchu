@@ -29,7 +29,6 @@
 
 
 
-
     if (!empty($_POST)) {
         $update_sql = "UPDATE `feeds` SET `feed` = ? WHERE `feeds`.`id` = ?";
         $data = array($_POST["feed"],$feed_id);
@@ -124,7 +123,7 @@
                              <h2>Post</h2><br>
                              <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" name="date" class="form-control" value="<?php echo $feed['date']; ?>">
+                                <input type="date" name="date" class="form-control" value="<?php echo date('Y-m-d', strtotime($feed['date'])); ?>">
                             </div><br>
 
                             <p>相手<br>

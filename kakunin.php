@@ -17,3 +17,43 @@
                         </a>
 
                     </div>
+
+
+
+
+
+select ボタンで初期値を元々選択したものにする場合
+
+<?php
+
+    $sql = 'SELECT * FROM `relation` WHERE `id` = ?';
+
+
+    $data = [];
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+
+
+    $relations = array();
+    while (1) {
+    // データを１件ずつ取得
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($rec == false) {
+           break;
+        }
+
+
+
+    $relations[] = $rec;
+
+  
+?>
+
+<select>
+  <?php foreach ($relations as $relation): // 選択肢の数だけ繰り返し ?>
+    <option <?php echo ($relation === $feed['relation_id']) ? 'selected' : ''; ?>>
+      <?php echo $relation; ?>
+    </option>
+  <?php endforeach; ?>
+</select>

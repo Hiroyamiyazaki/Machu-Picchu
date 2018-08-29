@@ -127,7 +127,7 @@
                           <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
                             <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
                               <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs btn_user">編集</a>
-                              <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs btn_user">削除</a>
+                              <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs btn_user">削除</a>
                             <?php endif; ?>
                         </div>
                     </div>

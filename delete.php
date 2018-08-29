@@ -7,6 +7,8 @@
     $feed_id = $_GET["feed_id"];
 
 
+
+
     $sql = "DELETE FROM `feeds` WHERE `feeds`.`id` = ?";
     $data = array($feed_id);
     $stmt = $dbh->prepare($sql);

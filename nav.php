@@ -54,7 +54,7 @@
             <!--logo -->
             <div class="logo_box">
                 <a href="#">
-                    <img src="assets/img/logo.png" alt="Premori!">
+                    <img src="assets/img/main-logo.png" alt="Premori!">
                 </a>
             </div>
             <!--logo end-->

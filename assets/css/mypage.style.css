@@ -7,19 +7,30 @@ header{
     position: fixed;
     top:0;
     width: 100%;
-    padding: 50px;
+    padding: 30px;
     height: 150px;
     background-color: #FFE9A2;
     z-index: 10;
     margin-left: 0;
 
 }
+
+h3 {
+    margin: 0;
+}
+
+.img_g {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
 .mypage_padding{
     padding-left: 0;
     padding-right: 0;
 }
 
-#inline-wrap {
+.hoge {
     position: relative;
     margin: 10px auto;
     max-width: 700px;
@@ -29,6 +40,6 @@ header{
 
 
 
-#inline-wrap .image, #inline-wrap .popup-modal-dismiss {
+.hoge .image, .hoge .popup-modal-dismiss {
     text-align: center;
 }

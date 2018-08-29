@@ -51,6 +51,11 @@
   border-bottom: 1px;
 }
 
+.img_g {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
 
 
 

@@ -132,76 +132,41 @@
                         <!-- content-explain end -->
 
 
-                    </div>
-                </div>
-
-                    <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                            <h3 >みんなの思い出</h3>
-
-                                            <a class="popup-modal" href="#inline-wrap">インライン情報を表示</a>
-                                            <div id="inline-wrap" class="mfp-hide">
-                                              <h1>画像とテキストを表示</h1>
-                                              <div class="image"><img src="assets/img/post_img/home-port3.png"></div>
-                                              <p>キャプションを付けたい時なんかに便利です。</p>
-                                              <p class="popup-modal-dismiss"><a href="#">閉じる</a></p>
-                                            </div>
-
-                                            <script>
-                                            $(function () {
-                                              $('.popup-modal').magnificPopup({
-                                                type: 'inline',
-                                                preloader: false
-                                              });
-                                              //閉じるリンクの設定
-                                              $(document).on('click', '.popup-modal-dismiss', function (e) { 
-                                                e.preventDefault();
-                                                $.magnificPopup.close();
-                                              });
-                                            });
-                                            </script>
-
-                    </div>
 
 
-                    <?php foreach ($feeds as $feed): ?>
-                    <div class="portfolio gutters grid img-container">
-                      <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                        <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                            <a href="./assets/img/post_img/<?php echo $feed['img_name'] ?>" title="<?php echo $feed['user_id'] ?>さんの投稿">
-                                <div class="project_box_one">
-                                    <img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" alt="pic">
-                                    <div class="product_info">
-                                        <div class="product_info_text">
-                                            <div class="product_info_text_inner">
-                                                <i class="ion ion-plus"></i>
-                                                <h4></h4>
-                                            </div>
+             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                  <h3 >みんなの思い出</h3>
+
+                            <div class="portfolio gutters grid img-container">
+
+                                <?php foreach ($feeds as $feed): ?>
+
+
+                                    <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                                    <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
+                                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
+                                        <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
+                                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
+                                            <p><?php echo $feed['feed'] ?></p>
+                                            <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                                            <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
+                                                <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
+                                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
 
-                    <div class="portfolio gutters grid img-container">
-                        <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                        <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                            <a href="assets/img/post_img/port1.png" title="project name 1">
-                                <div class="project_box_one">
-                                    <img src="assets/img/post_img/port1.png" alt="pro1" />
-                                    <div class="product_info">
-                                        <div class="product_info_text">
-                                            <div class="product_info_text_inner">
-                                                <i class="ion ion-plus"></i>
-                                                <h4>project name</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+             </div>
+
+
+         </div>
+     </div>
+
+
+
             <!--=================== filter portfolio end====================-->
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">

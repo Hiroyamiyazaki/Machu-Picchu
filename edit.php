@@ -20,11 +20,14 @@
 
 
 
-    $sql = "SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id WHERE `feeds`.`id` = $feed_id";
+    $sql = "SELECT `feeds`.*, `users`.`user_id` as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id WHERE `feeds`.`id` = $feed_id";
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
 
     $feed = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
 
 
     if (!empty($_POST)) {
@@ -121,7 +124,7 @@
                              <h2>Post</h2><br>
                              <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" name="date" class="form-control" value="<?php echo $date; ?>">
+                                <input type="date" name="date" class="form-control" value="<?php echo $feed['date']; ?>">
                             </div><br>
 
                             <p>相手<br>
@@ -148,7 +151,7 @@
                             </div><br><br>
                             <div class="form-group">
                                 <label for="img_name">Photo</label><br>
-                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $file_name; ?>">
+                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $feed['img_name']; ?>">
                             </div>
                     </div>
                  </div>
@@ -158,7 +161,7 @@
                         <div class="sub-contents">
                             <div class="form-group">
                                 <label for="feed">Comment</label><br>
-                                <textarea name="feed" class="form-comment"rows="6"><?php echo htmlspecialchars($feed); ?></textarea>
+                                <textarea name="feed" class="form-comment"rows="6"><?php echo htmlspecialchars($feed['feed']); ?></textarea>
 
                         </div>
                     </div>
@@ -169,7 +172,7 @@
                         <div class="sub-contents">
                             <div class="form-group">
                                 <label for="secret_feed">Secret Comment</label><br>
-                                <textarea name="secret_feed" class="form-comment" rows="6"><?php echo htmlspecialchars($secret_feed); ?></textarea>
+                                <textarea name="secret_feed" class="form-comment" rows="6"><?php echo htmlspecialchars($feed['secret_feed']); ?></textarea>
 
                              </div>
                         </div>

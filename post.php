@@ -31,17 +31,7 @@
     $errors = array();
 
 
-    if (isset($_GET['action']) && $_GET['action'] == 'rewrite') {
-        $_POST['date'] = $_SESSION['id']['date'];
-        $_POST['relation_id'] = $_SESSION['id']['relation_id'];
-        $_POST['event_id'] = $_SESSION['id']['event_id'];
-        $_POST['feed'] = $_SESSION['id']['feed'];
-        $_POST['secret_feed'] = $_SESSION['id']['secret_feed'];
 
-
-        $errors['rewrite'] = true;
-
-    }
 
 
 

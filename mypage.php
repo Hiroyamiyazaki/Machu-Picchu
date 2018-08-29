@@ -17,7 +17,7 @@
   }
 
 
-   $sql = 'SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
+   $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
 
 
     $data = [];
@@ -40,10 +40,6 @@
 
 
 }
-
-
-
-
 
 
 
@@ -107,7 +103,13 @@
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center mypage_padding">
             <header>
-                <h2>マイページ</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
+                        <div class="sub-contents">
+                            <h3>マイページ</h3>
+                        </div>
+                    </div>
+                </div>
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
@@ -117,15 +119,15 @@
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                         <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                        <a class="popup-modal" href="#inline-wrap"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></a>
-                        <div id="inline-wrap" class="mfp-hide">
+                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
+                        <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
                           <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
                           <p><?php echo $feed['feed'] ?></p>
-                          <p><?php echo $feed['user_id']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
-                   
-                              <a href="edit.php?feed=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
+                          <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                            <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
+                              <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
                               <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
-                        
+                            <?php endif; ?>
                         </div>
                     </div>
 

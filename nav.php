@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 require('dbconnect.php');
@@ -70,6 +70,38 @@ while (1) {
     }
     $events[] = $eventrec;
 }
+
+// search feedsを取得
+$spl = 'SELECT * FROM `feeds` WHERE `age_id` =? AND `relation_id` =? AND `job_id` =? AND `event_id` =?';
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
+
+if (!empty($_GET)) {
+    $select_relation = $_GET['relation'];
+    $select_age = $_GET['age'];
+    $select_job = $_GET['job'];
+    $select_event = $_GET['event'];
+}
+
+//検索・・LEFT JOINで全件取得
+$sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
+$data = array();
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+
+//表示用の配列を初期化
+$feeds = array();
+
+while (true) {
+    $record = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($record  == false){
+    break;
+    }
+    $feeds[] = $record;
+}
+
+
+
 ?>
 
 
@@ -166,85 +198,89 @@ while (1) {
             <li>
 
                 <div>
-                    <div>
-                        <select name="relation">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">相手<span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php foreach($relations as $relation) {?>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?php echo $relation['relation_name']; ?></a></li>
-                            <?php } ?>
-                        </ul>
-                    </select>
-                    </div>
+                    <form method="GET" action="search.php" class="navbar-form navbar-left" role="search">
+                        <!-- relation -->
+                        <div>
+                            <select name="relation">
+                                <option value="relation">--- 相手 ---</option>
+                                <?php foreach($relations as $relation): ?>
+                                    <option value="<?php echo $relation['id']; ?>"<?php if($relation['id'] == $select_relation) { echo ' selected'; } ?>>
+                                        <?php echo $relation['relation_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                    <div>
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">年代<span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php foreach ($ages as $age) { ?>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?php echo $age['generation']; ?></a></li>
-                            <?php } ?>
+                            <!-- ages generation-->
+                            <div>
+                                <select name="age">
+                                     <option value="age">--- 年代 ---</option>
+                                        <?php foreach ($ages as $age): ?>
+                                                <option value="<?php echo $age['id']; ?>"><?php echo $age['generation']; ?></option>
+                                        <?php endforeach; ?>
+                                </select>
+                            </div>
 
-                        </ul>
-                    </div>
+                                <!-- jobs -->
+                                <div>
+                                    <select name="job">
+                                        <option value="job">--- 職業 ---</option>
+                                            <?php foreach($jobs as $job): ?>
+                                                <option value="<?php echo $job['id']; ?>"><?php echo $job['job_name']; ?></option>
+                                            <?php endforeach; ?>
+                                    </select>
+                                </div>
 
-                    <div>
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">職業<span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php foreach($jobs as $job): ?>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?php echo $job['job_name']; ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">イベント<span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                        <?php foreach($events as $event): ?>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?php echo $event['event_name']; ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                    <button type="button" class="btn btn-primary btn-lg"><a href='search.php'>検索</a></button>
+                                    <!-- events -->
+                                    <div>
+                                        <select name="event">
+                                                <option value="event">---イベント---</option>
+                                                <?php foreach($events as $event): ?>
+                                                       <option value="<?php echo $event['id']; ?>"><?php echo $event['event_name']; ?></option>
+                                                <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                        <button class="btn btn-primary btn-lg">検索</button>
+                    </form>
                 </div>
 
 
 
             </li>
         </ul>
+
     </div>
-    <!-- search menu end -->
+                    <!-- search menu end -->
 
 
 
 
-    <!--social and copyright -->
-    <div class="side_menu_bottom">
-        <div class="side_menu_bottom_inner">
-            <ul class="social_menu">
-                <li>
-                    <a href="#"> <i class="ion ion-social-pinterest"></i> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="ion ion-social-facebook"></i> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="ion ion-social-twitter"></i> </a>
-                </li>
-                <li>
-                    <a href="#"> <i class="ion ion-social-dribbble"></i> </a>
-                </li>
-            </ul>
-            <div class="copy_right">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </div>
-        </div>
-    </div>
-    <!--social and copyright end -->
+                    <!--social and copyright -->
+                    <div class="side_menu_bottom">
+                        <div class="side_menu_bottom_inner">
+                            <ul class="social_menu">
+                                <li>
+                                    <a href="#"> <i class="ion ion-social-pinterest"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="ion ion-social-facebook"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="ion ion-social-twitter"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="ion ion-social-dribbble"></i> </a>
+                                </li>
+                            </ul>
+                            <div class="copy_right">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--social and copyright end -->
 
-</div>
+                </div>
 <!--=================== side menu end====================-->

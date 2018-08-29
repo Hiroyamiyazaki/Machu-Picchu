@@ -1,3 +1,8 @@
+<?php
+// var_dump($_GET);die();
+$select=$_GET['search'];
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

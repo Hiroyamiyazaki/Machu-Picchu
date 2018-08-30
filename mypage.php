@@ -36,6 +36,12 @@
 
 
 
+        $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+
+        $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+
+
     $feeds[] = $rec;
 
 
@@ -127,12 +133,19 @@
                             <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
 
                                 <span hidden class="feed-id"><?= $feed["id"] ?></span>
+                                <?php if($feed['is_liked']): ?>
+                                    <button class="btn btn-default btn-sm js-unlike">
+                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                        <span>いいねを取り消す</span>
+                                    </button>
+                                <?php else: ?>
                                 <button class="btn btn-default btn-sm js-like">
                                     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                     <span>いいね!</span>
                                 </button>
+                                <?php endif; ?>
                                 <span>いいね数 : </span>
-                                <span class="like_count">100</span>
+                                <span class="like_count"><?= $feed['like_cnt'] ?></span>
 
                                 <span class="comment_count btn_text">コメント数 : 9</span><br><br>
 

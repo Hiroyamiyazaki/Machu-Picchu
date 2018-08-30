@@ -65,6 +65,7 @@
                 <div class="profilearea">
                     <ul class="menu_nav pro_nav">
                         <li>
+                            <span hidden id="signin-user"><?php echo $signin_user['id']; ?></span>
                             <span class="user_id">ID:<?php echo $signin_user['user_id']; ?></span>
                         </li>
                         <li>

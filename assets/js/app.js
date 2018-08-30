@@ -1,4 +1,5 @@
-    $(function(){
+$(function(){
+
     $('.parent-container').magnificPopup({
       delegate: 'a', 
       type: 'image',
@@ -6,14 +7,9 @@
         enabled:true
       }
       });
-    });
 
 
 
-
-
-
-    $(function () {
       $('.popup-modal').magnificPopup({
         type: 'inline',
         preloader: false
@@ -23,4 +19,20 @@
         e.preventDefault();
         $.magnificPopup.close();
       });
+
+
+    //いいね!ボタン
+      $('.js-like').on('click', function() {
+          $.ajax({
+            //送信先、送信するデータ
+          })
+          .done(function(data) {
+            //成功時の処理
+          })
+          .fail(function(err) {
+            //失敗時の処理
+          })
+      });
+
 });
+

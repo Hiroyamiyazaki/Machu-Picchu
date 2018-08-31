@@ -128,32 +128,41 @@
                         <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
                             <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div><br>
-                            <p class="date_rec"><?php echo date('Ymd', strtotime($feed['date'])) ?></p><p><?php echo $feed['relation_id']; ?> / <?php echo $feed['event_id']; ?></p>
-                            <p><?php echo $feed['feed']; ?></p>
-                            <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                            <p class="date_rec"><?php echo date('Ymd', strtotime($feed['date'])) ?></p>
 
-                                <span hidden class="feed-id"><?= $feed["id"] ?></span>
+                            <span hidden class="feed-id"><?= $feed["id"] ?></span>
                                 <?php if($feed['is_liked']): ?>
-                                    <button class="btn btn-default btn-sm js-unlike">
-                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    <button class="btn btn-info btn-sm js-unlike">
+                                        <i class="far fa-heart" aria-hidden="true"></i>
                                         <span>いいねを取り消す</span>
                                     </button>
                                 <?php else: ?>
-                                <button class="btn btn-default btn-sm js-like">
-                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                <button class="btn btn-info btn-sm js-like">
+                                    <i class="far fa-heart" aria-hidden="true"></i>
                                     <span>いいね!</span>
                                 </button>
                                 <?php endif; ?>
                                 <span>いいね数 : </span>
                                 <span class="like_count"><?= $feed['like_cnt'] ?></span>
 
+                                <a href="#collapseComment<?= $feed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                    <i class="far fa-comment"></i>
+                                </a>
                                 <span class="comment_count btn_text">コメント数 : 9</span><br><br>
 
-                                <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
-                                    <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-sm btn_user">編集</a>
-                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-danger btn-sm btn_user">削除</a>
+                            <p><?php echo $feed['relation_id']; ?> / <?php echo $feed['event_id']; ?></p>
+                            <p><?php echo $feed['feed']; ?></p>
+                            <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+
+
+
+                                <?php if($feed["user_id"]==$_SESSION["id"]): ?> <div class="btn_user">
+                                    <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                </div>
                                 <?php endif; ?>
                             </div>
+                          <?php include("comment_view.php"); ?> 
                         </div>
 
                     <?php endforeach; ?>

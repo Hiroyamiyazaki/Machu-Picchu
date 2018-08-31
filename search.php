@@ -1,9 +1,12 @@
 <?php
 
+
+
   session_start();
 
   require('dbconnect.php');
   require('function.php');
+
 
 
 
@@ -98,6 +101,7 @@
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
+
 
                 <?php foreach ($feeds as $feed): ?>
 

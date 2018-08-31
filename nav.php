@@ -112,14 +112,13 @@ while (true) {
 
 <!--=================== side menu ====================-->
 <div class="col-lg-2 col-md-3 col-12 menu_block">
-
-    <!--logo -->
-    <div class="logo_box">
-        <a href="#">
-            <img src="assets/img/logo.png" alt="Premori!">
-        </a>
-    </div>
-    <!--logo end-->
+            <!--logo -->
+            <div class="logo_box">
+                <a href="#">
+                    <img src="assets/img/main-logo.png" alt="Premori!">
+                </a>
+            </div>
+            <!--logo end-->
 
 
     <!-- profile -->
@@ -203,7 +202,9 @@ while (true) {
                             <select name="relation">
                                 <option value="relation">--- 相手 ---</option>
                                 <?php foreach($relations as $relation): ?>
-                                    <option value="<?php echo $relation['id']; ?>"<?php if($relation['id'] == $select_relation) { echo ' selected'; } ?>>
+                                    <option value="<?php echo $relation['id']; ?>"
+                                        <?php //if($relation['id'] == $select_relation) { echo ' selected'; } ?>
+                                    >
                                         <?php echo $relation['relation_name']; ?>
                                     </option>
                                 <?php endforeach; ?>

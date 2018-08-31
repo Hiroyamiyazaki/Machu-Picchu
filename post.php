@@ -11,7 +11,10 @@
 
 
     // サインインユーザー取得
+
     $signin_user = get_user($dbh, $_SESSION['id']);
+
+
 
     if(!isset($_SESSION['id'])) {
         header('Location:signup.php');
@@ -28,17 +31,7 @@
     $errors = array();
 
 
-    if (isset($_GET['action']) && $_GET['action'] == 'rewrite') {
-        $_POST['date'] = $_SESSION['id']['date'];
-        $_POST['relation_id'] = $_SESSION['id']['relation_id'];
-        $_POST['event_id'] = $_SESSION['id']['event_id'];
-        $_POST['feed'] = $_SESSION['id']['feed'];
-        $_POST['secret_feed'] = $_SESSION['id']['secret_feed'];
 
-
-        $errors['rewrite'] = true;
-
-    }
 
 
 
@@ -95,15 +88,16 @@
         $date_str = date('YmdHis');
         $submit_file_name = $date_str.$file_name;
         // move_uploaded_file（テンポラリパス、保存したい場所、ファイル名）
-        move_uploaded_file($_FILES['input_img_name']['tmp_name'], 'aseets/img/post_img/'.$submit_file_name);
+        move_uploaded_file($_FILES['input_img_name']['tmp_name'], './assets/img/post_img/'.$submit_file_name);
 
 
-        $_SESSION['id']['date'] = $_POST['date'];
-        $_SESSION['id']['relation_id'] = $_POST['relation_id'];
-        $_SESSION['id']['event_id'] = $_POST['event_id'];
-        $_SESSION['id']['feed'] = $_POST['feed'];
-        $_SESSION['id']['secret_feed'] = $_POST['secret_feed'];
-        $_SESSION['id']['img_name'] = $submit_file_name;
+
+        $_SESSION['hoge']['date'] = $_POST['date'];
+        $_SESSION['hoge']['relation_id'] = $_POST['relation_id'];
+        $_SESSION['hoge']['event_id'] = $_POST['event_id'];
+        $_SESSION['hoge']['feed'] = $_POST['feed'];
+        $_SESSION['hoge']['secret_feed'] = $_POST['secret_feed'];
+        $_SESSION['hoge']['img_name'] = $submit_file_name;
 
         }
 
@@ -111,7 +105,10 @@
 
         if($feed !='') {
 
-        create_feed($dbh, $date, $relation_id, $event_id, $file_name, $feed, $secret_feed, $signin_user['id']);
+
+
+        create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id']);
+
 
         header('Location: mypage.php');
         exit();
@@ -247,9 +244,7 @@
                         <div class="sub-contents">
                             <div class="form-group">
                                 <label for="feed">Comment</label><br>
-                                <textarea name="feed" class="form-comment"rows="6">
-                                    <?php echo htmlspecialchars($feed); ?>
-                                </textarea>
+                                <textarea name="feed" cols="50" rows="6"><?php echo htmlspecialchars($feed); ?></textarea>
 
                         </div>
                     </div>
@@ -260,9 +255,7 @@
                         <div class="sub-contents">
                             <div class="form-group">
                                 <label for="secret_feed">Secret Comment</label><br>
-                                <textarea name="secret_feed" class="form-comment" rows="6">
-                                    <?php echo htmlspecialchars($secret_feed); ?>
-                                </textarea>
+                                <textarea name="secret_feed" cols="50" rows="6"><?php echo htmlspecialchars($secret_feed); ?></textarea>
 
                              </div>
                         </div>

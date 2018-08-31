@@ -32,7 +32,7 @@
 
 
 
-
+// var_dump($_POST); die();
 
 
 
@@ -125,6 +125,11 @@
 
 
 
+//投稿ボタン
+
+        $rec["relation"] = who_relation($dbh);
+
+        $rec["event"] = what_event($dbh);
 
 
 
@@ -210,31 +215,33 @@
                                 <input type="date" name="date" class="form-control" value="<?php echo $date; ?>">
                             </div><br>
 
-                            <p>相手<br>
-                            <select name="relation_id">
-                                <option value="A">友人</option>
-                                <option value="B">B型</option>
-                                <option value="O">O型</option>
-                                <option value="AB">AB型</option>
-                            </select></p>
+                            <p>相手</p>
+                                <select name="relation_id">
+                                    <option value="relation">--- 相手 ---</option>
+                                    <?php foreach($relations as $relation): ?>
+                                        <option value="<?php echo $relation['id']; ?>">
+                                            <?php echo $relation['relation_name']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             <?php if (isset($errors['relation_id']) && $errors['relation_id'] == 'blank'): ?>
                                     <p class="text-danger">相手を選んでください</p>
                                 <?php endif; ?>
                            
                            <p>イベント<br>
-                            <select name="event_id">
-                                <option value="A">記念日</option>
-                                <option value="B">B型</option>
-                                <option value="O">O型</option>
-                                <option value="AB">AB型</option>
-                            </select></p>
+                             <select name="event_id">
+                                <option value="event">---イベント---</option>
+                                    <?php foreach($events as $event): ?>
+                                        <option value="<?php echo $event['id']; ?>"><?php echo $event['event_name']; ?></option>
+                                    <?php endforeach; ?>
+                                        </select>
                                 <?php if (isset($errors['event_id']) && $errors['event_id'] == 'blank'): ?>
                                     <p class="text-danger">イベントを選んでください</p>
                                 <?php endif; ?>
                             </div><br><br>
                             <div class="form-group">
                                 <label for="img_name">Photo</label><br>
-                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $file_name; ?>">
+                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $submit_file_name; ?>">
                             </div>
                     </div>
                  </div>

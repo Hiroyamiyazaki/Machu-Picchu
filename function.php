@@ -54,3 +54,85 @@
 
       return $is_liked ? true : false;
     }
+
+
+//コメント
+
+
+
+
+
+//アカウント登録
+
+    function what_age($dbh)
+    {
+      $sql = "SELECT * FROM `ages`";
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute();
+
+      $ages = array();
+
+      while(1) {
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec==false){
+          break;
+
+        }
+
+      $ages[] = $rec;
+
+      return $ages;
+      }
+
+
+    }
+
+
+
+// 検索ボタン
+
+    //相手欄
+    function who_relation($dbh)
+    {
+      $sql = "SELECT * FROM `relations`";
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute();
+
+      $relations = array();
+
+      while(1) {
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec==false){
+          break;
+
+        }
+
+      $relations[] = $rec;
+
+      return $relations;
+      }
+
+
+    }
+
+    //イベント
+    function what_event($dbh)
+    {
+      $sql = "SELECT * FROM `events`";
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute();
+
+      $events = array();
+
+      while(1) {
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec==false){
+          break;
+
+        }
+
+        $events[] = $rec;
+
+        return $events;
+      }
+    }

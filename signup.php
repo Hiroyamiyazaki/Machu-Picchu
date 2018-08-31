@@ -101,6 +101,10 @@
             header('Location: check.php');
             exit();
         }
+
+
+        $rec["age"] = what_age($dbh);
+
     }
 
 
@@ -179,16 +183,18 @@
                                 </div>
                             </div>
 
-                        <div class="form-group">
-                            <label for="name" class="control-label col-sm-2">年代</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($age_id); ?>">
-                                    <!-- issetは入っているかどうか -->
-                                    <?php if (isset($errors['age_id']) && $errors['age_id'] == 'blank'):?>
-                                        <p class = "text-danger">年代を入力してください</p>
-                                    <?php endif; ?>
-                                </div>
-                        </div>
+                            <p>年代</p>
+                                <select name="input_age_id">
+                                    <option value="age">--- 年代 ---</option>
+                                    <?php foreach($ages as $age): ?>
+                                        <option value="<?php echo $age['id']; ?>">
+                                            <?php echo $age['generation']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            <?php if (isset($errors['input_age_id']) && $errors['input_age_id'] == 'blank'): ?>
+                                    <p class="text-danger">年代を選んでください</p>
+                                <?php endif; ?>
 
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">性別</label>

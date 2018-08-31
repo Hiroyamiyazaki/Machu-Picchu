@@ -7,14 +7,65 @@ header{
     position: fixed;
     top:0;
     width: 100%;
-    padding: 50px;
+    padding: 30px;
     height: 150px;
     background-color: #FFE9A2;
     z-index: 10;
     margin-left: 0;
 
 }
+
+h3 {
+    margin: 0;
+}
+
+.img_g {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.feed_con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mypage_padding{
     padding-left: 0;
     padding-right: 0;
+}
+
+
+/*modal css*/
+
+
+.hoge {
+    position: relative;
+    margin: 10px auto;
+    max-width: 700px;
+    background: #fff;
+    padding: 40px;
+}
+
+
+
+.hoge .image, .hoge .popup-modal-dismiss {
+    text-align: center;
+}
+
+.date_rec {
+    text-align: right;
+}
+
+.user_info {
+    text-align: right;
+}
+
+.btn_user {
+    text-align: right;
+}
+
+.like_count {
+    font-size: 10px;
 }

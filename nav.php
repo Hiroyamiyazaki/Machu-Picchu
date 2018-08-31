@@ -98,9 +98,8 @@ while (true) {
     break;
     }
     $feeds[] = $record;
+
 }
-
-
 
 ?>
 

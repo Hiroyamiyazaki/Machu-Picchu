@@ -58,7 +58,9 @@ $select=$_GET['search'];
             <div class="portfolio gutters grid img-container">
                 <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                 <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                    <a href="assets/img/portfolio/port1.png" title="project name 1">
+                    <?php foreach ($feeds as $feed ): ?>
+
+                    <a href="assets/img/portfolio/port1.png/<?php echo $feed['img_name']; ?>"  title="project name 1">
                         <div class="project_box_one">
                             <img src="assets/img/portfolio/port1.png" alt="pro1" />
                             <div class="product_info">
@@ -71,6 +73,7 @@ $select=$_GET['search'];
                             </div>
                         </div>
                     </a>
+                    <?php endforeach; ?>
                 </div>
                 <div class="grid-item  branding architecture  col-md-6 col-lg-3">
                     <a href="assets/img/portfolio/port2.png" title="project name 2">

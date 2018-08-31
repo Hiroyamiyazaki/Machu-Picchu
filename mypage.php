@@ -17,16 +17,15 @@
   }
 
 
-   $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  WHERE `feeds`.`user_id` = ? ORDER BY `created` ASC';
 
 
-    $data = [];
+    $data = array($signin_user['id']);
 
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-
-    $feeds = array();
+    $myfeeds = array();
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,7 +41,7 @@
 
 
 
-    $feeds[] = $rec;
+    $myfeeds[] = $rec;
 
 
 }
@@ -120,47 +119,46 @@
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
 
-                <?php foreach ($feeds as $feed): ?>
+                <?php foreach ($myfeeds as $myfeed): ?>
 
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                     <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
-                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
-                        <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
-                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div><br>
-                            <p class="date_rec"><?php echo date('Ymd', strtotime($feed['date'])) ?></p>
+                        <a class="popup-modal" href="#inline-wrap<?php echo $myfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $myfeed['img_name'] ?>" class="img_g"></a>
+                        <div id="inline-wrap<?php echo $myfeed["id"] ?>" class="mfp-hide hoge">
+                            <div class="image"><img src="./assets/img/post_img/<?php echo $myfeed['img_name'] ?>"></div><br>
+                            <p class="date_rec"><?php echo date('Ymd', strtotime($myfeed['date'])) ?></p>
 
-                            <span hidden class="feed-id"><?= $feed["id"] ?></span>
-                                <?php if($feed['is_liked']): ?>
+                            <span hidden class="feed-id"><?= $myfeed["id"] ?></span>
+                                <?php if($myfeed['is_liked']): ?>
                                     <button class="btn btn-info btn-sm js-unlike">
-                                        <i class="far fa-heart" aria-hidden="true"></i>
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
                                         <span>いいねを取り消す</span>
                                     </button>
                                 <?php else: ?>
                                 <button class="btn btn-info btn-sm js-like">
-                                    <i class="far fa-heart" aria-hidden="true"></i>
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
                                     <span>いいね!</span>
                                 </button>
                                 <?php endif; ?>
                                 <span>いいね数 : </span>
-                                <span class="like_count"><?= $feed['like_cnt'] ?></span>
+                                <span class="like_count"><?= $myfeed['like_cnt'] ?></span>
 
-                                <a href="#collapseComment<?= $feed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                <a href="#collapseComment<?= $myfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
                                     <i class="far fa-comment"></i>
                                 </a>
                                 <span class="comment_count btn_text">コメント数 : 9</span><br><br>
 
-                            <p><?php echo $feed['relation_id']; ?> / <?php echo $feed['event_id']; ?></p>
-                            <p><?php echo $feed['feed']; ?></p>
-                            <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                            <p><?php echo $myfeed['relation_id']; ?> / <?php echo $myfeed['event_id']; ?></p>
+                            <p><?php echo $myfeed['feed']; ?></p>
+                            <p class="user_info"><?php echo $myfeed['name']; ?> / <?php echo $myfeed['age_id']; ?> / <?php echo $myfeed['gender']; ?></p>
 
 
 
-                                <?php if($feed["user_id"]==$_SESSION["id"]): ?> <div class="btn_user">
-                                    <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-sm">編集</a>
-                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                              <div class="btn_user">
+                                    <a href="edit.php?feed_id=<?php echo $myfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $myfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
                                 </div>
-                                <?php endif; ?>
                             </div>
                           <?php include("comment_view.php"); ?> 
                         </div>

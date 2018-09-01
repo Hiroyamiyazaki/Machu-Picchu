@@ -107,8 +107,8 @@
 
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                    <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></a>
+                    <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
+                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
                             <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
                             <p><?php echo $feed['feed'] ?></p>

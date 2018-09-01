@@ -80,12 +80,37 @@
         }
 
       $ages[] = $rec;
-
-      return $ages;
       }
 
 
+       return $ages;
+
     }
+
+
+        function what_job($dbh)
+    {
+      $sql = "SELECT * FROM `jobs`";
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute();
+
+      $jobs = array();
+
+      while(1) {
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec==false){
+          break;
+
+        }
+
+      $jobs[] = $rec;
+      }
+
+
+       return $jobs;
+
+    }
+
 
 
 
@@ -109,8 +134,9 @@
 
       $relations[] = $rec;
 
-      return $relations;
       }
+
+      return $relations;
 
 
     }
@@ -132,7 +158,8 @@
         }
 
         $events[] = $rec;
+      }
 
         return $events;
-      }
+
     }

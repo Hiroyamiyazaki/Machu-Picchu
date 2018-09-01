@@ -10,7 +10,7 @@
 
 
 
-    // サインインユーザー取得
+    //サインインユーザー取得
 
     $signin_user = get_user($dbh, $_SESSION['id']);
 
@@ -127,9 +127,9 @@
 
 //投稿ボタン
 
-        $rec["relation"] = who_relation($dbh);
+        $relations = who_relation($dbh);
 
-        $rec["event"] = what_event($dbh);
+        $events = what_event($dbh);
 
 
 

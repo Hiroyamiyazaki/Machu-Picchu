@@ -18,3 +18,16 @@ header{
     padding-left: 0;
     padding-right: 0;
 }
+
+
+.img_g {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.feed_con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

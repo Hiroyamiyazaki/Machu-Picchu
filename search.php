@@ -8,7 +8,7 @@
   require('function.php');
 
 
-
+  $signin_user = get_user($dbh, $_SESSION['id']);
 
 
 
@@ -35,13 +35,17 @@
         }
 
 
+        $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+
+        $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
 
     $feeds[] = $rec;
 
 
 }
 
-
+// var_dump($rec); die();
 
   ?>
 
@@ -110,20 +114,48 @@
                     <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
                         <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
-                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
-                            <p><?php echo $feed['feed'] ?></p>
-                            <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
-                            <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
-                                <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
-                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
-                            <?php endif; ?>
+                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div><br>
+                            <p class="date_rec"><?php echo date('Ymd', strtotime($feed['date'])) ?></p>
+
+                            <span hidden class="feed-id"><?= $feed["id"] ?></span>
+                            <?php if($feed['is_liked']): ?>
+                                <button class="btn btn-info btn-sm js-unlike">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                    <span>いいねを取り消す</span>
+                                </button>
+                                <?php else: ?>
+                                    <button class="btn btn-info btn-sm js-like">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        <span>いいね!</span>
+                                    </button>
+                                <?php endif; ?>
+                                <span>いいね数 : </span>
+                                <span class="like_count"><?= $feed['like_cnt'] ?></span>
+
+                                <a href="#collapseComment<?= $feed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                    <i class="fa fa-comment"></i>
+                                    <span>コメントする</span>
+                                </a>
+                                <span class="comment_count btn_text">コメント数 : 9</span><br><br>
+
+                                <p><?php echo $feed['relation_id']; ?> / <?php echo $feed['event_id']; ?></p>
+                                <p><?php echo $feed['feed']; ?></p>
+                                <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+
+
+                                <div class="btn_user">
+                                <?php if($feed["user_id"]==$_SESSION["id"]): ?>
+                                    <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                <?php endif; ?>
+                                    <?php include("comment_view.php"); ?> 
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-            </div>
-
+                </div>
             <!--=================== filter portfolio end====================-->
         </div>
         <!--=================== content body end ====================-->
@@ -151,5 +183,7 @@
 <script src="assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="assets/js/main.js"></script>
+
+<script src="assets/js/app.js"></script>
 </body>
 </html>

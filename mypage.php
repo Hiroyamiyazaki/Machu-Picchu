@@ -130,46 +130,43 @@
                             <p class="date_rec"><?php echo date('Ymd', strtotime($myfeed['date'])) ?></p>
 
                             <span hidden class="feed-id"><?= $myfeed["id"] ?></span>
-                                <?php if($myfeed['is_liked']): ?>
-                                    <button class="btn btn-info btn-sm js-unlike">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <span>いいねを取り消す</span>
-                                    </button>
-                                <?php else: ?>
-                                <button class="btn btn-info btn-sm js-like">
+                            <?php if($myfeed['is_liked']): ?>
+                                <button class="btn btn-info btn-sm js-unlike">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
-                                    <span>いいね!</span>
+                                    <span>いいねを取り消す</span>
                                 </button>
+                                <?php else: ?>
+                                    <button class="btn btn-info btn-sm js-like">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        <span>いいね!</span>
+                                    </button>
                                 <?php endif; ?>
                                 <span>いいね数 : </span>
                                 <span class="like_count"><?= $myfeed['like_cnt'] ?></span>
 
                                 <a href="#collapseComment<?= $myfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                    <i class="far fa-comment"></i>
+                                    <i class="fa fa-comment"></i>
+                                    <span>コメントする</span>
                                 </a>
                                 <span class="comment_count btn_text">コメント数 : 9</span><br><br>
 
-                            <p><?php echo $myfeed['relation_id']; ?> / <?php echo $myfeed['event_id']; ?></p>
-                            <p><?php echo $myfeed['feed']; ?></p>
-                            <p class="user_info"><?php echo $myfeed['name']; ?> / <?php echo $myfeed['age_id']; ?> / <?php echo $myfeed['gender']; ?></p>
+                                <p><?php echo $myfeed['relation_id']; ?> / <?php echo $myfeed['event_id']; ?></p>
+                                <p><?php echo $myfeed['feed']; ?></p>
+                                <p class="user_info"><?php echo $myfeed['name']; ?> / <?php echo $myfeed['age_id']; ?> / <?php echo $myfeed['gender']; ?></p>
 
 
 
-                              <div class="btn_user">
+                                <div class="btn_user">
                                     <a href="edit.php?feed_id=<?php echo $myfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
                                     <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $myfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                    <?php include("comment_view.php"); ?> 
                                 </div>
                             </div>
-                          <?php include("comment_view.php"); ?> 
                         </div>
 
                     <?php endforeach; ?>
-
-
-
-                </div>
- 
-            
+                    
+            </div>
             <!--=================== filter portfolio end====================-->
         </div>
         <!--=================== content body end ====================-->

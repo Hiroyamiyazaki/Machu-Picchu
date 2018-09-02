@@ -39,6 +39,10 @@
 
         $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
+        $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+        $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+
 
 
     $myfeeds[] = $rec;
@@ -148,7 +152,7 @@
                                     <i class="fa fa-comment"></i>
                                     <span>コメントする</span>
                                 </a>
-                                <span class="comment_count btn_text">コメント数 : 9</span><br><br>
+                                <span class="comment_count btn_text">コメント数 : <?= $myfeed["comment_cnt"] ?></span><br><br>
 
                                 <p><?php echo $myfeed['relation_id']; ?> / <?php echo $myfeed['event_id']; ?></p>
                                 <p><?php echo $myfeed['feed']; ?></p>
@@ -165,7 +169,7 @@
                         </div>
 
                     <?php endforeach; ?>
-                    
+
             </div>
             <!--=================== filter portfolio end====================-->
         </div>

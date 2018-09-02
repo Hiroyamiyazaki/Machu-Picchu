@@ -56,7 +56,44 @@
     }
 
 
-//コメント
+//コメント取得
+    function get_comment($dbh, $feed_id)
+    {
+      $sql = "SELECT `c`.*, `u`.`user_id` FROM `comments` AS `c` JOIN `users` AS `u` ON `c`.`user_id` = `u`.id WHERE `feed_id` = ?";
+
+      $data = [$feed_id];
+
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+
+      $comments = [];
+
+      while(true) {
+        $comment = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($comment == false) break;
+
+        $comments[] = $comment;
+      }
+
+      return $comments;
+    }
+
+
+//コメント数取得
+    function count_comment($dbh, $feed_id)
+    {
+      $sql = "SELECT COUNT(*) AS `comment_cnt` FROM `comments` WHERE `feed_id` = ?";
+
+      $data = [$feed_id];
+
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute($data);
+
+      $comment = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      return $comment["comment_cnt"];
+    }
 
 
 
@@ -82,7 +119,6 @@
       $ages[] = $rec;
       }
 
-
        return $ages;
 
     }
@@ -105,7 +141,6 @@
 
       $jobs[] = $rec;
       }
-
 
        return $jobs;
 
@@ -138,8 +173,8 @@
 
       return $relations;
 
-
     }
+    
 
     //イベント
     function what_event($dbh)

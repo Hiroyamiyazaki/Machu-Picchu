@@ -12,5 +12,10 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-sm btn-primary">投稿する</button>
             </div>
+            <?php foreach ($myfeed["comments"] as $comment): ?> 
+                <p style="margin-top: 30px; margin-bottom: 30px;">
+                    <span style="border-radius: 100px!important; -webkit-appearance:none;background-color:#eff1f3;padding:10px;margin-top:10px;"><a href="#"><?php echo $comment["user_id"]; ?></a><?php echo $comment["comment"]; ?></span>
+                </p>
+            <?php endforeach; ?>
         </form>
      </div>

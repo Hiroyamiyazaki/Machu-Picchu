@@ -26,7 +26,7 @@
     $stmt->execute($data);
 
 
-    $feeds = array();
+    $allfeeds = array();
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,12 +40,13 @@
         $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
 
-    $feeds[] = $rec;
+    $allfeeds[] = $rec;
 
 
 }
 
-// var_dump($rec); die();
+// echo "<pre>";
+// var_dump($feeds); die();
 
   ?>
 
@@ -107,18 +108,18 @@
             <div class="portfolio gutters grid img-container">
 
 
-                <?php foreach ($feeds as $feed): ?>
+                <?php foreach ($allfeeds as $allfeed): ?>
 
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                     <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
-                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
-                        <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
-                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div><br>
-                            <p class="date_rec"><?php echo date('Ymd', strtotime($feed['date'])) ?></p>
+                        <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
+                        <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
+                            <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
+                            <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
-                            <span hidden class="feed-id"><?= $feed["id"] ?></span>
-                            <?php if($feed['is_liked']): ?>
+                            <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
+                            <?php if($allfeed['is_liked']): ?>
                                 <button class="btn btn-info btn-sm js-unlike">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                     <span>いいねを取り消す</span>
@@ -130,23 +131,23 @@
                                     </button>
                                 <?php endif; ?>
                                 <span>いいね数 : </span>
-                                <span class="like_count"><?= $feed['like_cnt'] ?></span>
+                                <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <a href="#collapseComment<?= $feed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
                                     <i class="fa fa-comment"></i>
                                     <span>コメントする</span>
                                 </a>
                                 <span class="comment_count btn_text">コメント数 : 9</span><br><br>
 
-                                <p><?php echo $feed['relation_id']; ?> / <?php echo $feed['event_id']; ?></p>
-                                <p><?php echo $feed['feed']; ?></p>
-                                <p class="user_info"><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
+                                <p><?php echo $allfeed['relation_id']; ?> / <?php echo $allfeed['event_id']; ?></p>
+                                <p><?php echo $allfeed['feed']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['age_id']; ?> / <?php echo $allfeed['gender']; ?></p>
 
 
                                 <div class="btn_user">
-                                <?php if($feed["user_id"]==$_SESSION["id"]): ?>
-                                    <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-sm">編集</a>
-                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
+                                    <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
                                 <?php endif; ?>
                                     <?php include("comment_view.php"); ?> 
                                 </div>

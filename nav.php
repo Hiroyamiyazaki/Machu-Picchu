@@ -89,7 +89,23 @@ if (!empty($_GET)) {
 }
 
 //検索・・LEFT JOINで全件取得
-$sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
+// $sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
+$sql = "";
+
+if (isset($_GET['relation'])) {
+    $sql = 'SELECT `f`.*, `u`.`name`, `u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE f.relation_id =? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+    $data = [$_GET['relation']];
+} else {
+    // LEFT JOINで全件取得
+    $sql = 'SELECT `f`.*, `u`.`name`, `u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+    $data = [];
+}
+
+echo '<pre>';
+var_dump($sql);
+echo "</pre>";
+die();
+
 $data = array();
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
@@ -105,6 +121,14 @@ while (true) {
     $feeds[] = $record;
 
 }
+// SELECT
+//     f.*,
+//    u.*
+// FROM feeds AS f
+// LEFT JOIN users AS u ON f.user_id = u.id
+// WHERE f.relation_id = 1
+// ;
+
 
 ?>
 

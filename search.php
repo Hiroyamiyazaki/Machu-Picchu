@@ -39,6 +39,10 @@
 
         $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
+        $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+        $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+
 
     $allfeeds[] = $rec;
 
@@ -141,6 +145,9 @@
 
                                 <p><?php echo $allfeed['relation_id']; ?> / <?php echo $allfeed['event_id']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>
+                                <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
+                                <p><?php echo $allfeed['secret_feed']; ?></p>
+                                <?php endif; ?>
                                 <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['age_id']; ?> / <?php echo $allfeed['gender']; ?></p>
 
 

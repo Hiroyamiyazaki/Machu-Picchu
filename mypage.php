@@ -156,6 +156,7 @@
 
                                 <p><?php echo $myfeed['relation_id']; ?> / <?php echo $myfeed['event_id']; ?></p>
                                 <p><?php echo $myfeed['feed']; ?></p>
+                                <p><?php echo $myfeed['secret_feed']; ?></p>
                                 <p class="user_info"><?php echo $myfeed['name']; ?> / <?php echo $myfeed['age_id']; ?> / <?php echo $myfeed['gender']; ?></p>
 
 

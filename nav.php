@@ -76,6 +76,11 @@ $spl = 'SELECT * FROM `feeds` WHERE `age_id` =? AND `relation_id` =? AND `job_id
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
+$select_relation = "";
+$select_age = "";
+$select_job = "";
+$select_event = "";
+
 if (!empty($_GET)) {
     $select_relation = $_GET['relation'];
     $select_age = $_GET['age'];
@@ -84,7 +89,23 @@ if (!empty($_GET)) {
 }
 
 //検索・・LEFT JOINで全件取得
-$sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
+// $sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
+$sql = "";
+
+if (isset($_GET['relation'])) {
+    $sql = 'SELECT `f`.*, `u`.`name`, `u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE f.relation_id =? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+    $data = [$_GET['relation']];
+} else {
+    // LEFT JOINで全件取得
+    $sql = 'SELECT `f`.*, `u`.`name`, `u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+    $data = [];
+}
+
+echo '<pre>';
+var_dump($sql);
+echo "</pre>";
+die();
+
 $data = array();
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
@@ -100,6 +121,14 @@ while (true) {
     $feeds[] = $record;
 
 }
+// SELECT
+//     f.*,
+//    u.*
+// FROM feeds AS f
+// LEFT JOIN users AS u ON f.user_id = u.id
+// WHERE f.relation_id = 1
+// ;
+
 
 ?>
 
@@ -203,7 +232,7 @@ while (true) {
                                 <option value="relation">--- 相手 ---</option>
                                 <?php foreach($relations as $relation): ?>
                                     <option value="<?php echo $relation['id']; ?>"
-                                        <?php //if($relation['id'] == $select_relation) { echo ' selected'; } ?>
+                                        <?php if($relation['id'] == $select_relation) { echo 'selected'; } ?>
                                     >
                                         <?php echo $relation['relation_name']; ?>
                                     </option>
@@ -216,7 +245,11 @@ while (true) {
                                 <select name="age">
                                      <option value="age">--- 年代 ---</option>
                                         <?php foreach ($ages as $age): ?>
-                                                <option value="<?php echo $age['id']; ?>"><?php echo $age['generation']; ?></option>
+                                                <option value="<?php echo $age['id']; ?>"
+                                                    <?php if($age['id'] == $select_age) { echo 'selected'; } ?>
+                                                    >
+                                                    <?php echo $age['generation']; ?>
+                                               </option>
                                         <?php endforeach; ?>
                                 </select>
                             </div>
@@ -226,7 +259,12 @@ while (true) {
                                     <select name="job">
                                         <option value="job">--- 職業 ---</option>
                                             <?php foreach($jobs as $job): ?>
-                                                <option value="<?php echo $job['id']; ?>"><?php echo $job['job_name']; ?></option>
+                                                <option value="<?php echo $job['id']; ?>"
+                                                    <?php if($job['id'] == $select_job) {
+                                                    echo 'selected'; } ?>
+                                                    >
+                                                    <?php echo $job['job_name']; ?>
+                                                </option>
                                             <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -236,7 +274,12 @@ while (true) {
                                         <select name="event">
                                                 <option value="event">---イベント---</option>
                                                 <?php foreach($events as $event): ?>
-                                                       <option value="<?php echo $event['id']; ?>"><?php echo $event['event_name']; ?></option>
+                                                       <option value="<?php echo $event['id']; ?>"
+                                                        <?php if($event['id'] ==$select_event) {
+                                                            echo 'selected';} ?>
+                                                            >
+                                                            <?php echo $event['event_name']; ?>
+                                                        </option>
                                                 <?php endforeach; ?>
                                         </select>
                                     </div>

@@ -76,6 +76,11 @@ $spl = 'SELECT * FROM `feeds` WHERE `age_id` =? AND `relation_id` =? AND `job_id
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
+$select_relation = "";
+$select_age = "";
+$select_job = "";
+$select_event = "";
+
 if (!empty($_GET)) {
     $select_relation = $_GET['relation'];
     $select_age = $_GET['age'];
@@ -203,7 +208,7 @@ while (true) {
                                 <option value="relation">--- 相手 ---</option>
                                 <?php foreach($relations as $relation): ?>
                                     <option value="<?php echo $relation['id']; ?>"
-                                        <?php //if($relation['id'] == $select_relation) { echo ' selected'; } ?>
+                                        <?php if($relation['id'] == $select_relation) { echo 'selected'; } ?>
                                     >
                                         <?php echo $relation['relation_name']; ?>
                                     </option>
@@ -216,7 +221,11 @@ while (true) {
                                 <select name="age">
                                      <option value="age">--- 年代 ---</option>
                                         <?php foreach ($ages as $age): ?>
-                                                <option value="<?php echo $age['id']; ?>"><?php echo $age['generation']; ?></option>
+                                                <option value="<?php echo $age['id']; ?>"
+                                                    <?php if($age['id'] == $select_age) { echo 'selected'; } ?>
+                                                    >
+                                                    <?php echo $age['generation']; ?>
+                                               </option>
                                         <?php endforeach; ?>
                                 </select>
                             </div>
@@ -226,7 +235,12 @@ while (true) {
                                     <select name="job">
                                         <option value="job">--- 職業 ---</option>
                                             <?php foreach($jobs as $job): ?>
-                                                <option value="<?php echo $job['id']; ?>"><?php echo $job['job_name']; ?></option>
+                                                <option value="<?php echo $job['id']; ?>"
+                                                    <?php if($job['id'] == $select_job) {
+                                                    echo 'selected'; } ?>
+                                                    >
+                                                    <?php echo $job['job_name']; ?>
+                                                </option>
                                             <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -236,7 +250,12 @@ while (true) {
                                         <select name="event">
                                                 <option value="event">---イベント---</option>
                                                 <?php foreach($events as $event): ?>
-                                                       <option value="<?php echo $event['id']; ?>"><?php echo $event['event_name']; ?></option>
+                                                       <option value="<?php echo $event['id']; ?>"
+                                                        <?php if($event['id'] ==$select_event) {
+                                                            echo 'selected';} ?>
+                                                            >
+                                                            <?php echo $event['event_name']; ?>
+                                                        </option>
                                                 <?php endforeach; ?>
                                         </select>
                                     </div>

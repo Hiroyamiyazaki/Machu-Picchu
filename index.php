@@ -103,19 +103,16 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper1">
 
-                            <img src="assets/img/uses/index_top.jpg" class="top_img">
-                       </div>
+                            <img src="assets/img/main_img.jpg" class="top_img">
+                        </div>
                     </div> 
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+                            <img src="assets/img/uses/main_2.png" class="top_img2">
                         </div>
-                        <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <h5 class="intro">
-                                あの人からのプレゼントを<br>
-                                記録に残そう。
-                            </h5>
+                        <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
+                            <h5 class="intro">あの人へのプレゼントを。</h5>
                         </div>
                     </div>
 

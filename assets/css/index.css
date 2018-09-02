@@ -9,7 +9,7 @@
 }
 
 .top_img {
-  width: 100%;
+  width: auto;
   height: auto;
 }
 
@@ -18,17 +18,12 @@
 }
 
 .top-wrapper2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  color: white;
-  border-bottom: 1px solid #C0A47F;
+  padding: 0;
 }
 
-.top-img2 {
-
+.top_img2 {
+  width: 100%;
+  height: auto;
 }
 
 .top-wrapper3 {

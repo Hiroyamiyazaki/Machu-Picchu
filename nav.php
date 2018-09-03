@@ -72,7 +72,7 @@ while (1) {
 }
 
 // search feedsを取得
-$spl = 'SELECT * FROM `feeds` WHERE `age_id` =? AND `relation_id` =? AND `job_id` =? AND `event_id` =?';
+$spl = 'SELECT * FROM `feeds` WHERE `age_id` =? AND `f`.`relation_id` =? AND `job_id` =? AND `event_id` =?';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
@@ -92,21 +92,43 @@ if (!empty($_GET)) {
 // $sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
 $sql = "";
 
-if (isset($_GET['relation'])) {
-    $sql = 'SELECT `f`.*, `u`.`name`, `u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE f.relation_id =? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+$data = array();
+//相手を選択したら相手だけ検索表示
+if (!empty($_GET['relation'])) {
+    $sql = 'SELECT `f`.* FROM `feeds` AS `f` WHERE `f`.`relation_id` =? ORDER BY `f`.`created` DESC';
     $data = [$_GET['relation']];
 } else {
     // LEFT JOINで全件取得
-    $sql = 'SELECT `f`.*, `u`.`name`, `u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
-    $data = [];
+    $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
 }
 
-echo '<pre>';
-var_dump($sql);
-echo "</pre>";
-die();
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
 
-$data = array();
+
+//世代検索
+if (!empty($_GET['age'])) {
+    $sql = 'SELECT `f`.* FROM `feeds` AS `f` WHERE `f`.`age_id` =? ORDER BY `f`.`created` DESC';
+    $data = [$_GET['age']];
+} else {
+    // LEFT JOINで全件取得
+    $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
+}
+
+$stmt = $dbh->prepare($sql);
+$stmt->execute($data);
+
+//職業検索
+
+
+if (!empty($_GET['event'])) {
+    $sql = 'SELECT `f`.* FROM `feeds` AS `f` WHERE `f`.`event_id` =? ORDER BY `f`.`created` DESC';
+    $data = [$_GET['event']];
+} else {
+    // LEFT JOINで全件取得
+    $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
+}
+
 $stmt = $dbh->prepare($sql);
 $stmt->execute($data);
 
@@ -229,7 +251,7 @@ while (true) {
                         <!-- relation -->
                         <div>
                             <select name="relation">
-                                <option value="relation">--- 相手 ---</option>
+                                <option value="">--- 相手 ---</option>
                                 <?php foreach($relations as $relation): ?>
                                     <option value="<?php echo $relation['id']; ?>"
                                         <?php if($relation['id'] == $select_relation) { echo 'selected'; } ?>

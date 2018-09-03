@@ -18,18 +18,19 @@
 
 
 
-    $sql = "SELECT * FROM `users` WHERE `id` = ?";
+    $profile_id = $_GET['profile_id'];
 
-    $data = array($_GET['id']);
+
+    $sql = "SELECT * FROM `users` WHERE `id` = $profile_id";
 
     $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
+    $stmt->execute();
 
     $profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!empty($_POST)) {
     $update_sql = "UPDATE `users` SET `profile` = ? WHERE `users`.`id` = ?";
-    $data = array($_POST["profile"]);
+    $data = array($_POST["profile"], $profile_id);
     $stmt = $dbh->prepare($update_sql);
     $stmt->execute($data);
 
@@ -37,7 +38,7 @@
     exit();
     }
 
-
+// var_dump($_GET); die();
   ?>
 
 
@@ -116,24 +117,9 @@
                          </div>
 
                         <div class="form-group">
-                            <label for="name" class="control-label col-sm-2">Pass</label>
-                                <div class="col-sm-10">
-                                    <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
-                                    <?php if (isset($errors['password']) && $errors['password'] == 'blank'):?>
-                                        <p class = "text-danger">パスワードを入力してください</p>
-                                    <?php endif; ?>
-                                    <?php if (isset($errors['password']) && $errors['password'] == 'length'):?>
-                                        <p class = "text-danger">4 ~ 16文字のパスワードを入力してください</p>
-                                    <?php endif; ?>
-                                    <!-- もし$errorsが空じゃなければエラーメッセージを出力する -->
-                                    <?php if(!empty($errors)): ?> <p class = "text-danger">パスワードを再度入力して下さい</p> <?php endif; ?>
-                                </div>
-                            </div>
-
-                        <div class="form-group">
                             <label for="name" class="control-label col-sm-2">年代</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($age_id); ?>">
+                                    <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($profile['age_id']); ?>">
                                     <!-- issetは入っているかどうか -->
                                     <?php if (isset($errors['age_id']) && $errors['age_id'] == 'blank'):?>
                                         <p class = "text-danger">年代を入力してください</p>
@@ -144,7 +130,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">性別</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="input_gender" class="form-control" id="name" placeholder="女性" value = "<?php echo htmlspecialchars($gender); ?>">
+                                    <input type="text" name="input_gender" class="form-control" id="name" placeholder="女性" value = "<?php echo htmlspecialchars($profile['gender']); ?>">
                                     <!-- issetは入っているかどうか -->
                                     <?php if (isset($errors['gender']) && $errors['age_id'] == 'blank'):?>
                                         <p class = "text-danger">性別を入力してください</p>
@@ -155,7 +141,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">職業</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="input_job_id" class="form-control" id="name" placeholder="OL" value = "<?php echo htmlspecialchars($job_id); ?>">
+                                    <input type="text" name="input_job_id" class="form-control" id="name" placeholder="OL" value = "<?php echo htmlspecialchars($profile['job_id']); ?>">
                                     <?php if (isset($errors['job_id']) && $errors['job_id'] == 'blank'):?>
                                         <p class = "text-danger">職業を入力してください</p>
                                     <?php endif; ?>
@@ -165,7 +151,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-3">好きなもの</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($brands); ?>">
+                                    <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($profile['brands']); ?>">
                                     <?php if (isset($errors['brands']) && $errors['brands'] == 'blank'):?>
                                         <p class = "text-danger">好きなものを入力してください</p>
                                     <?php endif; ?>
@@ -175,10 +161,9 @@
 
                         <div class="form-group btn-submit">
                             <input type="submit" class="btn btn-primary " value="確認">
-                            <a href="signin.php" class="btn btn-primary">サインイン</a>
                         </div>
                     </form>
-                </div>s
+                </div>
 
         </div>
         <!--=================== content body end ====================-->

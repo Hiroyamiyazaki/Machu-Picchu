@@ -21,12 +21,15 @@
     $profile_id = $_GET['profile_id'];
 
 
-    $sql = "SELECT * FROM `users` WHERE `id` = $profile_id";
+    $sql = "SELECT * FROM `users` WHERE `id` = ?";
+
+    $data = array($profile_id);
 
     $stmt = $dbh->prepare($sql);
-    $stmt->execute();
+    $stmt->execute($data);
 
     $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
     if (!empty($_POST)) {
     $update_sql = "UPDATE `users` SET `profile` = ? WHERE `users`.`id` = ?";
@@ -38,7 +41,7 @@
     exit();
     }
 
-// var_dump($_GET); die();
+
   ?>
 
 

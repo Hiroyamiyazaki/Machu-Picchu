@@ -107,8 +107,19 @@
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center search_padding">
 
             <header>
-                <h2>検索「           」</h2>
+                    <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
+                        <div class="sub-contents">
+                            <h2>検索「           」</h2>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
+                        <div class="sub-contents">
+                            <a href="post.php" class="btn btn-primary">投稿</a>
+                        </div>
+                    </div>
             </header>
+
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
 

@@ -58,7 +58,11 @@
     object-fit: cover;
 }
 
-
+.feed_con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 /*index.php end*/

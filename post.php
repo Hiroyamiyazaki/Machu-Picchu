@@ -242,6 +242,12 @@
                             <div class="form-group">
                                 <label for="img_name">Photo</label><br>
                                 <input type="file" name="input_img_name" id="img_name" value="<?php echo $submit_file_name; ?>">
+                                <?php if(isset($errors['img_name']) && $errors['img_name'] =='blank') { ?>
+                                    <p class="text-danger">画像を選択してください</p>
+                                 <?php } ?>
+                                <?php if (isset($errors['img_name']) && $errors['img_name'] == 'type'): ?>
+                                    <p class="text-danger">"jpg", "png", "gif"の画像を画像を選択して下さい</p>
+                                <?php endif; ?>
                             </div>
                     </div>
                  </div>

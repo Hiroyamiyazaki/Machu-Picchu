@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,7 +18,7 @@
                     <p>ユーザーアカウントの作成が完了しました。</p>
                     <!-- .はファイルの場所を表している, ../は1個上のファイル, ../../は2個上のファイル,
                     同じ階層の場合は.はいらない。 -->
-                    <a href="mypage.php" class="btn btn-info">TOPへ</a>
+                    <a href="signin.php" class="btn btn-info">ログインへ</a>
             </div>
         </div>
     </div>

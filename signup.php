@@ -1,6 +1,9 @@
 <?php
     session_start();
 
+    require('dbconnect.php');
+    require('function.php');
+
     date_default_timezone_set('Asia/Manila');
 
     // PHPプログラム
@@ -22,6 +25,8 @@
         $errors['rewrite'] = true;
     }
 
+
+// var_dump($_POST); die();
 
     if (!empty($_POST)){
         $user_id = $_POST['input_user_id'];
@@ -101,7 +106,18 @@
             header('Location: check.php');
             exit();
         }
+
+
+       
+
     }
+
+
+     $ages = what_age($dbh);
+
+     $jobs = what_job($dbh);
+
+
 
 
 
@@ -177,40 +193,45 @@
                                     <!-- もし$errorsが空じゃなければエラーメッセージを出力する -->
                                     <?php if(!empty($errors)): ?> <p class = "text-danger">パスワードを再度入力して下さい</p> <?php endif; ?>
                                 </div>
-                            </div>
-
-                        <div class="form-group">
-                            <label for="name" class="control-label col-sm-2">年代</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="input_age_id" class="form-control" id="name" placeholder="20代" value = "<?php echo htmlspecialchars($age_id); ?>">
-                                    <!-- issetは入っているかどうか -->
-                                    <?php if (isset($errors['age_id']) && $errors['age_id'] == 'blank'):?>
-                                        <p class = "text-danger">年代を入力してください</p>
-                                    <?php endif; ?>
-                                </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="name" class="control-label col-sm-2">性別</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="input_gender" class="form-control" id="name" placeholder="女性" value = "<?php echo htmlspecialchars($gender); ?>">
-                                    <!-- issetは入っているかどうか -->
-                                    <?php if (isset($errors['gender']) && $errors['age_id'] == 'blank'):?>
-                                        <p class = "text-danger">性別を入力してください</p>
-                                    <?php endif; ?>
-                                </div>
-                        </div>
+                        <p>年代</p>
+                            <select name="input_age_id">
+                                <option value="age">--- 年代 ---</option>
+                                <?php foreach($ages as $age): ?>
+                                    <option value="<?php echo $age['id']; ?>">
+                                        <?php echo $age['generation']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php if (isset($errors['input_age_id']) && $errors['input_age_id'] == 'blank'): ?>
+                                <p class="text-danger">年代を選んでください</p>
+                            <?php endif; ?>
 
-                        <div class="form-group">
-                            <label for="name" class="control-label col-sm-2">職業</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="input_job_id" class="form-control" id="name" placeholder="OL" value = "<?php echo htmlspecialchars($job_id); ?>">
-                                    <?php if (isset($errors['job_id']) && $errors['job_id'] == 'blank'):?>
-                                        <p class = "text-danger">職業を入力してください</p>
-                                    <?php endif; ?>
-                                </div>
-                        </div>
+                        <p>性別</p>
+                                <select name="input_gender">
+                                    <option value="gender">--- 性別 ---</option>
+                                    <option>男性</option>
+                                    <option>女性</option>
+                                </select>
+                            <?php if (isset($errors['input_gender']) && $errors['input_gender'] == 'blank'): ?>
+                                    <p class="text-danger">性別を選んでください</p>
+                                <?php endif; ?>
 
+                        <p>職業</p>
+                            <select name="input_job_id">
+                                <option value="age">--- 職業 ---</option>
+                                <?php foreach($jobs as $job): ?>
+                                    <option value="<?php echo $job['id']; ?>">
+                                        <?php echo $job['job_name']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php if (isset($errors['input_job_id']) && $errors['input_job_id'] == 'blank'): ?>
+                                <p class="text-danger">年代を選んでください</p>
+                            <?php endif; ?>
+
+                        
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-3">好きなもの</label>
                                 <div class="col-sm-10">

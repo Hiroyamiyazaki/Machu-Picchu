@@ -109,16 +109,22 @@
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <img src="assets/img/uses/main_2.png" class="top_img2">
+                            <img src="assets/img/uses/" class="top_img2">
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <h5 class="intro">あの人へのプレゼントを。</h5>
+                            <h3 class="intro">Premori!って？</h3>
+                            <P>いつ誰に何をもらったのかを、<br>
+                               記録として残したり、<br>
+                               お仕事に使ったり、<br>
+                               あの日の思い出を残しておくことができます。</P>
                         </div>
                     </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <h5 class="intro">あの人へのプレゼントを。</h5>
+                            <p>誰かの思い出を辿って<br>
+                               あなたの大切な人への思い出を<br>
+                               プレゼントすることができます。</p>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <img src="assets/img/uses/index_top2.jpg" class="top_img2">
@@ -162,7 +168,7 @@
             <!--=================== filter portfolio end====================-->
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">
-                     <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                     <a href="search.php" class="btn btn-primary">もっと見る</a>
                 </div>
             </div>
            </div>

@@ -15,6 +15,7 @@
 
 .intro {
   margin: 0;
+  border: 5px solid #C0A47F;;
 }
 
 .top-wrapper2 {
@@ -28,8 +29,8 @@
 }
 
 .top_img2 {
-  width: 100%;
-  height: auto;
+  width: 60%;
+  height: 100%;
 }
 
 .top-wrapper3 {
@@ -62,7 +63,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 
+.hoge {
+    position: relative;
+    margin: 10px auto;
+    max-width: 700px;
+    background: #fff;
+    padding: 40px;
+}
+
+
+
+.hoge .image, .hoge .popup-modal-dismiss {
+    text-align: center;
+}
+
+.date_rec {
+    text-align: right;
+}
+
+.user_info {
+    text-align: right;
+}
+
+.btn_user {
+    text-align: right;
+}
+
+.like_count {
+    font-size: 10px;
+}
 
 /*index.php end*/

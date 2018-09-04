@@ -185,7 +185,7 @@ while (true) {
                     </a>
                 </li>
                 <li>
-                    <a href="pro_edit.php?profile_id">
+                    <a href="pro_edit.php">
                         Profile編集
                     </a>
                 </li>

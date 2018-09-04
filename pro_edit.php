@@ -17,15 +17,13 @@
   }
 
 
-
-    $profile_id = $_GET['profile_id'];
-
-
+  //SQL文を作る
     $sql = "SELECT * FROM `users` WHERE `id` = ?";
-
-    $data = array($profile_id);
-
+    //?の代わりになるdataを入れる
+    $data = array($signin_user['id']);
+    //準備する
     $stmt = $dbh->prepare($sql);
+    //実行する　（）の中に?の代わりにれるdataをかく
     $stmt->execute($data);
 
     $profile = $stmt->fetch(PDO::FETCH_ASSOC);

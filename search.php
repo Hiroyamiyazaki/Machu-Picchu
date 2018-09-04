@@ -104,11 +104,11 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center search_padding">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
 
             <header>
                     <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
-                        <div class="sub-contents">
+                        <div class="sub-contents1">
                             <h2>検索「           」</h2>
                         </div>
                     </div>

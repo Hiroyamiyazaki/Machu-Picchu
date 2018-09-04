@@ -114,22 +114,30 @@
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <img src="assets/img/uses/main_3.png" class="top_img2">
+                                <img src="assets/img/uses/main_3.png" class="top_img2">
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <h3 class="intro">Premori!って？</h3>
-                            <P>いつ誰に何をもらったのかを、<br>
-                                記録として残したり、<br>
-                                お仕事に使ったり、<br>
-                            あの日の思い出を残しておくことができます。</P>
+                            <div class="tape">
+                            <div class="paper">
+                                <P>いつ誰に何をもらったのかを、<br>
+                                    記録として残したり、<br>
+                                    お仕事に使ったり、<br>
+                                あの日の思い出を残しておくことができます。</P>
+                            </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <p>誰かの思い出を辿って<br>
-                                あなたの大切な人への思い出を<br>
-                            プレゼントすることができます。</p>
+                            <div class="tape">
+                            <div class="paper">
+                                <p>誰かの思い出を辿って<br>
+                                    あなたの大切な人への思い出を<br>
+                                プレゼントすることができます。</p>
+                            </div>
+                            </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <img src="assets/img/uses/index_top2.jpg" class="top_img2">
@@ -143,7 +151,7 @@
 
 
                     <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                        <h3 >みんなの思い出</h3>
+                        <h3 class="intro">みんなの思い出</h3>
                     </div>
 
                     <div class="portfolio gutters grid img-container">
@@ -153,7 +161,7 @@
 
                             <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                             <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
-                                <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
+                                <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g card bgWhite flip flipAnimation"></a>
                                 <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
 
                                     <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>

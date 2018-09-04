@@ -6,16 +6,75 @@
 
 .top-wrapper1 {
   padding: 0;
+  box-shadow: 5px 5px 15px #33342B inset;
 }
 
 .top_img {
   width: auto;
   height: auto;
+
+
 }
 
-.intro {
-  margin: 0;
-  border: 5px solid #C0A47F;;
+
+.intro{
+    margin:2em 0;
+    position: relative;
+    padding: 0.5em 2em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    display: inline-block;
+}
+.intro:before, .intro:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.intro:before {left: 10px;}
+.intro:after {right: 10px;}
+.intro p {
+    margin: 0; 
+    padding: 0;
+}
+
+
+
+
+.paper{
+    padding:50px;/*セロテープにかからないように、適宜Paddingをいれる*/
+    box-shadow:1px 1px 2px rgba(0,0,0,.3);
+    background: linear-gradient(to bottom,  rgba(252,255,244,1) 0%,rgba(239,239,225,1) 100%); 
+}
+
+
+.tape {
+    position:relative;/*テープの表示位置の基準となる*/
+    display:inline-block;/*内容に合わせて幅も伸縮させる*/
+}
+.tape::before, .tape::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+.tape::before {
+    left: -5%;
+    top: -10%;
+    width: 25%;
+    height: 50px;
+    transform: rotate(-10deg);
+}
+.tape::after {
+    right: -5%;
+    top: -10%;
+    width: 24%;
+    height: 50px;
+    transform: rotate(10deg);
 }
 
 .top-wrapper2 {
@@ -25,22 +84,20 @@
   padding-top: 100px;
   padding-bottom: 100px;
   color: black;
-  border-bottom: 1px solid #C0A47F;
 }
 
 .top_img2 {
   width: 60%;
   height: 100%;
+  box-shadow: 5px 5px 5px gray;
+  position: relative;
 }
 
 .top-wrapper3 {
-  display: flex;
-  justify-content: center;
   text-align: center;
   padding-top: 100px;
   padding-bottom: 100px;
   color: black;
-  border-bottom: 1px solid #C0A47F;
 }
 
 .top-wrapper4 {
@@ -50,21 +107,30 @@
   padding-top: 100px;
   padding-bottom: 50px;
   color: white;
-  border-bottom: 1px;
 }
 
 .img_g {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #bfbfbf;
 }
+
 
 .feed_con {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
+
 }
+
+
+
 
 .hoge {
     position: relative;
@@ -95,5 +161,8 @@
 .like_count {
     font-size: 10px;
 }
+
+
+
 
 /*index.php end*/

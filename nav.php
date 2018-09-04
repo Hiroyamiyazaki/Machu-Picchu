@@ -166,7 +166,7 @@ while (true) {
             <!--logo -->
             <div class="logo_box">
                 <a href="#">
-                    <img src="assets/img/main-logo.png" alt="Premori!">
+                    <img src="assets/img/main-logo.png" class="main_logo" alt="Premori!">
                 </a>
             </div>
             <!--logo end-->

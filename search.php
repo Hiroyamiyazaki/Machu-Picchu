@@ -12,30 +12,64 @@
 
 
 
+$is_search_all = empty($_GET['relation']) && empty($_GET['age']) && empty($_GET['job']) && empty($_GET['event']);
 
+if ($is_search_all) {
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `f`.`created` DESC';
+} else {
 
+    $relation = '';
+    $age = '';
+    $job = '';
+    $event = '';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `users`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `users`.`job_id` WHERE ';
 
+    // １relationが真
+    // ２relationが選択されていない->真の場合＝＝ageを検索、偽の場合==relationとageの両方を検索
+    // ３relationが選択されていない+ageが選択されていない->真の場合==jobを検索、偽の場合==relationかjobを検索
+    //条件 ? 条件が正しかった場合　：　条件が正しくなかった場合
+    if (!empty($_GET['relation'])) {
+        $relation = '`relation_id` = ?';
+        $sql .= $relation;
+        $data[] = $_GET['relation'];
+    }
 
-//投稿取得
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` ASC';
+    if (!empty($_GET['age'])) {
+        $age = '`users`.`age_id` = ?';
+        $sql .= $relation == '' ? $age : ' AND ' . $age;
+        $data[] = $_GET['age'];
+    }
 
+    if (!empty($_GET['job'])) {
+        $job = '`users`.`job_id` = ?';
+        $sql .= $relation == '' && $age == '' ? $job : ' AND ' . $job;
+        $data[] = $_GET['job'];
+    }
 
-    $data = [];
+    if (!empty($_GET['event'])) {
+        $event = '`event_id` =?';
+        $sql .= $relation == '' && $age == '' && $job == '' ? $event : ' AND ' . $event;
+        $data[] = $_GET['event'];
+    }
+
+    $order_by = ' ORDER BY `created` DESC';
+    $sql .= $order_by;
 
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
+}
 
-    $allfeeds = array();
-    while (1) {
-    // データを１件ずつ取得
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($rec == false) {
-           break;
-        }
+//表示用の配列を初期化
+$allfeeds = array();
 
+while (true) {
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($rec  == false){
+    break;
+    }
 
-        $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+    $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
         $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
@@ -43,11 +77,45 @@
 
         $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
 
-
     $allfeeds[] = $rec;
 
-
 }
+
+
+
+//投稿取得
+
+    // $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` ASC';
+
+
+    // $data = [];
+
+    // $stmt = $dbh->prepare($sql);
+    // $stmt->execute($data);
+
+
+    // $allfeeds = array();
+    // while (1) {
+    // // データを１件ずつ取得
+    //     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     if ($rec == false) {
+    //        break;
+    //     }
+
+
+    //     $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+
+    //     $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+    //     $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+    //     $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+
+
+    // $allfeeds[] = $rec;
+
+
+// }
 
 // echo "<pre>";
 // var_dump($feeds); die();
@@ -89,6 +157,10 @@
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
     <link rel="stylesheet"  href="assets/css/search.style.css">
+    <link rel="stylesheet"  href="assets/css/index.css">
+    <!-- ページネーション作成のため、moc index.php を参照しました。 -->
+
+
 </head>
 <body>
 <div class="loader">
@@ -123,6 +195,7 @@
 
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+
                     <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
                         <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
@@ -168,14 +241,20 @@
                             </div>
                         </div>
 
+
                     <?php endforeach; ?>
 
                 </div>
             <!--=================== filter portfolio end====================-->
-        </div>
-        <!--=================== content body end ====================-->
-    </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                <div class="sub-contents">
+                     <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                </div>
+            </div>
+           </div>
 </div>
+        <!--=================== content body end ====================-->
+
 
 
 

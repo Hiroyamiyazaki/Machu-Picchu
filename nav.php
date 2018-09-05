@@ -88,49 +88,58 @@ if (!empty($_GET)) {
     $select_event = $_GET['event'];
 }
 
-//検索・・LEFT JOINで全件取得
-// $sql = 'SELECT `f`.* FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC';
 $sql = "";
 
 $data = array();
-//相手を選択したら相手だけ検索表示
-if (!empty($_GET['relation'])) {
-    $sql = 'SELECT `f`.* FROM `feeds` AS `f` WHERE `f`.`relation_id` =? ORDER BY `f`.`created` DESC';
-    $data = [$_GET['relation']];
-} else {
-    // LEFT JOINで全件取得
+
+
+$is_search_all = empty($_GET['relation']) && empty($_GET['age']) && empty($_GET['job']) && empty($_GET['event']);
+
+if ($is_search_all) {
     $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
-}
-
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-
-
-//世代検索
-if (!empty($_GET['age'])) {
-    $sql = 'SELECT `f`.* FROM `feeds` AS `f` WHERE `f`.`age_id` =? ORDER BY `f`.`created` DESC';
-    $data = [$_GET['age']];
 } else {
-    // LEFT JOINで全件取得
-    $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
+
+    $relation = '';
+    $age = '';
+    $job = '';
+    $event = '';
+    $sql = 'SELECT * FROM `feeds` WHERE ';
+
+    // １relationが真
+    // ２relationが選択されていない->真の場合＝＝ageを検索、偽の場合==relationとageの両方を検索
+    // ３relationが選択されていない+ageが選択されていない->真の場合==jobを検索、偽の場合==relationかjobを検索
+    //条件 ? 条件が正しかった場合　：　条件が正しくなかった場合
+    if (!empty($_GET['relation'])) {
+        $relation = '`relation_id` = ?';
+        $sql .= $relation;
+        $data[] = $_GET['relation'];
+    }
+
+    if (!empty($_GET['age'])) {
+        $age = '`age_id` = ?';
+        $sql .= $relation == '' ? $age : ' AND ' . $age;
+        $data[] = $_GET['age'];
+    }
+
+    if (!empty($_GET['job'])) {
+        $job = '`job_id` = ?';
+        $sql .= $relation == '' && $age == '' ? $job : ' AND ' . $job;
+        $data[] = $_GET['job'];
+    }
+
+    if (!empty($_GET['event'])) {
+        $event = '`event_id` =?';
+        $sql .= $relation == '' && $age == '' && $job == '' ? $event : ' AND ' . $event;
+        $data[] = $_GET['event'];
+    }
+
+    $order_by = ' ORDER BY `created` DESC';
+    $sql .= $order_by;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+
 }
-
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
-
-//職業検索
-
-
-if (!empty($_GET['event'])) {
-    $sql = 'SELECT `f`.* FROM `feeds` AS `f` WHERE `f`.`event_id` =? ORDER BY `f`.`created` DESC';
-    $data = [$_GET['event']];
-} else {
-    // LEFT JOINで全件取得
-    $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
-}
-
-$stmt = $dbh->prepare($sql);
-$stmt->execute($data);
 
 //表示用の配列を初期化
 $feeds = array();
@@ -143,19 +152,9 @@ while (true) {
     $feeds[] = $record;
 
 }
-// SELECT
-//     f.*,
-//    u.*
-// FROM feeds AS f
-// LEFT JOIN users AS u ON f.user_id = u.id
-// WHERE f.relation_id = 1
-// ;
 
 
 ?>
-
-
-
 
 
 <link rel="stylesheet"  href="assets/css/nav.css">
@@ -265,7 +264,7 @@ while (true) {
                             <!-- ages generation-->
                             <div>
                                 <select name="age">
-                                     <option value="age">--- 年代 ---</option>
+                                     <option value="">--- 年代 ---</option>
                                         <?php foreach ($ages as $age): ?>
                                                 <option value="<?php echo $age['id']; ?>"
                                                     <?php if($age['id'] == $select_age) { echo 'selected'; } ?>
@@ -279,7 +278,7 @@ while (true) {
                                 <!-- jobs -->
                                 <div>
                                     <select name="job">
-                                        <option value="job">--- 職業 ---</option>
+                                        <option value="">--- 職業 ---</option>
                                             <?php foreach($jobs as $job): ?>
                                                 <option value="<?php echo $job['id']; ?>"
                                                     <?php if($job['id'] == $select_job) {
@@ -294,7 +293,7 @@ while (true) {
                                     <!-- events -->
                                     <div>
                                         <select name="event">
-                                                <option value="event">---イベント---</option>
+                                                <option value="">---イベント---</option>
                                                 <?php foreach($events as $event): ?>
                                                        <option value="<?php echo $event['id']; ?>"
                                                         <?php if($event['id'] ==$select_event) {

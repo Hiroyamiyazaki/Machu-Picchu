@@ -16,8 +16,22 @@
     exit();
   }
 
+    //何ページ目を開いているか決める
+if (isset($_GET[‘page’])) {
+   $page = $_GET[‘page’];
+} else {
+   $page = 1;
+}
 
+
+
+
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT 12';
+
+<<<<<<< HEAD
+=======
     $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id`  WHERE `feeds`.`user_id` = ? ORDER BY `created` ASC';
+>>>>>>> master
 
 
     $data = array($signin_user['id']);
@@ -97,6 +111,8 @@
     <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
     <link rel="stylesheet"  href="assets/css/mypage.style.css">
+    <link rel="stylesheet"  href="assets/css/index.css">
+    <!-- ページネーション作成のため、moc index.php を参照しました。 -->
 </head>
 <body>
 <div class="loader">
@@ -173,8 +189,19 @@
 
                     <?php endforeach; ?>
 
+<<<<<<< HEAD
+
+
+                </div>
+=======
             </div>
+>>>>>>> master
             <!--=================== filter portfolio end====================-->
+            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                <div class="sub-contents">
+                     <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                </div>
+            </div>
         </div>
         <!--=================== content body end ====================-->
     </div>

@@ -16,22 +16,20 @@
     exit();
   }
 
-    //何ページ目を開いているか決める
-if (isset($_GET[‘page’])) {
-   $page = $_GET[‘page’];
-} else {
-   $page = 1;
-}
+//     //何ページ目を開いているか決める
+// if (isset($_GET[‘page’])) {
+//    $page = $_GET[‘page’];
+// } else {
+//    $page = 1;
+// }
 
 
 
 
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT 12';
 
-<<<<<<< HEAD
-=======
+
     $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id`  WHERE `feeds`.`user_id` = ? ORDER BY `created` ASC';
->>>>>>> master
+
 
 
     $data = array($signin_user['id']);
@@ -128,13 +126,13 @@ if (isset($_GET[‘page’])) {
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center body_con">
 
             <header>
                     <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                         <div class="sub-contents1">
                             <h2>マイページ</h2>
-                            <a href="post.php" class="btn btn-primary">投稿</a>
+                            <a href="post.php" class="btn btn-primary b_post">投稿</a>
                         </div>
                     </div>
             </header>
@@ -189,13 +187,9 @@ if (isset($_GET[‘page’])) {
 
                     <?php endforeach; ?>
 
-<<<<<<< HEAD
 
-
-                </div>
-=======
             </div>
->>>>>>> master
+
             <!--=================== filter portfolio end====================-->
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">

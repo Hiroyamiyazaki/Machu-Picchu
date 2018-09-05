@@ -14,8 +14,10 @@
 
 $is_search_all = empty($_GET['relation']) && empty($_GET['age']) && empty($_GET['job']) && empty($_GET['event']);
 
+$data = [];
+
 if ($is_search_all) {
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `f`.`created` DESC';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `users`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `users`.`job_id` ORDER BY `feeds`.`created` DESC';
 } else {
 
     $relation = '';
@@ -55,10 +57,10 @@ if ($is_search_all) {
     $order_by = ' ORDER BY `created` DESC';
     $sql .= $order_by;
 
+}
+
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
-
-}
 
 //表示用の配列を初期化
 $allfeeds = array();

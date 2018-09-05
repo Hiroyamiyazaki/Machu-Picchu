@@ -1,21 +1,30 @@
 /*sub var*/
 
+.body_con {
+    padding: 100px;
+}
+
 h2{
     color:green;
-    text-align:center;
+    text-align:left;
+    margin: 0
 }
 
 .sub-contents1{
-    position: fixed;
+    display: inline-block;
     top:0;
     width: 100%;
-    padding: 50px;
+    padding: 0;
     height: 150px;
     background-image: url("../img/uses/back_img.jpeg");
     background-repeat: repeat;
     z-index: 10;
     margin-left: 0;
 
+}
+
+.b_post {
+    float: right;
 }
 
  /*sub var*/

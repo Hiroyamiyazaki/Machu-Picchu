@@ -3,8 +3,21 @@
 font-family: 'ＭＳ ゴシック','TsukuARdGothic-Regular','Verdana','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
 }
 
+body:before {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  z-index: 100;
+  content: '';
+  width: 100%;
+  height: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
+
 
 .body_block {
-    background-color: white;
+    background-image: url("../img/uses/back_img.jpeg");
+    background-repeat: repeat;
+    box-shadow: 5px 5px 15px #33342B inset;
 }
 

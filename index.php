@@ -11,21 +11,17 @@
 
 
 
-  if(!isset($_SESSION['id'])) {
-    header('Location:signup.php');
-    exit();
-  }
 
 
 
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` RIGHT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` ASC';
     $data = [];
 
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
 
-    $feeds = array();
+    $allfeeds = array();
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -34,8 +30,17 @@
         }
 
 
+        $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
-    $feeds[] = $rec;
+        $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+        $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+        $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+
+
+
+    $allfeeds[] = $rec;
 
 
 }
@@ -99,7 +104,7 @@
             <div class="container-fluid back">
                 <div class="img_card">
 
-                        <!-- content-explain -->
+                    <!-- content-explain -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper1">
 
@@ -109,22 +114,30 @@
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                            <img src="assets/img/uses/" class="top_img2">
+                                <img src="assets/img/uses/main_3.png" class="top_img2">
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <h3 class="intro">Premori!って？</h3>
-                            <P>いつ誰に何をもらったのかを、<br>
-                               記録として残したり、<br>
-                               お仕事に使ったり、<br>
-                               あの日の思い出を残しておくことができます。</P>
+                            <div class="tape">
+                            <div class="paper">
+                                <P>いつ誰に何をもらったのかを、<br>
+                                    記録として残したり、<br>
+                                    お仕事に使ったり、<br>
+                                あの日の思い出を残しておくことができます。</P>
+                            </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <p>誰かの思い出を辿って<br>
-                               あなたの大切な人への思い出を<br>
-                               プレゼントすることができます。</p>
+                            <div class="tape">
+                            <div class="paper">
+                                <p>誰かの思い出を辿って<br>
+                                    あなたの大切な人への思い出を<br>
+                                プレゼントすることができます。</p>
+                            </div>
+                            </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <img src="assets/img/uses/index_top2.jpg" class="top_img2">
@@ -132,48 +145,86 @@
                     </div>
 
 
-                        <!-- content-explain end -->
+                    <!-- content-explain end -->
 
 
 
 
-                        <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                            <h3 >みんなの思い出</h3>
+                    <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                        <h3 class="intro">みんなの思い出</h3>
+                    </div>
+
+                    <div class="portfolio gutters grid img-container">
+
+                        <?php foreach ($allfeeds as $allfeed): ?>
+
+
+                            <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                            <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
+                                <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g card bgWhite flip flipAnimation"></a>
+                                <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
+
+                                    <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
+                                    <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
+
+                                    <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
+                                    <?php if($allfeed['is_liked']): ?>
+                                        <button class="btn btn-info btn-sm js-unlike">
+                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                            <span>いいねを取り消す</span>
+                                        </button>
+                                        <?php else: ?>
+                                            <button class="btn btn-info btn-sm js-like">
+                                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                                <span>いいね!</span>
+                                            </button>
+                                        <?php endif; ?>
+                                        <span>いいね数 : </span>
+                                        <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+
+                                        <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                            <i class="fa fa-comment"></i>
+                                            <span>コメントする</span>
+                                        </a>
+                                        <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+
+                                        <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
+                                        <p><?php echo $allfeed['feed']; ?></p>
+                                        <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
+                                            <p><?php echo $allfeed['secret_feed']; ?></p>
+                                        <?php endif; ?>
+                                        <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+
+
+                                        <div class="btn_user">
+                                            <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
+                                                <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                            <?php endif; ?>
+                                            <?php include("comment_view.php"); ?> 
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
                         </div>
 
-                        <div class="portfolio gutters grid img-container">
-
-                                <?php foreach ($feeds as $feed): ?>
 
 
-                                    <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                                    <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3">
-                                        <a class="popup-modal" href="#inline-wrap<?php echo $feed["id"] ?>"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>" class="img_g"></a>
-                                        <div id="inline-wrap<?php echo $feed["id"] ?>" class="mfp-hide hoge">
-                                            <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
-                                            <p><?php echo $feed['feed'] ?></p>
-                                            <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
-                                            <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
-                                                <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
-                                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-
-                                <?php endforeach; ?>
+                        <!--=================== filter portfolio end====================-->
+                        <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                            <div class="sub-contents">
+                                <a href="search.php" class="btn btn-primary">もっと見る</a>
                             </div>
+                        </div>
 
 
 
-            <!--=================== filter portfolio end====================-->
-            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                <div class="sub-contents">
-                     <a href="search.php" class="btn btn-primary">もっと見る</a>
+                    </div>
                 </div>
             </div>
-           </div>
-          </div>
-        </div>
         <!--=================== content body end ====================-->
 
 
@@ -201,5 +252,7 @@
 <script src="assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="assets/js/main.js"></script>
+
+<script src="assets/js/app.js"></script>
 </body>
 </html>

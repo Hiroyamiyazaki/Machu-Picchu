@@ -3,27 +3,26 @@ h2{
     text-align:center;
 }
 
-header{
+.sub-contents1{
     position: fixed;
     top:0;
     width: 100%;
     padding: 50px;
     height: 150px;
-    background-color: #FFE9A2;
+    background-image: url("../img/uses/back_img.jpeg");
+    background-repeat: repeat;
     z-index: 10;
     margin-left: 0;
 
 }
-.search_padding{
-    padding-left: 0;
-    padding-right: 0;
-}
+
 
 
 .img_g {
     width: 250px;
     height: 250px;
     object-fit: cover;
+    box-shadow: 10px 10px 15px -10px;
 }
 
 .feed_con {

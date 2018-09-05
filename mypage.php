@@ -35,7 +35,7 @@ if (isset($_GET[‘page’])) {
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-    $myfeeds = array();
+    $allfeeds = array();
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,9 +49,13 @@ if (isset($_GET[‘page’])) {
 
         $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
+        $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+        $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
 
 
-    $myfeeds[] = $rec;
+
+    $allfeeds[] = $rec;
 
 
 }
@@ -131,55 +135,61 @@ if (isset($_GET[‘page’])) {
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
 
-                <?php foreach ($myfeeds as $myfeed): ?>
+                <?php foreach ($allfeeds as $allfeed): ?>
 
 
                     <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
                     <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
-                        <a class="popup-modal" href="#inline-wrap<?php echo $myfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $myfeed['img_name'] ?>" class="img_g"></a>
-                        <div id="inline-wrap<?php echo $myfeed["id"] ?>" class="mfp-hide hoge">
-                            <div class="image"><img src="./assets/img/post_img/<?php echo $myfeed['img_name'] ?>"></div><br>
-                            <p class="date_rec"><?php echo date('Ymd', strtotime($myfeed['date'])) ?></p>
+                        <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
+                        <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
+                            <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
+                            <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
-                            <span hidden class="feed-id"><?= $myfeed["id"] ?></span>
-                                <?php if($myfeed['is_liked']): ?>
-                                    <button class="btn btn-info btn-sm js-unlike">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <span>いいねを取り消す</span>
-                                    </button>
-                                <?php else: ?>
-                                <button class="btn btn-info btn-sm js-like">
+                            <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
+                            <?php if($allfeed['is_liked']): ?>
+                                <button class="btn btn-info btn-sm js-unlike">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
-                                    <span>いいね!</span>
+                                    <span>いいねを取り消す</span>
                                 </button>
+                                <?php else: ?>
+                                    <button class="btn btn-info btn-sm js-like">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        <span>いいね!</span>
+                                    </button>
                                 <?php endif; ?>
                                 <span>いいね数 : </span>
-                                <span class="like_count"><?= $myfeed['like_cnt'] ?></span>
+                                <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <a href="#collapseComment<?= $myfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                    <i class="far fa-comment"></i>
+                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                    <i class="fa fa-comment"></i>
+                                    <span>コメントする</span>
                                 </a>
-                                <span class="comment_count btn_text">コメント数 : 9</span><br><br>
+                                <span class="comment_count btn_text">コメント数 : <?= $allfeed["comment_cnt"] ?></span><br><br>
 
-                            <p><?php echo $myfeed['relation_id']; ?> / <?php echo $myfeed['event_id']; ?></p>
-                            <p><?php echo $myfeed['feed']; ?></p>
-                            <p class="user_info"><?php echo $myfeed['name']; ?> / <?php echo $myfeed['age_id']; ?> / <?php echo $myfeed['gender']; ?></p>
+                                <p><?php echo $allfeed['relation_id']; ?> / <?php echo $allfeed['event_id']; ?></p>
+                                <p><?php echo $allfeed['feed']; ?></p>
+                                <p><?php echo $allfeed['secret_feed']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['age_id']; ?> / <?php echo $allfeed['gender']; ?></p>
 
 
 
-                              <div class="btn_user">
-                                    <a href="edit.php?feed_id=<?php echo $myfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
-                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $myfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                <div class="btn_user">
+                                    <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                    <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                    <?php include("comment_view.php"); ?> 
                                 </div>
                             </div>
-                          <?php include("comment_view.php"); ?> 
                         </div>
 
                     <?php endforeach; ?>
 
+<<<<<<< HEAD
 
 
                 </div>
+=======
+            </div>
+>>>>>>> master
             <!--=================== filter portfolio end====================-->
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">

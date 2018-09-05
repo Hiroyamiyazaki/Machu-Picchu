@@ -18,6 +18,26 @@
 
 
 
+    $sql = "SELECT * FROM `users` WHERE `id` = ?";
+
+    $data = array($_GET['id']);
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute($data);
+
+    $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!empty($_POST)) {
+    $update_sql = "UPDATE `users` SET `profile` = ? WHERE `users`.`id` = ?";
+    $data = array($_POST["profile"]);
+    $stmt = $dbh->prepare($update_sql);
+    $stmt->execute($data);
+
+    header("Location: pro_edit.php");
+    exit();
+    }
+
+
   ?>
 
 
@@ -88,7 +108,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>
                             <div class="col-sm-10">
-                                <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($user_id); ?>">
+                                <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($profile['user_id']); ?>">
                                     <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
                                         <p class = "text-danger">IDを入力してください</p>
                                     <?php endif; ?>

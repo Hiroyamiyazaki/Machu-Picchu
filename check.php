@@ -19,7 +19,7 @@
     $job_id = $_SESSION['register']['job_id'] ;
     $brands = $_SESSION['register']['brands'] ;
 
-    var_dump($gender);
+
 
  
     if (!empty($_POST)){

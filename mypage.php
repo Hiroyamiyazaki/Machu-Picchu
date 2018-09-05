@@ -28,6 +28,10 @@ if (isset($_GET[‘page’])) {
 
     $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT 12';
 
+<<<<<<< HEAD
+=======
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id`  WHERE `feeds`.`user_id` = ? ORDER BY `created` ASC';
+>>>>>>> master
 
 
     $data = array($signin_user['id']);
@@ -36,6 +40,8 @@ if (isset($_GET[‘page’])) {
     $stmt->execute($data);
 
     $allfeeds = array();
+
+    
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -122,15 +128,15 @@ if (isset($_GET[‘page’])) {
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center mypage_padding">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+
             <header>
-                <div class="row justify-content-center">
                     <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                        <div class="sub-contents">
-                            <h3>マイページ</h3>
+                        <div class="sub-contents1">
+                            <h2>マイページ</h2>
+                            <a href="post.php" class="btn btn-primary">投稿</a>
                         </div>
                     </div>
-                </div>
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
@@ -166,10 +172,10 @@ if (isset($_GET[‘page’])) {
                                 </a>
                                 <span class="comment_count btn_text">コメント数 : <?= $allfeed["comment_cnt"] ?></span><br><br>
 
-                                <p><?php echo $allfeed['relation_id']; ?> / <?php echo $allfeed['event_id']; ?></p>
+                                <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>
                                 <p><?php echo $allfeed['secret_feed']; ?></p>
-                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['age_id']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
 
 
 

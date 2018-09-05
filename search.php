@@ -12,30 +12,64 @@
 
 
 
+$is_search_all = empty($_GET['relation']) && empty($_GET['age']) && empty($_GET['job']) && empty($_GET['event']);
 
+if ($is_search_all) {
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `f`.`created` DESC';
+} else {
 
+    $relation = '';
+    $age = '';
+    $job = '';
+    $event = '';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `users`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `users`.`job_id` WHERE ';
 
+    // １relationが真
+    // ２relationが選択されていない->真の場合＝＝ageを検索、偽の場合==relationとageの両方を検索
+    // ３relationが選択されていない+ageが選択されていない->真の場合==jobを検索、偽の場合==relationかjobを検索
+    //条件 ? 条件が正しかった場合　：　条件が正しくなかった場合
+    if (!empty($_GET['relation'])) {
+        $relation = '`relation_id` = ?';
+        $sql .= $relation;
+        $data[] = $_GET['relation'];
+    }
 
-//投稿取得
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` DESC LIMIT 12';
+    if (!empty($_GET['age'])) {
+        $age = '`users`.`age_id` = ?';
+        $sql .= $relation == '' ? $age : ' AND ' . $age;
+        $data[] = $_GET['age'];
+    }
 
+    if (!empty($_GET['job'])) {
+        $job = '`users`.`job_id` = ?';
+        $sql .= $relation == '' && $age == '' ? $job : ' AND ' . $job;
+        $data[] = $_GET['job'];
+    }
 
-    $data = [];
+    if (!empty($_GET['event'])) {
+        $event = '`event_id` =?';
+        $sql .= $relation == '' && $age == '' && $job == '' ? $event : ' AND ' . $event;
+        $data[] = $_GET['event'];
+    }
+
+    $order_by = ' ORDER BY `created` DESC';
+    $sql .= $order_by;
 
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
+}
 
-    $allfeeds = array();
-    while (1) {
-    // データを１件ずつ取得
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($rec == false) {
-           break;
-        }
+//表示用の配列を初期化
+$allfeeds = array();
 
+while (true) {
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($rec  == false){
+    break;
+    }
 
-        $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+    $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
         $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
@@ -43,11 +77,45 @@
 
         $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
 
-
     $allfeeds[] = $rec;
 
-
 }
+
+
+
+//投稿取得
+
+    // $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` ASC';
+
+
+    // $data = [];
+
+    // $stmt = $dbh->prepare($sql);
+    // $stmt->execute($data);
+
+
+    // $allfeeds = array();
+    // while (1) {
+    // // データを１件ずつ取得
+    //     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     if ($rec == false) {
+    //        break;
+    //     }
+
+
+    //     $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+
+    //     $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+    //     $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+    //     $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+
+
+    // $allfeeds[] = $rec;
+
+
+// }
 
 // echo "<pre>";
 // var_dump($feeds); die();
@@ -108,11 +176,17 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center search_padding">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
 
             <header>
-                <h2>検索「           」</h2>
+                    <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
+                        <div class="sub-contents1">
+                            <h2>検索「           」</h2>
+                            <a href="post.php" class="btn btn-primary">投稿</a>
+                        </div>
+                    </div>
             </header>
+
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
 
@@ -147,14 +221,14 @@
                                     <i class="fa fa-comment"></i>
                                     <span>コメントする</span>
                                 </a>
-                                <span class="comment_count btn_text">コメント数 : 9</span><br><br>
+                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
 
-                                <p><?php echo $allfeed['relation_id']; ?> / <?php echo $allfeed['event_id']; ?></p>
+                                <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>
                                 <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
                                 <p><?php echo $allfeed['secret_feed']; ?></p>
                                 <?php endif; ?>
-                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['age_id']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
 
 
                                 <div class="btn_user">

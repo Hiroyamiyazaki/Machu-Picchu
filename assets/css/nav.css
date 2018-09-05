@@ -1,7 +1,11 @@
 .menu_block  {
-    background-color: #7F6237
+    background-image: url(../img/uses/nav_back.jpeg);
+    background-repeat: repeat;
 }
 
+.main_logo {
+    filter: drop-shadow(5px 5px 5px #503827);
+}
 
 .user_id {
     text-align: left;

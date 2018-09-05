@@ -72,9 +72,9 @@
 
 
         if (!empty($file_name)) {
-            $file_type = substr($file_name, -3);  //画像名の後ろから３文字を取得
+            $file_type = substr($file_name, -4);  //画像名の後ろから4文字を取得
             $file_type = strtolower($file_type);  //大文字が含まれていた場合全て小文字化
-            if ($file_type != 'jpg' && $file_type != 'png' && $file_type != 'gif') {
+            if ($file_type != 'jpg' && $file_type != 'png' && $file_type != 'gif' && $file_type != 'jpeg') {
                 $errors['img_name'] = 'type';
             }
         } else {

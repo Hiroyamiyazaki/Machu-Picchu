@@ -107,14 +107,9 @@
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
 
             <header>
-                    <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
+                    <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                         <div class="sub-contents1">
                             <h2>検索「           」</h2>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
-                        <div class="sub-contents">
                             <a href="post.php" class="btn btn-primary">投稿</a>
                         </div>
                     </div>

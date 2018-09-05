@@ -1,4 +1,5 @@
 
+/*TOP*/
 .main-contents {
     padding: 0;
 }
@@ -12,9 +13,16 @@
 .top_img {
   width: auto;
   height: auto;
-
-
 }
+
+
+
+/*top end*/
+
+
+
+
+/*content explain */
 
 
 .intro{
@@ -100,6 +108,13 @@
   color: black;
 }
 
+
+/*content explain end*/
+
+
+
+/*album*/
+
 .top-wrapper4 {
   display: flex;
   justify-content: center;
@@ -113,21 +128,28 @@
   width: 250px;
   height: 250px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
-  padding: 4px;
-  background: #fff;
-  border: 1px solid #bfbfbf;
+ }
+
+ .feed_con {
+  position: relative;
+  width: 220px;
+  margin: 20px;
 }
-
-
-.feed_con {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-
+ 
+.feed_con img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
 }
+ 
+.feed_con p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  }
 
 
 

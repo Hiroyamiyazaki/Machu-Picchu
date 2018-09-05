@@ -1,23 +1,27 @@
+/*sub var*/
+
 h2{
     color:green;
     text-align:center;
 }
 
-header{
+.sub-contents1{
     position: fixed;
     top:0;
     width: 100%;
-    padding: 30px;
+    padding: 50px;
     height: 150px;
-    background-color: #FFE9A2;
+    background-image: url("../img/uses/back_img.jpeg");
+    background-repeat: repeat;
     z-index: 10;
     margin-left: 0;
 
 }
 
-h3 {
-    margin: 0;
-}
+ /*sub var*/
+
+
+ /*album*/
 
 .img_g {
     width: 250px;
@@ -31,10 +35,7 @@ h3 {
   align-items: center;
 }
 
-.mypage_padding{
-    padding-left: 0;
-    padding-right: 0;
-}
+
 
 
 /*modal css*/

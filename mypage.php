@@ -26,6 +26,8 @@
     $stmt->execute($data);
 
     $allfeeds = array();
+
+    
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -110,16 +112,15 @@
         <?php include('nav.php'); ?>
 
         <!--=================== content body ====================-->
-        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center mypage_padding">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+
             <header>
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
-                        <h3>マイページ</h3>
+                    <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
+                        <div class="sub-contents1">
+                            <h2>マイページ</h2>
+                            <a href="post.php" class="btn btn-primary">投稿</a>
+                        </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-6 top-wrapper1">
-                        <a href="post.php" class="btn btn-primary">投稿</a>
-                    </div>
-                </div>
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">

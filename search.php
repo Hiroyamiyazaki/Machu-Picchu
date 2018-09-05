@@ -17,7 +17,7 @@
 
 
 //投稿取得
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` ASC';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id ORDER BY `created` DESC LIMIT 12';
 
 
     $data = [];
@@ -80,6 +80,10 @@
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
     <link rel="stylesheet"  href="assets/css/search.style.css">
+    <link rel="stylesheet"  href="assets/css/index.css">
+    <!-- ページネーション作成のため、moc index.php を参照しました。 -->
+
+
 </head>
 <body>
 <div class="loader">
@@ -114,7 +118,7 @@
                             <div class="image"><img src="./assets/img/post_img/<?php echo $feed['img_name'] ?>"></div>
                             <p><?php echo $feed['feed'] ?></p>
                             <p><?php echo $feed['name']; ?> / <?php echo $feed['age_id']; ?> / <?php echo $feed['gender']; ?></p>
-                            <?php if($feed["user_id"]==$_SESSION["id"]): ?> 
+                            <?php if($feed["user_id"]==$_SESSION["id"]): ?>
                                 <a href="edit.php?feed_id=<?php echo $feed["id"] ?>" class="btn btn-success btn-xs">編集</a>
                                 <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed=<?php echo $feed["id"] ?>" class="btn btn-danger btn-xs">削除</a>
                             <?php endif; ?>
@@ -124,12 +128,18 @@
                 <?php endforeach; ?>
 
             </div>
+        </div>
 
             <!--=================== filter portfolio end====================-->
-        </div>
-        <!--=================== content body end ====================-->
-    </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                <div class="sub-contents">
+                     <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                </div>
+            </div>
+           </div>
 </div>
+        <!--=================== content body end ====================-->
+
 
 
 

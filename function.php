@@ -2,7 +2,7 @@
 
 
 
-  // サインインユーザー取得 
+  // サインインユーザー取得
     function get_user($dbh, $user_id)
     {
       $sql = 'SELECT * FROM  `users` WHERE `id` = ?';
@@ -16,7 +16,7 @@
 
 //投稿処理
     function create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $user_id)
-    { 
+    {
       $sql = 'INSERT INTO `feeds` SET `date`=?, `relation_id`=?, `event_id`=?, `img_name`=?, `feed`=?, `secret_feed`=?, `user_id`=?, `created`=NOW()';
       $data = array($date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $user_id);
       $stmt = $dbh->prepare($sql);

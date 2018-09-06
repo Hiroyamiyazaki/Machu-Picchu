@@ -25,6 +25,11 @@ while (1) {
 
 
 //年代欄のドロップダウンリストに表示
+$select_relation = '';
+$select_age = '';
+$select_job = '';
+$select_event = '';
+
 $sql = 'SELECT * FROM `ages`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -71,87 +76,6 @@ while (1) {
     $events[] = $eventrec;
 }
 
-// search feedsを取得
-$spl = 'SELECT * FROM `feeds` WHERE `age_id` =? AND `f`.`relation_id` =? AND `job_id` =? AND `event_id` =?';
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
-
-$select_relation = "";
-$select_age = "";
-$select_job = "";
-$select_event = "";
-
-if (!empty($_GET)) {
-    $select_relation = $_GET['relation'];
-    $select_age = $_GET['age'];
-    $select_job = $_GET['job'];
-    $select_event = $_GET['event'];
-}
-
-$sql = "";
-
-$data = array();
-
-
-$is_search_all = empty($_GET['relation']) && empty($_GET['age']) && empty($_GET['job']) && empty($_GET['event']);
-
-if ($is_search_all) {
-    $sql = 'SELECT `f`.* FROM `feeds` AS `f` ORDER BY `f`.`created` DESC';
-} else {
-
-    $relation = '';
-    $age = '';
-    $job = '';
-    $event = '';
-    $sql = 'SELECT * FROM `feeds` WHERE ';
-
-    // １relationが真
-    // ２relationが選択されていない->真の場合＝＝ageを検索、偽の場合==relationとageの両方を検索
-    // ３relationが選択されていない+ageが選択されていない->真の場合==jobを検索、偽の場合==relationかjobを検索
-    //条件 ? 条件が正しかった場合　：　条件が正しくなかった場合
-    if (!empty($_GET['relation'])) {
-        $relation = '`relation_id` = ?';
-        $sql .= $relation;
-        $data[] = $_GET['relation'];
-    }
-
-    if (!empty($_GET['age'])) {
-        $age = '`age_id` = ?';
-        $sql .= $relation == '' ? $age : ' AND ' . $age;
-        $data[] = $_GET['age'];
-    }
-
-    if (!empty($_GET['job'])) {
-        $job = '`job_id` = ?';
-        $sql .= $relation == '' && $age == '' ? $job : ' AND ' . $job;
-        $data[] = $_GET['job'];
-    }
-
-    if (!empty($_GET['event'])) {
-        $event = '`event_id` =?';
-        $sql .= $relation == '' && $age == '' && $job == '' ? $event : ' AND ' . $event;
-        $data[] = $_GET['event'];
-    }
-
-    $order_by = ' ORDER BY `created` DESC';
-    $sql .= $order_by;
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
-
-}
-
-//表示用の配列を初期化
-$feeds = array();
-
-while (true) {
-    $record = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($record  == false){
-    break;
-    }
-    $feeds[] = $record;
-
-}
 
 
 ?>

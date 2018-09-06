@@ -2,6 +2,7 @@
     session_start();
     //ここでdbconnectを呼ぶ
     require_once('dbconnect.php');
+    require_once('function.php');
 
 //以下のregisterはsignup.phpでセッションに変数を入れている
     if (!isset($_SESSION['register'])){
@@ -19,6 +20,8 @@
     $job_id = $_SESSION['register']['job_id'] ;
     $brands = $_SESSION['register']['brands'] ;
 
+
+    $ages = what_age($dbh);
 
 
  
@@ -87,7 +90,12 @@
                         <div class="form-group">
                             <span class="control-label col-sm-2">年代</span>
                             <div class="col-md-10">
-                                <p class="lead"><?php echo htmlspecialchars($age_id); ?></p>
+                                <p class="lead">
+                                    <?php foreach ($ages as $age): ?>
+                                        <?php if($age['id'] == $age_id) ?>
+                                            <?php echo $age['generation']; ?>
+                                    <?php endforeach; ?>
+                                </p>
                             </div>
                         </div>
 

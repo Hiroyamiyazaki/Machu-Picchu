@@ -34,30 +34,7 @@
     $ages = what_age($dbh);
     $jobs = what_job($dbh);
 
-    $select_age = "";
-    $select_job = "";
-
-    if (!empty($_GET)) {
-    $select_age = $_GET['age'];
-    $select_job = $_GET['job'];
-    }
-
-    if (!empty($_GET['age'])) {
-    $sql = 'SELECT `u`.* FROM `users` AS `u` WHERE `u`.`age_id` =? ORDER BY `u`.`created` DESC';
-    $data = [$_GET['age']];
-    } 
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
-
-    if (!empty($_GET['job'])) {
-    $sql = 'SELECT `u`.* FROM `users` AS `u` WHERE `u`.`job_id` =? ORDER BY `u`.`created` DESC';
-    $data = [$_GET['job']];
-    } 
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute($data);
-
+ 
 
 
 
@@ -67,8 +44,8 @@
 
 // 編集
     if (!empty($_POST)) {
-    $update_sql = "UPDATE `users` SET `profile` = ? WHERE `users`.`id` = ?";
-    $data = array($_POST["profile"], $profile_id);
+    $update_sql = "UPDATE `users` SET `user_id`=?, `age_id`=?, `gender`=?, `job_id`=?, `brands`=? WHERE `users`.`id` = ?";
+    $data = array($_POST['input_user_id'], $_POST['input_age'], $_POST['input_gender'], $_POST['input_job'], $_POST['input_brand'], $profile);
     $stmt = $dbh->prepare($update_sql);
     $stmt->execute($data);
 
@@ -146,7 +123,7 @@
             </div>
 
             <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-            <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
+            <form method="POST" action="pro_edit.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>
                             <div class="col-sm-10">
@@ -160,11 +137,11 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">年代</label>
                                 <div>
-                                    <select name="age">
+                                    <select name="input_age">
                                          <option value="age">--- 年代 ---</option>
                                             <?php foreach ($ages as $age): ?>
                                                     <option value="<?php echo $age['id']; ?>"
-                                                        <?php if($age['id'] == $select_age) { echo 'selected'; } ?>
+                                                        <?php if($age['id'] == $profile['age_id']) { echo 'selected'; } ?>
                                                         >
                                                         <?php echo $age['generation']; ?>
                                                    </option>
@@ -191,11 +168,11 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">職業</label>
                                  <div>
-                                    <select name="job">
+                                    <select name="input_job">
                                         <option value="job">--- 職業 ---</option>
                                             <?php foreach($jobs as $job): ?>
                                                 <option value="<?php echo $job['id']; ?>"
-                                                    <?php if($job['id'] == $select_job) {
+                                                    <?php if($job['id'] == $profile['job_id']) {
                                                     echo 'selected'; } ?>
                                                     >
                                                     <?php echo $job['job_name']; ?>

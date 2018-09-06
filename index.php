@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+                            <img src="assets/img/uses/main_4.png" class="top_img3">
                         </div>
                     </div>
 

@@ -23,9 +23,42 @@ h2{
 
 }
 
+.my_title {
+    margin:0;
+    position: relative;
+    padding: 0.5em 2em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    display: inline-block;
+}
+.my_title:before, .my_title:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.my_title:before {left: 10px;}
+.my_title:after {right: 10px;}
+.my_title p {
+    margin: 0; 
+    padding: 0;
+}
+
 .b_post {
     float: right;
 }
+
+.img_icon {
+    position: absolute;
+    right: 100px;
+    top: 15px;
+    color: black;
+    filter: drop-shadow(5px 5px 2px #503827);
+}
+
 
  /*sub var*/
 

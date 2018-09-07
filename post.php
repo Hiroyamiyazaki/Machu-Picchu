@@ -102,7 +102,7 @@
         $_SESSION['hoge']['img_name'] = $submit_file_name;
 
 
-        create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id']);
+        create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id'], $signin_user['gender'], $signin_user['age_id'], $signin_user['job_id']);
 
 
         header('Location: mypage.php');

@@ -12,22 +12,17 @@ const CONTENT_PER_PAGE = 12;
   $signin_user = get_user($dbh, $_SESSION['id']);
 
   //ページネーション　１２件取得する
+
+  // 何ページ目を開いているかを取得
    if (isset($_GET['page'])) {
         $page = $_GET['page'];
     } else {
         $page = 1;
     }
 
- // -1などのページ数として不正な値を渡された場合の対策
+// -1などのページ数として不正な値を渡された場合の対策
     $page = max($page, 1);
-
-    // ヒットしたレコードの数を取得するSQL
-    // $sql_count = "SELECT COUNT(*) AS `cnt` FROM `feeds`";
-
-    // $stmt_count = $dbh->prepare($sql_count);
-    // $stmt_count->execute();
-
-    // $record_cnt = $stmt_count->fetch(PDO::FETCH_ASSOC);
+//function.phpへ　リファクタリング
     $last_page = get_last_page($dbh);
 
     // 取得したページ数を1ページあたりに表示する件数で割って何ページが最後になるか取得
@@ -276,14 +271,38 @@ while (true) {
 
                 </div>
             <!--=================== filter portfolio end====================-->
+
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">
-                    <a href="search.php?page=<?php echo $page + 1; ?>">
-                     <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                    <!-- 新しい投稿ページに戻る（前に戻る） -->
+                    <?php if($page == 1): ?>
+                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                        </li>
+                    <?php else: ?>
+                        <li class="previous"><a href="search.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                        </li>
+                    <?php endif; ?>
+                </div>
+
+　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+                <div class="sub-contents">
+                    <?php if($page == $last_page): ?>
+                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                        </li>
+                    <?php else: ?>
+                        <li class="next"><a href="search.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                        </li>
+                    <?php endif; ?>
                 </div>
             </div>
-           </div>
+        </div>
+    </div>
 </div>
+
         <!--=================== content body end ====================-->
 
 

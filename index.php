@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
   session_start();
@@ -6,15 +6,35 @@
   require('dbconnect.php');
   require('function.php');
 
+  const CONTENT_PER_PAGE = 8;
+
 
   $signin_user = get_user($dbh, $_SESSION['id']);
 
 
 
+//ページネーション　１２件取得する
+
+  // 何ページ目を開いているかを取得
+   if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+    } else {
+        $page = 1;
+    }
+
+ // -1などのページ数として不正な値を渡された場合の対策
+    $page = max($page, 1);
+
+    $last_page = get_last_page($dbh);
+
+    $start = ($page - 1) * CONTENT_PER_PAGE;
 
 
 
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` ASC';
+
+
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+
     $data = [];
 
     $stmt = $dbh->prepare($sql);
@@ -214,24 +234,38 @@
 
 
                         <!--=================== filter portfolio end====================-->
-                        <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                            <div class="sub-contents">
-                                <a href="search.php" class="btn btn-primary">もっと見る</a>
-                            </div>
-                        </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                <div class="sub-contents">
+                    <!-- 新しい投稿ページに戻る（前に戻る） -->
+                    <?php if($page == 1): ?>
+                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                        </li>
+                    <?php else: ?>
+                        <li class="previous"><a href="index.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                        </li>
+                    <?php endif; ?>
+                </div>
 
-
-
-                    </div>
+　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+                <div class="sub-contents">
+                    <?php if($page == $last_page): ?>
+                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                        </li>
+                    <?php else: ?>
+                        <li class="next"><a href="index.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                        </li>
+                    <?php endif; ?>
                 </div>
             </div>
-        <!--=================== content body end ====================-->
-
-
-
-
+        </div>
     </div>
 </div>
+        <!--=================== content body end ====================-->
+
 
 <!-- jquery -->
 <script src="assets/js/jquery.min.js"></script>

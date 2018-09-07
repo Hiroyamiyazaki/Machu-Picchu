@@ -5,7 +5,7 @@
   require('dbconnect.php');
   require('function.php');
 
-
+const CONTENT_PER_PAGE = 12;
 
   $signin_user = get_user($dbh, $_SESSION['id']);
 
@@ -16,19 +16,30 @@
     exit();
   }
 
-//     //何ページ目を開いているか決める
-// if (isset($_GET[‘page’])) {
-//    $page = $_GET[‘page’];
-// } else {
-//    $page = 1;
-// }
+//ページネーション　１２件取得する
+
+  // 何ページ目を開いているかを取得
+   if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+    } else {
+        $page = 1;
+    }
+
+ // -1などのページ数として不正な値を渡された場合の対策
+    $page = max($page, 1);
+
+    $last_page = get_last_page($dbh);
+
+    $start = ($page - 1) * CONTENT_PER_PAGE;
 
 
 
 
 
 
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id`  WHERE `feeds`.`user_id` = ? ORDER BY `created` ASC';
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id`  WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+
+
 
 
 
@@ -39,7 +50,7 @@
 
     $allfeeds = array();
 
-    
+
     while (1) {
     // データを１件ずつ取得
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -180,7 +191,7 @@
                                 <div class="btn_user">
                                     <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
                                     <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
-                                    <?php include("comment_view.php"); ?> 
+                                    <?php include("comment_view.php"); ?>
                                 </div>
                             </div>
                         </div>
@@ -193,13 +204,37 @@
             <!--=================== filter portfolio end====================-->
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">
-                     <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                    <!-- 新しい投稿ページに戻る（前に戻る） -->
+                    <?php if($page == 1): ?>
+                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                        </li>
+                    <?php else: ?>
+                        <li class="previous"><a href="mypage.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                        </li>
+                    <?php endif; ?>
+                </div>
+
+　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+                <div class="sub-contents">
+                    <?php if($page == $last_page): ?>
+                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                        </li>
+                    <?php else: ?>
+                        <li class="next"><a href="mypage.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                        </li>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-        <!--=================== content body end ====================-->
     </div>
 </div>
+
+        <!--=================== content body end ====================-->
+
 
 
 

@@ -1,12 +1,43 @@
 
-body{
-    background-color:#F8EFBA;
+
+body {
+    background-image: url("../img/uses/back_img.jpeg");
 }
 
 
+.sub-contents1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro{
+    margin:2em 0;
+    position: relative;
+    padding: 0.5em 2em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    display: inline-block;
+}
+.intro:before, .intro:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.intro:before {left: 10px;}
+.intro:after {right: 10px;}
+.intro p {
+    margin: 0; 
+    padding: 0;
+}
+
 
 .reg_title {
-  text-align: center;
+  filter: drop-shadow(5px 5px 3px #503827);
 }
 
 .btn-submit {

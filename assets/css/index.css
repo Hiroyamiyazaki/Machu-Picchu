@@ -32,7 +32,10 @@
     border-top: solid 2px black;
     border-bottom: solid 2px black;
     display: inline-block;
+    text-align: center;
+    color: black;
 }
+
 .intro:before, .intro:after{
     content: '';
     position: absolute;
@@ -44,10 +47,7 @@
 }
 .intro:before {left: 10px;}
 .intro:after {right: 10px;}
-.intro p {
-    margin: 0; 
-    padding: 0;
-}
+
 
 
 
@@ -84,6 +84,8 @@
     height: 50px;
     transform: rotate(10deg);
 }
+
+
 
 .top-wrapper2 {
   display: flex;

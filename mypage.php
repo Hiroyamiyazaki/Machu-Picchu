@@ -131,8 +131,10 @@
             <header>
                     <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                         <div class="sub-contents1">
-                            <h2>マイページ</h2>
-                            <a href="post.php" class="btn btn-primary b_post">投稿</a>
+                            <h2 class="my_title">マイページ</h2>
+                            <a href="post.php" class="b_post">
+                                <span class="img_icon"><i class="fa fa-camera-retro fa-5x"></i></span>
+                            </a>
                         </div>
                     </div>
             </header>

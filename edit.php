@@ -76,7 +76,7 @@
         if (!empty($file_name)) {
             $file_type = substr($file_name, -4);  //画像名の後ろから4文字を取得
             $file_type = strtolower($file_type);  //大文字が含まれていた場合全て小文字化
-            if ($file_type != 'jpg' && $file_type != 'png' && $file_type != 'gif' && $file_type != 'jpeg') {
+            if ($file_type != '.jpg' && $file_type != '.png' && $file_type != '.gif' && $file_type != 'jpeg') {
                 $errors['img_name'] = 'type';
             }
         } else {
@@ -108,7 +108,7 @@
 
         if (!empty($_POST)) {
             $update_sql = "UPDATE `feeds` SET `date`=?, `relation_id`=?, `event_id`=?, `img_name`=?, `feed` = ?, `secret_feed`=?  WHERE `feeds`.`id` = ?";
-            $data = array($_POST['date'], $_POST['relation_id'], $_POST['event_id'], $file_name, $_POST['feed'], $_POST['secret_feed'], $feed_id);
+            $data = array($_POST['date'], $_POST['relation_id'], $_POST['event_id'], $submit_file_name, $_POST['feed'], $_POST['secret_feed'], $feed_id);
             $stmt = $dbh->prepare($update_sql);
             $stmt->execute($data);
 

@@ -194,8 +194,8 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                    <div class="sub-contents">
-                        <h3>Post</h3>
+                    <div class="sub-contents1">
+                        <h2 class="post_title">Post</h2>
                     </div>
                 </div>
             </div>
@@ -312,5 +312,6 @@
 <script src="assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="assets/js/main.js"></script>
+
 </body>
 </html>

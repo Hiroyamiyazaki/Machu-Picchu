@@ -45,9 +45,10 @@
 // 編集
     if (!empty($_POST)) {
     $update_sql = "UPDATE `users` SET `user_id`=?, `age_id`=?, `gender`=?, `job_id`=?, `brands`=? WHERE `users`.`id` = ?";
-    $data = array($_POST['input_user_id'], $_POST['input_age'], $_POST['input_gender'], $_POST['input_job'], $_POST['input_brand'], $profile);
+    $data = array($_POST['input_user_id'], $_POST['input_age'], $_POST['input_gender'], $_POST['input_job'], $_POST['input_brands'], $profile['id']);
     $stmt = $dbh->prepare($update_sql);
     $stmt->execute($data);
+
 
     header("Location: pro_edit.php");
     exit();
@@ -116,7 +117,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                     <div class="sub-contents">
-                        <h3>プロフィール編集</h3>
+                        <h3 class="pro_title">プロフィール編集</h3>
 
                     </div>
                 </div>
@@ -157,7 +158,11 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">性別</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="input_gender" class="form-control" id="name" placeholder="女性" value = "<?php echo htmlspecialchars($profile['gender']); ?>">
+                                    <select name="input_gender">
+                                        <option value="gender">--- 性別 ---</option>
+                                        <option>男性</option>
+                                        <option>女性</option>
+                                    </select>
                                     <!-- issetは入っているかどうか -->
                                     <?php if (isset($errors['gender']) && $errors['age_id'] == 'blank'):?>
                                         <p class = "text-danger">性別を入力してください</p>

@@ -40,6 +40,19 @@ body {
   filter: drop-shadow(5px 5px 3px #503827);
 }
 
+.label_name {
+  text-align: center;
+  margin: 0;
+}
+
+.t_form {
+  margin-bottom: 50px;
+}
+
+.se_box {
+  padding-left: 15px;
+}
+
 .btn-submit {
   text-align: center;
   padding: 15px;
@@ -50,5 +63,41 @@ body {
 }
 
 .btnn {
-  margin: 30px;
+  margin-bottom: 50px;
+  align-content: center;
 }
+
+
+
+
+
+/*Signin page*/
+
+.log_con {
+  text-align: center;
+}
+
+.content_header{
+    margin:2em 0;
+    position: relative;
+    padding: 0.5em 2em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+    display: inline-block;
+}
+.content_header:before, .content_header:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.content_header:before {left: 10px;}
+.content_header:after {right: 10px;}
+.content_header p {
+    margin: 0; 
+    padding: 0;
+}
+

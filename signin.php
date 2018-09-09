@@ -77,8 +77,11 @@
     <body style="margin-top: 60px">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-ld-12 col-md-12 col-xs-12 log_con">
-                    <h2 class="text-center content_header">ログイン</h2>
+                <div class="col-ld-12 col-md-12 col-xs-12">
+                    <div class="log_con">
+                        <h2 class="text-center content_header">ログイン</h2>
+                    </div>
+
                     <form method="POST" action="" enctype="multipart/form-data">
                          <?php if(isset($errors['signin']) && $errors['signin'] == 'blank'): ?>
                                 <p class="text-danger">IDとパスワードを正しく入力してください</p>
@@ -86,19 +89,22 @@
                                 <?php if(isset($errors['signin']) && $errors['signin'] == 'failed'): ?>
                                     <p class = "text-danger">サインインに失敗しました</p>
                                 <?php endif; ?>
-                        <div class="form-group">
-                            <label for="name" class="control-label col-sm-2">ID</label>
+                        <div class="form-group row justify-content-center">
+                            <label for="name" class="control-label col-sm-2 label_name">ID</label>
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <input type="text" name="input_user_id" class="form-control" id="name" placeholder="">
+                                    <input type="text" name="input_user_id" class="form-control t_form" id="name" placeholder="">
                                 </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password" class="control-label col-sm-2">Pass</label>
+                        <div class="form-group row justify-content-center">
+                            <label for="password" class="control-label col-sm-2 label_name">Pass</label>
                                 <div class="col-sm-10 col-sm-offset-1">
-                                    <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
+                                    <input type="password" name="input_password" class="form-control t_form" id="password" placeholder="4 ~ 16文字のパスワード">
                                 </div>
                         </div>
-                        <input type="submit" class="btn btn-info btnn" value="ログイン">
+                        <div class="btn-submit">
+                            <input type="submit" class="btn btn-info btnn" value="ログイン">
+                            <a href="signup.php" class="btn btn-primary btnn">登録</a>
+                        </div>
                     </form>
                 </div>
             </div>

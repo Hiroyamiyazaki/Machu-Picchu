@@ -77,7 +77,10 @@
     <body style="margin-top: 60px">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-ld-12 col-md-12 col-xs-12">
+                <div class="sub-contents1 col-ld-6 col-md-12 col-xs-12">
+                        <img class="reg_title" src="assets/img/main-logo.png">
+                </div>
+                <div class="col-ld-6 col-md-12 col-xs-12">
                     <div class="log_con">
                         <h2 class="text-center content_header">ログイン</h2>
                     </div>
@@ -89,15 +92,15 @@
                                 <?php if(isset($errors['signin']) && $errors['signin'] == 'failed'): ?>
                                     <p class = "text-danger">サインインに失敗しました</p>
                                 <?php endif; ?>
-                        <div class="form-group row justify-content-center">
+                        <div class="form-group">
                             <label for="name" class="control-label col-sm-2 label_name">ID</label>
-                                <div class="col-sm-10 col-sm-offset-1">
+                                <div class="col-sm-12 col-sm-offset-1">
                                     <input type="text" name="input_user_id" class="form-control t_form" id="name" placeholder="">
                                 </div>
                         </div>
-                        <div class="form-group row justify-content-center">
+                        <div class="form-group">
                             <label for="password" class="control-label col-sm-2 label_name">Pass</label>
-                                <div class="col-sm-10 col-sm-offset-1">
+                                <div class="col-sm-12 col-sm-offset-1">
                                     <input type="password" name="input_password" class="form-control t_form" id="password" placeholder="4 ~ 16文字のパスワード">
                                 </div>
                         </div>

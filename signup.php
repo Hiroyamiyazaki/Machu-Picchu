@@ -167,19 +167,19 @@
             <div class="row justify-content-center">
                 <!-- ここにコンテンツ -->
                 <!-- ここから -->
-                <div class="col-ld-6 col-md-12 col-xs-12">
-                    <div class="sub-contents1">
+                    <div class="sub-contents1 col-ld-6 col-md-12 col-xs-12">
                             <img class="reg_title" src="assets/img/main-logo.png">
+                    </div>
+                    <div class="sub-contents2 col-ld-6 col-md-12 col-xs-12">
                             <p class="intro">あの日のプレゼントを思い出に。<br>
                                そしてまた誰かの思い出に。</p>
-                        </div>
-                </div>
+                    </div>
                 <div class="col-ld-12 col-md-12 col-xs-12">
                     <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>
                             <div class="col-sm-12">
-                                <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($user_id); ?>">
+                                <input type="text" name="input_user_id" class="form-control" id="name" placeholder="premori" value = "<?php echo htmlspecialchars($user_id); ?>">
                                     <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
                                         <p class = "text-danger">IDを入力してください</p>
                                     <?php endif; ?>

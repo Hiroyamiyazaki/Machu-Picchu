@@ -2,6 +2,7 @@
 
 body {
     background-image: url("../img/uses/back_img.jpeg");
+    font-size: 25px;
 }
 
 
@@ -9,6 +10,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sub-contents2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
 }
 
 .intro{
@@ -19,6 +27,7 @@ body {
     border-bottom: solid 2px black;
     display: inline-block;
 }
+
 .intro:before, .intro:after{
     content: '';
     position: absolute;
@@ -40,22 +49,16 @@ body {
   filter: drop-shadow(5px 5px 3px #503827);
 }
 
-.label_name {
-  text-align: center;
-  margin: 0;
-}
-
-.t_form {
-  margin-bottom: 50px;
-}
 
 .se_box {
   padding-left: 15px;
+  font-size: 25px;
 }
 
 .btn-submit {
   text-align: center;
   padding: 15px;
+    margin-top: 70px;
 }
 
 .btn-sub2 {
@@ -78,7 +81,8 @@ body {
 }
 
 .content_header{
-    margin:2em 0;
+    margin-top: 30px;
+    margin-bottom: 100px;
     position: relative;
     padding: 0.5em 2em;
     border-top: solid 2px black;
@@ -101,3 +105,10 @@ body {
     padding: 0;
 }
 
+.label_name {
+  margin-bottom: 20px;
+}
+
+.t_form {
+  margin-bottom: 50px;
+}

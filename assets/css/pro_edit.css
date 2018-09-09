@@ -1,13 +1,25 @@
 
 
-/*.sub-contents {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
+
+.sub-contents1{
+    display: inline-block;
+    top:0;
+    width: 100%;
+    padding: 0;
+    height: 150px;
+    z-index: 10;
+    margin-left: 0;
+
+}
+
+h2{
+    color:green;
+    text-align:left;
+}
 
 .pro_title {
     margin:0;
+    margin-left: 50px;
     position: relative;
     padding: 0.5em 2em;
     border-top: solid 2px black;
@@ -30,8 +42,11 @@
     padding: 0;
 }
 
-.top-wrapper1 {
-  padding: 0;
-  color: white;
-  border-bottom: 1px solid;
+
+.btn-submit {
+  margin-top: 60px;
+  margin-bottom: 50px;
+  text-align: center;
 }
+
+

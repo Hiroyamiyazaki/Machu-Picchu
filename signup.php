@@ -167,19 +167,19 @@
             <div class="row justify-content-center">
                 <!-- ここにコンテンツ -->
                 <!-- ここから -->
-                <div class="col-ld-12 col-md-12 col-xs-12">
-                    <div class="sub-contents1">
+                    <div class="sub-contents1 col-ld-6 col-md-12 col-xs-12">
                             <img class="reg_title" src="assets/img/main-logo.png">
+                    </div>
+                    <div class="sub-contents2 col-ld-6 col-md-12 col-xs-12">
                             <p class="intro">あの日のプレゼントを思い出に。<br>
                                そしてまた誰かの思い出に。</p>
-                        </div>
-                </div>
+                    </div>
                 <div class="col-ld-12 col-md-12 col-xs-12">
                     <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($user_id); ?>">
+                            <div class="col-sm-12">
+                                <input type="text" name="input_user_id" class="form-control" id="name" placeholder="premori" value = "<?php echo htmlspecialchars($user_id); ?>">
                                     <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
                                         <p class = "text-danger">IDを入力してください</p>
                                     <?php endif; ?>
@@ -188,7 +188,7 @@
 
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">Pass</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-12">
                                     <input type="password" name="input_password" class="form-control" id="password" placeholder="4 ~ 16文字のパスワード">
                                     <?php if (isset($errors['password']) && $errors['password'] == 'blank'):?>
                                         <p class = "text-danger">パスワードを入力してください</p>
@@ -201,7 +201,7 @@
                                 </div>
                         </div>
 
-                        <p>年代</p>
+                        <p class="se_box">年代</p>
                             <select name="input_age_id">
                                 <option value="age">--- 年代 ---</option>
                                 <?php foreach($ages as $age): ?>
@@ -214,8 +214,8 @@
                                 <p class="text-danger">年代を選んでください</p>
                             <?php endif; ?>
 
-                        <p>性別</p>
-                                <select name="input_gender">
+                        <p class="se_box">性別</p>
+                                <select name="input_gender" class="se_box">
                                     <option value="gender">--- 性別 ---</option>
                                     <option>男性</option>
                                     <option>女性</option>
@@ -224,8 +224,8 @@
                                     <p class="text-danger">性別を選んでください</p>
                                 <?php endif; ?>
 
-                        <p>職業</p>
-                            <select name="input_job_id">
+                        <p class="se_box">職業</p>
+                            <select name="input_job_id" class="se_box">
                                 <option value="age">--- 職業 ---</option>
                                 <?php foreach($jobs as $job): ?>
                                     <option value="<?php echo $job['id']; ?>">
@@ -240,7 +240,7 @@
                         
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-3">好きなもの</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-12">
                                     <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($brands); ?>">
                                     <?php if (isset($errors['brands']) && $errors['brands'] == 'blank'):?>
                                         <p class = "text-danger">好きなものを入力してください</p>

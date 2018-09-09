@@ -114,20 +114,19 @@
 
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                    <div class="sub-contents">
-                        <h3 class="pro_title">プロフィール編集</h3>
+            
+            <header class="row justify-content-center">
+                  <div class="col-lg-12 col-md-12 col-xs-12 sub-contents1">
+                        <h2 class="pro_title">プロフィール編集</h2>
+                 </div>
+            </header>
 
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
+            <div class="col-lg-12 col-md-12 col-12">
             <form method="POST" action="pro_edit.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <input type="text" name="input_user_id" class="form-control" id="name" placeholder="プレモリ君" value = "<?php echo htmlspecialchars($profile['user_id']); ?>">
                                     <?php if (isset($errors['user_id']) && $errors['user_id'] == 'blank'):?>
                                         <p class = "text-danger">IDを入力してください</p>
@@ -192,7 +191,7 @@
 
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-3">好きなもの</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-12">
                                     <input type="text" name="input_brands" class="form-control" id="name" placeholder="" value = "<?php echo htmlspecialchars($profile['brands']); ?>">
                                     <?php if (isset($errors['brands']) && $errors['brands'] == 'blank'):?>
                                         <p class = "text-danger">好きなものを入力してください</p>
@@ -202,7 +201,7 @@
 
 
                         <div class="form-group btn-submit">
-                            <input type="submit" class="btn btn-primary " value="確認">
+                            <input type="submit" class="btn btn-primary btnn" value="確認">
                         </div>
                     </form>
                 </div>

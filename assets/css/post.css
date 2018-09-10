@@ -60,3 +60,10 @@ h2 {
 .form-comment {
     width: 600px;
 }
+
+form img.thumb {
+    margin:0 5px 5px 0;
+    max-width:160px;
+    vertical-align:bottom;
+}
+

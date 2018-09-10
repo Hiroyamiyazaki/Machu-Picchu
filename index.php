@@ -13,6 +13,8 @@
 
 
 
+
+
 //ページネーション　１２件取得する
 
   // 何ページ目を開いているかを取得
@@ -33,7 +35,9 @@
 
 
 
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+
+
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
 
     $data = [];
 
@@ -130,7 +134,7 @@
 
                             <img src="assets/img/main_img.jpg" class="top_img">
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
@@ -160,7 +164,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
-                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+                            <img src="assets/img/uses/main_4.png" class="top_img3">
                         </div>
                     </div>
 
@@ -221,7 +225,7 @@
                                                 <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
                                                 <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
                                             <?php endif; ?>
-                                            <?php include("comment_view.php"); ?> 
+                                            <?php include("comment_view.php"); ?>
                                         </div>
 
 

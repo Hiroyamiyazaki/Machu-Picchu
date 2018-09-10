@@ -168,7 +168,13 @@
                 <!-- ここにコンテンツ -->
                 <!-- ここから -->
                 <div class="col-ld-12 col-md-12 col-xs-12">
-                    <h2 class="reg_title">思い出を残そう</h2>
+                    <div class="sub-contents1">
+                            <img class="reg_title" src="assets/img/main-logo.png">
+                            <p class="intro">あの日のプレゼントを思い出に。<br>
+                               そしてまた誰かの思い出に。</p>
+                        </div>
+                </div>
+                <div class="col-ld-12 col-md-12 col-xs-12">
                     <form method="POST" action="signup.php" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="control-label col-sm-2">ID</label>

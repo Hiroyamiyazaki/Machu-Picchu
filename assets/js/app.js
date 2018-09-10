@@ -91,3 +91,13 @@ $(function(){
 
 });
 
+
+// プレビュー画像を任意の場所に挿入
+$(function() {
+    // jQuery Upload Thumbs 
+    $('#img_name').uploadThumbs({
+        position : '#preview1',   // any: arbitrarily jquery selector
+    });
+});
+
+

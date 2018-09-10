@@ -15,10 +15,10 @@
 
 
 //投稿処理
-    function create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $user_id)
+    function create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $user_id, $gender, $age_id, $job_id)
     {
-      $sql = 'INSERT INTO `feeds` SET `date`=?, `relation_id`=?, `event_id`=?, `img_name`=?, `feed`=?, `secret_feed`=?, `user_id`=?, `created`=NOW()';
-      $data = array($date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $user_id);
+      $sql = 'INSERT INTO `feeds` SET `date`=?, `relation_id`=?, `event_id`=?, `img_name`=?, `feed`=?, `secret_feed`=?, `user_id`=?, `gender`=?, `age_id`=?, `job_id`=?, `created`=NOW()';
+      $data = array($date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $user_id, $gender, $age_id, $job_id);
       $stmt = $dbh->prepare($sql);
       $stmt->execute($data);
     }

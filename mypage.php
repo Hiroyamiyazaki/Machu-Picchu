@@ -36,9 +36,7 @@ const CONTENT_PER_PAGE = 12;
 
 
 
-
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `users`.`gender`, `users`.`age_id`, `users`.`job_id`, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `job_id`  WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
-
+    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
 
 
 
@@ -142,8 +140,10 @@ const CONTENT_PER_PAGE = 12;
             <header>
                     <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                         <div class="sub-contents1">
-                            <h2>マイページ</h2>
-                            <a href="post.php" class="btn btn-primary b_post">投稿</a>
+                            <h2 class="my_title">マイページ</h2>
+                            <a href="post.php" class="b_post">
+                                <span class="img_icon"><i class="fa fa-camera-retro fa-5x"></i></span>
+                            </a>
                         </div>
                     </div>
             </header>

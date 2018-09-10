@@ -63,6 +63,8 @@
 
 
 
+
+
        // 画像挿入
         $file_name = '';
         if (!isset($_GET['action'])) {
@@ -74,7 +76,7 @@
         if (!empty($file_name)) {
             $file_type = substr($file_name, -4);  //画像名の後ろから4文字を取得
             $file_type = strtolower($file_type);  //大文字が含まれていた場合全て小文字化
-            if ($file_type != 'jpg' && $file_type != 'png' && $file_type != 'gif' && $file_type != 'jpeg') {
+            if ($file_type != '.jpg' && $file_type != '.png' && $file_type != '.gif' && $file_type != 'jpeg') {
                 $errors['img_name'] = 'type';
             }
         } else {
@@ -99,24 +101,13 @@
         $_SESSION['hoge']['secret_feed'] = $_POST['secret_feed'];
         $_SESSION['hoge']['img_name'] = $submit_file_name;
 
-        }
 
-
-
-        if($feed !='') {
-
-
-
-        create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id']);
+        create_feed($dbh, $date, $relation_id, $event_id, $submit_file_name, $feed, $secret_feed, $signin_user['id'], $signin_user['gender'], $signin_user['age_id'], $signin_user['job_id']);
 
 
         header('Location: mypage.php');
         exit();
 
-
-        }else {
-
-          $errors['feed'] = 'blank';
         }
 
 
@@ -194,8 +185,8 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                    <div class="sub-contents">
-                        <h3>Post</h3>
+                    <div class="sub-contents1">
+                        <h2 class="post_title">Post</h2>
                     </div>
                 </div>
             </div>
@@ -204,7 +195,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
                          <div class="sub-contents">
-                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+                            <p  class="preview" id="preview1"></p>
                          </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
@@ -295,6 +286,7 @@
 
 <!-- jquery -->
 <script src="assets/js/jquery.min.js"></script>
+
 <!-- bootstrap -->
 <script src="assets/js/popper.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -312,5 +304,10 @@
 <script src="assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="assets/js/main.js"></script>
+
+<script src="assets/js/jquery.upload_thumbs.js"></script>
+<script src="assets/js/app.js"></script>
+
+
 </body>
 </html>

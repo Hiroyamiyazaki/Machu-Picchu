@@ -149,7 +149,9 @@ const CONTENT_PER_PAGE = 12;
     <link href="assets/css/main.css" rel="stylesheet">
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
+
     <link rel="stylesheet"  href="assets/css/search.style.css">
+
 
 
 </head>
@@ -169,15 +171,15 @@ const CONTENT_PER_PAGE = 12;
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center body_con">
 
-            <header>
-                    <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                        <div class="sub-contents1">
-                            <h2 class="search_title">  検索　</h2>
-                            <a href="post.php" class="b_post">
-                                <span class="img_icon"><i class="fa fa-camera-retro fa-5x"></i></span>
-                            </a>
-                        </div>
-                    </div>
+            <header class="row justify-content-center">
+                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
+                        <h2 class="search_title">検索</h2>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
+                        <a href="post.php" class="b_post">
+                            <i class="fa fa-camera-retro"></i>
+                        </a>
+                  </div>
             </header>
 
             <!--=================== filter portfolio start====================-->

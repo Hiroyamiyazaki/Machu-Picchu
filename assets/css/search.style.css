@@ -89,10 +89,25 @@ h2{
 }
 
 .feed_con {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  width: 220px;
+  margin: 20px;
 }
+ 
+.feed_con img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
+}
+ 
+.feed_con p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  }
 
 
 .hoge {

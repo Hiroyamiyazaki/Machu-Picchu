@@ -174,7 +174,7 @@
       return $relations;
 
     }
-    
+
 
     //イベント
     function what_event($dbh)
@@ -198,3 +198,16 @@
         return $events;
 
     }
+//ページネーション
+    function get_last_page($dbh)
+{
+        // ヒットしたレコードの数を取得するSQL
+    $sql_count = "SELECT COUNT(*)AS`cnt`FROM`feeds`";
+
+    $stmt_count = $dbh->prepare($sql_count);
+    $stmt_count->execute();
+
+    $record_cnt = $stmt_count->fetch(PDO::FETCH_ASSOC);
+
+    return ceil($record_cnt['cnt']/CONTENT_PER_PAGE);
+}

@@ -249,16 +249,13 @@ while (1) {
                         <div class="side_menu_bottom_inner">
                             <ul class="social_menu">
                                 <li>
-                                    <a href="#"> <i class="ion ion-social-pinterest"></i> </a>
+                                    <a href="https://www.instagram.com/"> <i class="ion ion-social-instagram"></i> </a>
                                 </li>
                                 <li>
-                                    <a href="#"> <i class="ion ion-social-facebook"></i> </a>
+                                    <a href="https://www.facebook.com/"> <i class="ion ion-social-facebook"></i> </a>
                                 </li>
                                 <li>
-                                    <a href="#"> <i class="ion ion-social-twitter"></i> </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="ion ion-social-dribbble"></i> </a>
+                                    <a href="https://twitter.com/"> <i class="ion ion-social-twitter"></i> </a>
                                 </li>
                             </ul>
                             <div class="copy_right">

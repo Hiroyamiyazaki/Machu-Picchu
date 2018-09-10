@@ -11,6 +11,11 @@ const CONTENT_PER_PAGE = 12;
 
   $signin_user = get_user($dbh, $_SESSION['id']);
 
+    if(isset($_SESSION['id'])) {
+    header('Location:search.php');
+    exit();
+  }
+
   //ページネーション　１２件取得する
 
   // 何ページ目を開いているかを取得

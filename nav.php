@@ -174,7 +174,7 @@ while (1) {
                         <!-- relation -->
                         <div>
                             <select name="relation">
-                                <option value="">--- 相手 ---</option>
+                                <option value="">--- あなたは？ ---</option>
                                 <?php foreach($relations as $relation): ?>
                                     <option value="<?php echo $relation['id']; ?>"
                                         <?php if($relation['id'] == $select_relation) { echo 'selected'; } ?>
@@ -188,7 +188,7 @@ while (1) {
                             <!-- ages generation-->
                             <div>
                                 <select name="age">
-                                     <option value="">--- 年代 ---</option>
+                                     <option value="">--- お相手の年代 ---</option>
                                         <?php foreach ($ages as $age): ?>
                                                 <option value="<?php echo $age['id']; ?>"
                                                     <?php if($age['id'] == $select_age) { echo 'selected'; } ?>
@@ -202,7 +202,7 @@ while (1) {
                                 <!-- jobs -->
                                 <div>
                                     <select name="job">
-                                        <option value="">--- 職業 ---</option>
+                                        <option value="">--- お相手の職業 ---</option>
                                             <?php foreach($jobs as $job): ?>
                                                 <option value="<?php echo $job['id']; ?>"
                                                     <?php if($job['id'] == $select_job) {

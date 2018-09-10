@@ -214,7 +214,7 @@ const CONTENT_PER_PAGE = 12;
                     <?php endif; ?>
                 </div>
 
-　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+<!-- !-- 古い投稿に進む（もっと見る） -->
                 <div class="sub-contents">
                     <?php if($page == $last_page): ?>
                         <li class="next disabled"><a><span aria-hidden="true">&larr;</span>

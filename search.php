@@ -173,12 +173,15 @@ const CONTENT_PER_PAGE = 12;
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center body_con">
 
             <header class="row justify-content-center">
-                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
-                        <h2 class="search_title">検索</h2>
+                  <div class="col-lg-6 col-md-6 col-xs-6">
+                    <div class="memo">
+                        <span class="masking-tape"></span>
+                        <h2>検索</h2>
+                    </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
                         <a href="post.php" class="b_post">
-                            <i class="fa fa-camera-retro"></i>
+                            <i class="fa fa-camera-retro fa-4x"><span>投稿</span></i>
                         </a>
                   </div>
             </header>
@@ -196,35 +199,34 @@ const CONTENT_PER_PAGE = 12;
                         <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
                             <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
-                            <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
+                            <p class="date_rec"><?php echo date('Y.m.d', strtotime($allfeed['date'])) ?></p>
 
                             <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
                             <?php if($allfeed['is_liked']): ?>
                                 <button class="btn btn-info btn-sm js-unlike">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
-                                    <span>いいねを取り消す</span>
+                                    <span class="good_btn">いいねを取り消す</span>
                                 </button>
                                 <?php else: ?>
                                     <button class="btn btn-info btn-sm js-like">
                                         <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <span>いいね!</span>
+                                        <span class="good_btn">いいね!</span>
                                     </button>
                                 <?php endif; ?>
-                                <span>いいね数 : </span>
-                                <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+                                <span class="like_count likes">:<?= $allfeed['like_cnt'] ?>     </span>
 
                                 <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                    <i class="fa fa-comment"></i>
-                                    <span>コメントする</span>
+                                    <i class="fa fa-comment fa-2x"></i>
+                                    <span class="comment">コメントする</span>
                                 </a>
-                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                <span class="comment_count btn_text comment"> :<?= $allfeed["comment_cnt"] ?></span><br><br><br>
 
-                                <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
-                                <p><?php echo $allfeed['feed']; ?></p>
+                                <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p><br>
+                                <p class="user_com"><?php echo $allfeed['feed']; ?></p>
                                 <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
-                                <p><?php echo $allfeed['secret_feed']; ?></p>
+                                <p class="user_scom"><?php echo $allfeed['secret_feed']; ?></p><br>
                                 <?php endif; ?>
-                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?> / <?php echo $allfeed['job_name']; ?></p><br>
 
 
                                 <div class="btn_user">

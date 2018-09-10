@@ -126,9 +126,10 @@
     <link href="assets/css/main.css" rel="stylesheet">
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
+
     <link rel="stylesheet"  href="assets/css/search.style.css">
-    <link rel="stylesheet"  href="assets/css/index.css">
-    <!-- ページネーション作成のため、moc index.php を参照しました。 -->
+
+
 
 
 </head>

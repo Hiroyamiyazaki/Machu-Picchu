@@ -91,7 +91,7 @@ while (1) {
                 <a href="#">
                     <img src="assets/img/main-logo.png" class="main_logo" alt="Premori!">
                 </a>
-            </div>
+            </div><br>
             <!--logo end-->
 
 
@@ -101,20 +101,25 @@ while (1) {
             <ul class="menu_nav pro_nav">
                 <li>
                     <span class="user_id">ID:<?php echo $signin_user['user_id']; ?></span>
-                </li>
+                </li><br><br>
                 <li>
                     <a href="mypage.php">
-                        My page
+                        マイページ
+                    </a>
+                </li>
+                <li>
+                    <a href="like_page.php">
+                        いいね！
                     </a>
                 </li>
                 <li>
                     <a href="pro_edit.php">
-                        Profile編集
+                        プロフィール編集
                     </a>
                 </li>
                 <li>
                     <a href="signout.php">
-                        Sign out
+                        ログアウト
                     </a>
                 </li>
             </ul>
@@ -128,30 +133,30 @@ while (1) {
         <ul class="menu_nav">
             <li class="active">
                 <a href="index.php">
-                    Home
+                    ホーム
                 </a>
             </li>
             <?php if(!isset($_SESSION['id'])): ?>
                 <li>
                     <a href="signin.php">
-                        Login
+                        ログイン
                     </a>
                 </li>
                 <li>
                     <a href="signup.php">
-                        Register
+                        アカウント登録
                     </a>
                 </li>
             <?php endif; ?>
             <li>
                 <a href="search.php">
-                    Album
+                    投稿一覧
                 </a>
             </li>
             <li>
 
                 <a href="search.php">
-                    Update
+                    更新
                 </a>
             </li>
         </ul>
@@ -165,7 +170,7 @@ while (1) {
     <div class="search_box">
         <ul class="s_nav">
             <li class="active">
-                <h5>Search</h5>
+                <h5>検索</h5>
             </li>
             <li>
 

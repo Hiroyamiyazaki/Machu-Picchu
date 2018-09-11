@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+h2 {
+  text-align: center;
+}
+
 .sub-contents2 {
   justify-content: center;
   align-items: center;
@@ -14,7 +18,8 @@
       display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  padding-top: 50px;
+  padding-bottom: 70px;
   color: white;
 }
 
@@ -59,8 +64,7 @@
 }
 
 .top-wrapper3 {
-  padding-top: 70px;
-  padding-bottom: 50px;
+  padding: 70px 50px 50px 50px;
   color: white;
   font-size: 15px;
 }

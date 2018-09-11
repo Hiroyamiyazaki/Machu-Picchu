@@ -9,7 +9,12 @@
   const CONTENT_PER_PAGE = 8;
 
 
-  $signin_user = get_user($dbh, $_SESSION['id']);
+
+  if(isset($_SESSION['id'])) {
+
+    $signin_user = get_user($dbh, $_SESSION['id']);
+
+  }
 
 
 
@@ -56,7 +61,14 @@
 
         $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
-        $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+        if(isset($_SESSION['id'])) {
+        
+            $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+        } else {
+
+            $rec["is_liked"] = false;
+        }
 
         $rec["comments"] = get_comment($dbh, $rec["id"]);
 
@@ -191,6 +203,8 @@
                                     <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
                                     <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
+
+
                                     <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
                                     <?php if($allfeed['is_liked']): ?>
                                         <button class="btn btn-info btn-sm js-unlike">
@@ -211,6 +225,9 @@
                                             <span>コメントする</span>
                                         </a>
                                         <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+
+
+
 
                                         <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                         <p><?php echo $allfeed['feed']; ?></p>

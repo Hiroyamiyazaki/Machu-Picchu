@@ -185,8 +185,9 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                    <div class="sub-contents1">
-                        <h2 class="post_title">Post</h2>
+                    <div class="memo">
+                        <span class="masking-tape"></span>
+                        <h2>投稿</h2>
                     </div>
                 </div>
             </div>

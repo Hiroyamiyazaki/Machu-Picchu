@@ -135,11 +135,12 @@ const CONTENT_PER_PAGE = 12;
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center body_con">
 
-            <header class="row justify-content-center">
-                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
-                        <h2 class="my_title">マイページ</h2>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
+            <header class="ol-lg-12 col-md-12 col-xs-12 row justify-content-center mytitle">
+                    <div class="memo sub-contents1">
+                        <span class="masking-tape"></span>
+                        <h2>マイページ</h2>
+                    </div>
+                  <div class="sub-contents1">
                         <a href="post.php" class="b_post">
                             <i class="fa fa-camera-retro"></i>
                         </a>
@@ -214,7 +215,7 @@ const CONTENT_PER_PAGE = 12;
                     <?php endif; ?>
                 </div>
 
-　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+<!-- !-- 古い投稿に進む（もっと見る） -->
                 <div class="sub-contents">
                     <?php if($page == $last_page): ?>
                         <li class="next disabled"><a><span aria-hidden="true">&larr;</span>

@@ -24,7 +24,7 @@ $(function(){
     //いいね!ボタン
       $(document).on('click', '.js-like', function() {
         var feed_id = $(this).siblings('.feed-id').text();
-        var user_id = $('#signin-user').text();
+        var user_id = $('.signin_user').text();
         var like_btn = $(this);
         var like_count = $(this).siblings('.like_count').text();
         console.log(feed_id);

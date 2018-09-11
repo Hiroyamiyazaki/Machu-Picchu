@@ -172,7 +172,7 @@
         <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
 
-    <link rel="stylesheet"  href="assets/css/post.css">
+    <link rel="stylesheet"  href="assets/css/edit.css">
 
 </head>
 <body>
@@ -193,8 +193,9 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
-                    <div class="sub-contents">
-                        <h3>Post</h3>
+                    <div class="memo">
+                        <span class="masking-tape"></span>
+                        <h2>編集</h2>
                     </div>
                 </div>
             </div>
@@ -203,7 +204,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
                          <div class="sub-contents">
-                            <img src="assets/img/uses/index_top2.jpg" class="top_img2">
+                            <p  class="preview" id="preview1"></p>
                          </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
@@ -247,10 +248,16 @@
                             </div><br><br>
                             <div class="form-group">
                                 <label for="img_name">Photo</label><br>
-                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $myfeed['img_name']; ?>">
+                                <input type="file" name="input_img_name" id="img_name" value="<?php echo $submit_file_name; ?>">
+                                <?php if(isset($errors['img_name']) && $errors['img_name'] =='blank') { ?>
+                                    <p class="text-danger">画像を選択してください</p>
+                                 <?php } ?>
+                                <?php if (isset($errors['img_name']) && $errors['img_name'] == 'type'): ?>
+                                    <p class="text-danger">"jpg", "png", "gif"の画像を画像を選択して下さい</p>
+                                <?php endif; ?>
                             </div>
                     </div>
-                 </div>
+                </div>
 
                 <div class="row justify-content-center">
                     <div class="col-lg-12 col-md-12 col-12 top-wrapper4">
@@ -258,7 +265,7 @@
                             <div class="form-group">
                                 <label for="feed">Comment</label><br>
                                 <textarea name="feed" class="form-comment"rows="6"><?php echo htmlspecialchars($myfeed['feed']); ?></textarea>
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -312,5 +319,8 @@
 <script src="assets/js/wow.min.js"></script>
 <!-- Custom js -->
 <script src="assets/js/main.js"></script>
+
+<script src="assets/js/jquery.upload_thumbs.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

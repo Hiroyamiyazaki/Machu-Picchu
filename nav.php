@@ -4,35 +4,22 @@
 require('dbconnect.php');
 require_once('function.php');
 
-// $relations = $_GET['relation'];
-// $ages = $_GET['age'];
-// $jobs = $_GET['job'];
-// $events = $_GET['evevt'];
-
-//年代欄のドロップダウンリストに表示
-
+//ドロップダウンリストに表示
+//相手欄
 $sql = 'SELECT * FROM `relations`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
 $relations = array();
 
-
-
 while (1) {
-# code...
     $record =$stmt->fetch(PDO::FETCH_ASSOC);
     if($record==false){
         break;
     }
     $relations[] = $record;
 }
-
-
-
-
-
-
+//年代欄
 $sql = 'SELECT * FROM `ages`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -40,7 +27,6 @@ $stmt->execute();
 $ages = array();
 
 while (1) {
-# code...
     $agerec =$stmt->fetch(PDO::FETCH_ASSOC);
     if($agerec==false){
         break;
@@ -55,7 +41,6 @@ $stmt->execute();
 $jobs = array();
 
 while (1) {
-# code...
     $jobrec =$stmt->fetch(PDO::FETCH_ASSOC);
     if($jobrec==false){
         break;
@@ -63,7 +48,7 @@ while (1) {
     $jobs[] = $jobrec;
 }
 
-//イベント欄に表示
+//イベント欄
 $sql = 'SELECT * FROM `events`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -71,7 +56,6 @@ $stmt->execute();
 $events = array();
 
 while (1) {
-# code...
     $eventrec =$stmt->fetch(PDO::FETCH_ASSOC);
     if($eventrec==false){
         break;
@@ -79,6 +63,7 @@ while (1) {
     $events[] = $eventrec;
 }
 
+//選択したものの表示をsearch.phpに引き継ぐ
 $select_relation = '';
 $select_age = '';
 $select_job = '';

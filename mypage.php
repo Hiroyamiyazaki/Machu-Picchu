@@ -160,25 +160,12 @@ const CONTENT_PER_PAGE = 12;
                             <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
                             <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
-                            <?php if($allfeed['is_liked']): ?>
-                                <button class="btn btn-info btn-sm js-unlike">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                    <span>いいねを取り消す</span>
-                                </button>
-                                <?php else: ?>
-                                    <button class="btn btn-info btn-sm js-like">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <span>いいね!</span>
-                                    </button>
-                                <?php endif; ?>
+                                <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
                                 <span>いいね数 : </span>
                                 <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                    <i class="fa fa-comment"></i>
-                                    <span>コメントする</span>
-                                </a>
-                                <span class="comment_count btn_text">コメント数 : <?= $allfeed["comment_cnt"] ?></span><br><br>
+                                <i class="fa fa-comment"></i>
+                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                 <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>

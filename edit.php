@@ -285,7 +285,7 @@
                 <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper6">
                     <div class="sub-contents">
                             <!-- ④ -->
-                        <a href="post.php?action=rewrite" class="btn btn-primary">&laquo;&nbsp;Back</a> | 
+                        <a href="mypage.php" class="btn btn-primary">&laquo;&nbsp;Back</a> | 
                             <!-- ⑤ -->
                         <input type="hidden" name="action" value="submit">
                         <input type="submit" class="btn btn-primary" value="投稿">

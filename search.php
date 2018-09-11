@@ -277,6 +277,15 @@ const CONTENT_PER_PAGE = 12;
                                                 <!-- 投稿内容end -->
 
 
+                                                <!-- コメント一覧 -->
+                                                <?php foreach ($allfeed["comments"] as $comment): ?> 
+                                                    <p style="margin-top: 30px; margin-bottom: 30px;">
+                                                        <span style="border-radius: 100px!important; -webkit-appearance:none;background-color:#eff1f3;padding:10px;margin-top:10px;"><a href="#"><?php echo $comment["user_id"]; ?></a><?php echo $comment["comment"]; ?></span>
+                                                    </p>
+                                                <?php endforeach; ?>
+                                                <!-- コメント一覧end -->
+
+
                                                 <!-- 編集削除ボタン -->
                                                         <div class="btn_user">
                                                             <?php if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>

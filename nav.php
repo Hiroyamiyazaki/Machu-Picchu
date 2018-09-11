@@ -4,8 +4,13 @@
 require('dbconnect.php');
 require_once('function.php');
 
+// $relations = $_GET['relation'];
+// $ages = $_GET['age'];
+// $jobs = $_GET['job'];
+// $events = $_GET['evevt'];
 
-//相手欄のドロップダウンリストに表示
+//年代欄のドロップダウンリストに表示
+
 $sql = 'SELECT * FROM `relations`';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
@@ -24,11 +29,9 @@ while (1) {
 }
 
 
-//年代欄のドロップダウンリストに表示
-$select_relation = '';
-$select_age = '';
-$select_job = '';
-$select_event = '';
+
+
+
 
 $sql = 'SELECT * FROM `ages`';
 $stmt = $dbh->prepare($sql);
@@ -76,6 +79,23 @@ while (1) {
     $events[] = $eventrec;
 }
 
+$select_relation = '';
+$select_age = '';
+$select_job = '';
+$select_event = '';
+
+if(isset($_GET['relation'])){
+    $select_relation = $_GET['relation'];
+}
+if (isset($_GET['age'])){
+    $select_age = $_GET['age'];
+}
+if (isset($_GET['job'])) {
+    $select_job = $_GET['job'];
+}
+if (isset($_GET['event'])) {
+    $select_event = $_GET['event'];
+}
 
 
 ?>

@@ -7,7 +7,7 @@
 h2{
     color:green;
     text-align:left;
-    margin: 0
+    margin: 0;
 }
 
 .sub-contents1{
@@ -76,6 +76,34 @@ h2{
     background-image: -webkit-linear-gradient(#efefef 0%, #d6d6d6 100%);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
     border-bottom: none;
+}
+
+.cp_headline01 {
+position: relative;
+padding: 0.3em 0.3em 0.3em 0.8em;
+background: #fffff2;
+-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.cp_headline01::before,
+.cp_headline01::after {
+position: absolute;
+width: 0;
+height: 51.95px;
+content: '';
+-webkit-transform: rotate(-45deg);
+transform: rotate(-45deg);
+border-width: 0 0 0 1px;
+border-style: solid;
+border-color: #e60012;
+}
+.cp_headline01::before {
+top: -15px;
+right: 10px;
+}
+.cp_headline01::after {
+bottom: -15px;
+left: 10px;
 }
 
 

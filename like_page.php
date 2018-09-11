@@ -106,7 +106,7 @@ const CONTENT_PER_PAGE = 12;
     <meta name="author" content="Pharaohlab">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- ========== Title ========== -->
-    <title> MyPage</title>
+    <title> LikesPage</title>
 
 
     <!-- ========== Favicon Ico ========== -->
@@ -153,11 +153,6 @@ const CONTENT_PER_PAGE = 12;
                         <span class="masking-tape"></span>
                         <h2>いいね！</h2>
                     </div>
-                  <div class="sub-contents1">
-                        <a href="post.php" class="b_post">
-                            <i class="fa fa-camera-retro"></i>
-                        </a>
-                  </div>
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">

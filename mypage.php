@@ -141,8 +141,8 @@ const CONTENT_PER_PAGE = 12;
                         <h2>マイページ</h2>
                     </div>
                   <div class="sub-contents1">
-                        <a href="post.php" class="b_post">
-                            <i class="fa fa-camera-retro"></i>
+                        <a href="post.php">
+                            <i class="fa fa-camera-retro fa-5x"></i>
                         </a>
                   </div>
             </header>

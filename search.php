@@ -49,7 +49,15 @@ const CONTENT_PER_PAGE = 12;
         $age = '';
         $job = '';
         $event = '';
-        $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE ' ;
+        $sql = '
+        SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` 
+        FROM `feeds` 
+        LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  
+        LEFT JOIN `relations` ON `relations`.`id` = `relation_id` 
+        LEFT JOIN `events` ON `events`.`id`= `event_id` 
+        LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` 
+        LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` 
+        WHERE ' ;
 
         // １relationが真
         // ２relationが選択されていない->真の場合＝＝ageを検索、偽の場合==relationとageの両方を検索
@@ -186,12 +194,16 @@ const CONTENT_PER_PAGE = 12;
             <div class="portfolio gutters grid img-container">
 
 
-                <?php foreach ($allfeeds as $allfeed): ?>
 
 
-                    <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
+                <?php foreach ($allfeeds as $index => $allfeed): ?>
+                    <?php if ($index % 4 == 0): ?>
+                        <?php echo '<div class="row col-lg-12">' ?>
+                    <?php endif; ?>
 
-                    <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
+
+
+                    <div class="grid-sizer grid-item branding  col-sm-3 col-md-3 col-lg-3 feed_con">
                         <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
                             <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
@@ -235,6 +247,9 @@ const CONTENT_PER_PAGE = 12;
                                 </div>
                             </div>
                         </div>
+                        <?php if ($index % 4 == 3 || $index ==count($allfeeds) - 1): ?>
+                        <?php echo '</div>' ?>
+                    <?php endif; ?>
 
 
                     <?php endforeach; ?>

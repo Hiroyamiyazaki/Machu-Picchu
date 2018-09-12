@@ -48,11 +48,24 @@ h2 {
   text-align: center;
 }
 
+
+/*画像表示*/
 .top-wrapper2 {
-  padding-top: 100px;
-  padding-bottom: 50px;
-  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+form img.thumb {
+    margin:0 5px 5px 0;
+    max-width:400px;
+    vertical-align:bottom;
+    border: solid 20px white;
+    border-bottom: solid 80px white;
+  box-shadow: 5px 5px 5px gray;
+}
+/*画像表示end*/
+
 
 .top-wrapper3 {
   padding: 70px 50px 50px 50px;
@@ -90,7 +103,9 @@ h2 {
 
 form img.thumb {
     margin:0 5px 5px 0;
-    max-width:160px;
+    max-width:400px;
     vertical-align:bottom;
+    border: solid 20px white;
+    border-bottom: solid 80px white;
 }
 

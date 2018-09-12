@@ -75,6 +75,7 @@ form img.thumb {
     vertical-align:bottom;
     border: solid 20px white;
     border-bottom: solid 80px white;
+      box-shadow: 5px 5px 5px gray;
 }
 
 .top-wrapper4 {

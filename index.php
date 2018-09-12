@@ -191,6 +191,8 @@
                     </div>
 
                     <div class="portfolio gutters grid img-container">
+                        <span hidden class="signin_user"><?= $signin_user["id"] ?></span>
+
 
                         <?php foreach ($allfeeds as $allfeed): ?>
 
@@ -208,7 +210,6 @@
                                     <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
                                         <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
-                                        <span>いいね数 : </span>
                                         <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php elseif(isset($_SESSION['id'])): ?>
@@ -229,13 +230,11 @@
 
                                             <?php endif; ?>
 
-                                            <span>いいね数 : </span>
                                             <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                             <?php else: ?>
 
                                             <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
-                                            <span>いいね数 : </span>
                                             <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php endif; ?>
@@ -246,21 +245,20 @@
                                         <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
                                             <i class="fa fa-comment"></i>
-                                            <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                            <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
 
                                             <?php  elseif(isset($_SESSION['id'])): ?>
 
                                                 <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
                                                     <i class="fa fa-comment"></i>
-                                                    <span>コメントする</span>
                                                 </a>
-                                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                             <?php else: ?>
 
                                                 <i class="fa fa-comment"></i>
-                                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                           <?php endif; ?>
                                         <!-- コメント機能end -->

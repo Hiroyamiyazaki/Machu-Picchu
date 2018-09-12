@@ -6,10 +6,6 @@
 
 
 
-.top_img {
-  width: auto;
-  height: auto;
-}
 
 h2{
     color:green;
@@ -19,6 +15,8 @@ h2{
 
 .sub-contents1{ 
   padding-bottom: 100px;
+  background: url("../img/uses/sub_img.png") no-repeat center center / cover;
+  height: 240px;
 }
 
 
@@ -82,6 +80,9 @@ h2{
 
  /*sub var*/
 
+.conbo {
+  padding: 100px;
+}
 
 .img_g {
     width: 250px;
@@ -132,27 +133,19 @@ h2{
 
 .modal_btn {
   float: right;
+  align-content: center;
 }
 
-.good_btn {
-    font-size: 13px;
+.fa-heart {
+  color: #DA0C4D;
 }
 
-.likes {
-    font-size: 13px;
+.fa-comment {
+  color: #20839C;
 }
 
-.comment {
-    font-size: 15px;
-}
-
-.user_com {
-    font-size: 17px;
-}
-
-.user_scom {
-    font-size: 17px;
-    color: green;
+.s_feed {
+  color: #349966;
 }
 
 .user_info {

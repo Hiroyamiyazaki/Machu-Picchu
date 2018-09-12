@@ -206,10 +206,12 @@
                                     <p class="date_rec"><?php echo date('Y.m.d', strtotime($allfeed['date'])) ?></p>
 
 
+
+                                    <div class="modal_btn">
                                     <!-- いいね機能 -->
                                     <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
-                                        <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                                        <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                                         <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php elseif(isset($_SESSION['id'])): ?>
@@ -244,24 +246,25 @@
                                         <!-- コメント機能 -->
                                         <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
-                                            <i class="fa fa-comment"></i>
+                                            <i class="fa fa-comment fa-2x"></i>
                                             <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
 
                                             <?php  elseif(isset($_SESSION['id'])): ?>
 
                                                 <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                                    <i class="fa fa-comment"></i>
+                                                    <i class="fa fa-comment fa-2x"></i>
                                                 </a>
                                                 <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                             <?php else: ?>
 
-                                                <i class="fa fa-comment"></i>
+                                                <i class="fa fa-comment fa-2x"></i>
                                                 <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                           <?php endif; ?>
                                         <!-- コメント機能end -->
+                                    </div><br><br><br>
 
 
 

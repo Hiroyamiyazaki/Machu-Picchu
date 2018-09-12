@@ -172,11 +172,10 @@ const CONTENT_PER_PAGE = 12;
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center body_con">
 
-                  <div class="col-lg-12 col-md-12 col-xs-12 row justify-content-center sub-contents1">
-                    <img src="assets/img/uses/sub_img.png" class="top_img"> 
+                  <div class="col-lg-12 col-md-12 col-xs-12 justify-content-center sub-contents1"> 
                   </div>
 
-                <div class="col-lg-12 col-md-12 col-xs-12 row justify-content-center sub-contents1">
+                <div class="col-lg-12 col-md-12 col-xs-12 ">
                     <div class="memo">
                         <span class="masking-tape"></span>
                         <h2>検索 <a href="post.php" class="b_post"><i class="fa fa-camera-retro fa-4x"></i></a></h2>
@@ -184,7 +183,7 @@ const CONTENT_PER_PAGE = 12;
                   </div>
 
             <!--=================== filter portfolio start====================-->
-            <div class="portfolio gutters grid img-container">
+            <div class="portfolio gutters grid img-container conbo">
                 <span hidden class="signin_user"><?= $signin_user["id"] ?></span>
 
 
@@ -205,7 +204,7 @@ const CONTENT_PER_PAGE = 12;
                                     <!-- いいね機能 -->
                                     <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
-                                        <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                                        <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                                         <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php elseif(isset($_SESSION['id'])): ?>
@@ -240,20 +239,20 @@ const CONTENT_PER_PAGE = 12;
                                         <!-- コメント機能 -->
                                         <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
-                                            <i class="fa fa-comment"></i>
+                                            <i class="fa fa-comment fa-2x"></i>
                                             <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
 
                                             <?php  elseif(isset($_SESSION['id'])): ?>
 
                                                 <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                                    <i class="fa fa-comment"></i>
+                                                    <i class="fa fa-comment fa-2x"></i>
                                                 </a>
                                                 <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                             <?php else: ?>
 
-                                                <i class="fa fa-comment"></i>
+                                                <i class="fa fa-comment fa-2x"></i>
                                                 <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                           <?php endif; ?>
@@ -266,9 +265,9 @@ const CONTENT_PER_PAGE = 12;
                                                         <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                                         <p><?php echo $allfeed['feed']; ?></p>
                                                         <?php if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
-                                                            <p><?php echo $allfeed['secret_feed']; ?></p>
+                                                            <p class="s_feed"><?php echo $allfeed['secret_feed']; ?></p>
                                                         <?php endif; ?>
-                                                        <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                                        <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?> / <?php echo $allfeed['job_name']; ?></p>
                                                 <!-- 投稿内容end -->
 
 

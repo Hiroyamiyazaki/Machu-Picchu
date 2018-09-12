@@ -115,9 +115,10 @@ const CONTENT_PER_PAGE = 12;
     <link href="assets/css/main.css" rel="stylesheet">
     <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
+
     <link rel="stylesheet"  href="assets/css/mypage.style.css">
-    <link rel="stylesheet"  href="assets/css/index.css">
-    <!-- ページネーション作成のため、moc index.php を参照しました。 -->
+
+
 </head>
 <body>
 <div class="loader">
@@ -138,13 +139,9 @@ const CONTENT_PER_PAGE = 12;
             <header class="ol-lg-12 col-md-12 col-xs-12 row justify-content-center mytitle">
                     <div class="memo sub-contents1">
                         <span class="masking-tape"></span>
-                        <h2>マイページ</h2>
+                        <h2>マイページ<a href="post.php"><i class="fa fa-camera-retro fa-5x"></i>
+                        </a></h2>
                     </div>
-                  <div class="sub-contents1">
-                        <a href="post.php">
-                            <i class="fa fa-camera-retro fa-5x"></i>
-                        </a>
-                  </div>
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
@@ -157,20 +154,22 @@ const CONTENT_PER_PAGE = 12;
                         <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g"></a>
                         <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
                             <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
-                            <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
+                            <p class="date_rec"><?php echo date('Y.m.d', strtotime($allfeed['date'])) ?></p>
 
+
+                        <div class="modal_btn">
                             <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
-                                <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
-                                <span>いいね数 : </span>
+                                <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                                 <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <i class="fa fa-comment"></i>
-                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                <i class="fa fa-comment fa-2x"></i>
+                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span>
+                            </div><br><br>
 
-                                <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
+                                <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p><br>
                                 <p><?php echo $allfeed['feed']; ?></p>
-                                <p><?php echo $allfeed['secret_feed']; ?></p>
-                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                <p class="s_feed"><?php echo $allfeed['secret_feed']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?> / <?php echo $allfeed['job_name']; ?></p>
 
 
 

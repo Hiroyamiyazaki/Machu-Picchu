@@ -175,7 +175,7 @@
                             </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
+                        <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper4">
                             <img src="assets/img/uses/main_4.png" class="top_img3">
                         </div>
                     </div>
@@ -186,11 +186,11 @@
 
 
 
-                    <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                    <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper5">
                         <h3 class="intro">みんなの思い出</h3>
                     </div>
 
-                    <div class="portfolio gutters grid img-container">
+                    <div class="portfolio gutters grid img-container conbo">
                         <span hidden class="signin_user"><?= $signin_user["id"] ?></span>
 
 

@@ -14,9 +14,16 @@ h2{
 }
 
 .sub-contents1{ 
-  padding-bottom: 100px;
+/*  padding-bottom: 100px;
   background: url("../img/uses/sub_img.png") no-repeat center center / cover;
-  height: 240px;
+  height: 240px;*/
+}
+
+.sub-contents2 {
+  margin-top: 100px;
+    display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 
@@ -155,5 +162,11 @@ h2{
 
 .btn_user {
     text-align: right;
+}
+
+
+
+.come_form {
+  margin:0;
 }
 

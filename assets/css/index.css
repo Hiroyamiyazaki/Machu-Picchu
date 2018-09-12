@@ -111,11 +111,21 @@
 }
 
 
+.top-wrapper5 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 100px;
+  }
+
 /*content explain end*/
 
 
 
 /*album*/
+.conbo {
+  padding: 100px;
+}
 
 .top-wrapper4 {
   display: flex;

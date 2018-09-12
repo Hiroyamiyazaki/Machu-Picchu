@@ -175,7 +175,7 @@ const CONTENT_PER_PAGE = 12;
                   <div class="col-lg-12 col-md-12 col-xs-12 justify-content-center sub-contents1"> 
                   </div>
 
-                <div class="col-lg-12 col-md-12 col-xs-12 ">
+                <div class="col-lg-12 col-md-12 col-xs-12 sub-contents2">
                     <div class="memo">
                         <span class="masking-tape"></span>
                         <h2>検索 <a href="post.php" class="b_post"><i class="fa fa-camera-retro fa-4x"></i></a></h2>
@@ -274,7 +274,7 @@ const CONTENT_PER_PAGE = 12;
                                                 <!-- コメント一覧 -->
                                                 <?php foreach ($allfeed["comments"] as $comment): ?> 
                                                     <p style="margin-top: 30px; margin-bottom: 30px;">
-                                                        <span style="border-radius: 100px!important; -webkit-appearance:none;background-color:#eff1f3;padding:10px;margin-top:10px;"><a href="#"><?php echo $comment["user_id"]; ?></a><?php echo $comment["comment"]; ?></span>
+                                                        <span style="border-radius: 100px!important; -webkit-appearance:none;background-color:#eff1f3;padding:10px;margin-top:10px;"><a href="#"><?php echo $comment["user_id"]; ?></a> : <?php echo $comment["comment"]; ?></span>
                                                     </p>
                                                 <?php endforeach; ?>
                                                 <!-- コメント一覧end -->

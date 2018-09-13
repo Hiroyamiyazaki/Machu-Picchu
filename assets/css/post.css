@@ -4,9 +4,9 @@ label {
 
 
 
-h2 {
+.m_title {
   text-align: center;
-  font-size: 30px;
+  margin: 0;
 }
 
 .top-wrapper1 {
@@ -101,11 +101,5 @@ form img.thumb {
     width: 600px;
 }
 
-form img.thumb {
-    margin:0 5px 5px 0;
-    max-width:400px;
-    vertical-align:bottom;
-    border: solid 20px white;
-    border-bottom: solid 80px white;
-}
+
 

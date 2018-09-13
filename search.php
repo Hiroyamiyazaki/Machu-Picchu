@@ -9,7 +9,11 @@
 
 const CONTENT_PER_PAGE = 12;
 
-  $signin_user = get_user($dbh, $_SESSION['id']);
+  if(isset($_SESSION['id'])) {
+
+    $signin_user = get_user($dbh, $_SESSION['id']);
+
+  }
 
 
   //ページネーション　１２件取得する
@@ -43,7 +47,7 @@ const CONTENT_PER_PAGE = 12;
     $data = [];
 
     if ($is_search_all) {
-      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` ORDER BY `date` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
     } else {
 
         $relation = '';
@@ -99,7 +103,14 @@ const CONTENT_PER_PAGE = 12;
 
             $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
-            $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+            if(isset($_SESSION['id'])) {
+            
+                $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+            } else {
+
+                $rec["is_liked"] = false;
+            }
 
             $rec["comments"] = get_comment($dbh, $rec["id"]);
 
@@ -229,7 +240,7 @@ const CONTENT_PER_PAGE = 12;
 
                                             <?php else: ?>
 
-                                            <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                                            <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                                             <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php endif; ?>

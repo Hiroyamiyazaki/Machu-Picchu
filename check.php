@@ -75,24 +75,30 @@
                 <!-- ここにコンテンツ -->
                 <!-- ここから -->
                 <div class="col-ld-12 col-md-12 col-xs-12 log_con">
-                    <h2 class="text-center content_header">これでいい?</h2>
-                        <div class="form-group">
-                            <span class="control-label col-sm-2">ID</span>
-                            <div class="col-sm-10">
+                 <div class="sub-contents1 ">
+                    <div class="memo">
+                        <span class="masking-tape"></span>
+                        <h2 class="m_title">登録確認</h2>
+                    </div>
+                  </div><br><br>
+                  
+                        <div class="form-group ">
+                            <span class="control-label col-sm-2 label_t">ID</span>
+                            <div class="col-sm-12">
                                 <p class="lead"><?php echo htmlspecialchars($user_id); ?></p>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group form_text">
                             <span class="control-label col-sm-2">パスワード</span>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <p class="lead">●●●●●●●●</p>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group form_text">
                             <span class="control-label col-sm-2">年代</span>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <p class="lead">
                                     <?php foreach ($ages as $age): ?>
                                         <?php if($age['id'] == $age_id): ?>
@@ -103,16 +109,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group form_text">
                             <span class="control-label col-sm-2">性別</span>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <p class="lead"><?php echo htmlspecialchars($gender); ?></p>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group form_text">
                             <span class="control-label col-sm-2">職業</span>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <p class="lead">
                                     <?php foreach ($jobs as $job): ?>
                                         <?php if($job['id'] == $job_id): ?>
@@ -123,9 +129,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group form_text">
                             <span class="control-label col-sm-2">好きなもの</span>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <p class="lead"><?php echo htmlspecialchars($brands); ?></p>
                             </div>
                         </div>

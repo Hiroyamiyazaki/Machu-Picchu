@@ -150,7 +150,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                                <img src="assets/img/uses/main_3.png" class="top_img2">
+                                <img src="assets/img/uses/main_5.png" class="top_img2">
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <h3 class="intro">Premori!って？</h3>
@@ -173,6 +173,13 @@
                                     あなたの大切な人への思い出を<br>
                                 プレゼントすることができます。</p>
                             </div>
+                            </div><br><br><br>
+                            <div class="tape">
+                            <div class="paper">
+                                <p>あなたの立場、<br>
+                                    お相手の年代・職業、イベントから<br>
+                                喜ばれるプレゼントを探してみましょう。</p>
+                            </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper4">
@@ -187,7 +194,10 @@
 
 
                     <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper5">
-                        <h3 class="intro">みんなの思い出</h3>
+                        <div class="memo">
+                            <span class="masking-tape"></span>
+                            <h2>プレゼント一覧</h2>
+                        </div>
                     </div>
 
                     <div class="portfolio gutters grid img-container conbo">

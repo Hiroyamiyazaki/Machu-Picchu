@@ -135,14 +135,13 @@ const CONTENT_PER_PAGE = 12;
         <!--=================== content body ====================-->
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center body_con">
 
-            <header class="ol-lg-12 col-md-12 col-xs-12 row justify-content-center mytitle">
-                    <div class="memo sub-contents1">
-                        <span class="masking-tape"></span>
-                        <h2>マイページ</h2>
-                    </div>
-                  <div class="sub-contents1">
-                        <a href="post.php">
-                            <i class="fa fa-camera-retro fa-5x"></i>
+            <header class="row justify-content-center">
+                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
+                        <h2 class="my_title">マイページ</h2>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-xs-6 sub-contents1">
+                        <a href="post.php" class="b_post">
+                            <i class="fa fa-camera-retro"></i>
                         </a>
                   </div>
             </header>
@@ -160,12 +159,25 @@ const CONTENT_PER_PAGE = 12;
                             <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
                             <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
-                                <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                            <?php if($allfeed['is_liked']): ?>
+                                <button class="btn btn-info btn-sm js-unlike">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                    <span>いいねを取り消す</span>
+                                </button>
+                                <?php else: ?>
+                                    <button class="btn btn-info btn-sm js-like">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        <span>いいね!</span>
+                                    </button>
+                                <?php endif; ?>
                                 <span>いいね数 : </span>
                                 <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <i class="fa fa-comment"></i>
-                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                    <i class="fa fa-comment"></i>
+                                    <span>コメントする</span>
+                                </a>
+                                <span class="comment_count btn_text">コメント数 : <?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                 <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>
@@ -191,27 +203,20 @@ const CONTENT_PER_PAGE = 12;
             <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
                 <div class="sub-contents">
                     <!-- 新しい投稿ページに戻る（前に戻る） -->
-                    <?php if($page == 1): ?>
-                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="previous"><a href="mypage.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
+                    <?php if($page != 1): ?>
+                        <a href="search.php?page=<?php echo $page -1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button>
+                        </a>
+
                     <?php endif; ?>
                 </div>
 
-<!-- !-- 古い投稿に進む（もっと見る） -->
+　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
                 <div class="sub-contents">
-                    <?php if($page == $last_page): ?>
-                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="next"><a href="mypage.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
+                    <?php if($page != $last_page): ?>
+                        <a href="search.php?page=<?php echo $page +1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>

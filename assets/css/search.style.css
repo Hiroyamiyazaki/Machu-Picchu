@@ -155,6 +155,10 @@ h2{
   color: #349966;
 }
 
+.come_form {
+  margin: 0;
+}
+
 .user_info {
     text-align: right;
     font-size: 15px;

@@ -235,7 +235,9 @@ const CONTENT_PER_PAGE = 12;
                                     <!-- 投稿内容 -->
                                 <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>
-                                <p class="s_feed"><?php echo $allfeed['secret_feed']; ?></p>
+                                <?php if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
+                                    <p class="s_feed"><?php echo $allfeed['secret_feed']; ?></p>
+                                <?php endif; ?>
                                 <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?> / <?php echo $allfeed['job_name']; ?></p>
                                 <!-- 投稿内容end -->
 

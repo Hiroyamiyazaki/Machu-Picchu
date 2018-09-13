@@ -54,7 +54,15 @@ const CONTENT_PER_PAGE = 12;
         $age = '';
         $job = '';
         $event = '';
-        $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE ' ;
+        $sql = '
+        SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` 
+        FROM `feeds` 
+        LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  
+        LEFT JOIN `relations` ON `relations`.`id` = `relation_id` 
+        LEFT JOIN `events` ON `events`.`id`= `event_id` 
+        LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` 
+        LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` 
+        WHERE ' ;
 
         // １relationが真
         // ２relationが選択されていない->真の場合＝＝ageを検索、偽の場合==relationとageの両方を検索
@@ -198,12 +206,12 @@ const CONTENT_PER_PAGE = 12;
                 <span hidden class="signin_user"><?= $signin_user["id"] ?></span>
 
 
+
+
                 <?php foreach ($allfeeds as $allfeed): ?>
 
-
- 
-                            <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div>
-                            <div class="grid-item branding  col-sm-12 col-md-6 col-lg-3 feed_con">
+                            <div class="grid-sizer col-sm-3 col-md-3 col-lg-3"></div>
+                            <div class="grid-item branding  col-sm-3 col-md-3 col-lg-3 feed_con">
                                 <a class="popup-modal" href="#inline-wrap<?php echo $allfeed["id"] ?>"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>" class="img_g card bgWhite flip flipAnimation"></a>
                                 <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
 
@@ -283,7 +291,7 @@ const CONTENT_PER_PAGE = 12;
 
 
                                                 <!-- コメント一覧 -->
-                                                <?php foreach ($allfeed["comments"] as $comment): ?> 
+                                                <?php foreach ($allfeed["comments"] as $comment): ?>
                                                     <p style="margin-top: 30px; margin-bottom: 30px;">
                                                         <span style="border-radius: 100px!important; -webkit-appearance:none;background-color:#eff1f3;padding:10px;margin-top:10px;"><a href="#"><?php echo $comment["user_id"]; ?></a> : <?php echo $comment["comment"]; ?></span>
                                                     </p>
@@ -304,39 +312,32 @@ const CONTENT_PER_PAGE = 12;
 
                                                     </div>
                                                 </div>
-
-                                            <?php endforeach; ?>
-                                        </div>
+                    <?php endforeach; ?>
+        </div>
 
             <!--=================== filter portfolio end====================-->
 
-            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                <div class="sub-contents">
+                <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4 btn_center">
+                <div class="sub-contents btn_line">
                     <!-- 新しい投稿ページに戻る（前に戻る） -->
-                    <?php if($page == 1): ?>
-                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="previous"><a href="search.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
+                    <?php if($page != 1): ?>
+                        <a href="search.php?page=<?php echo $page -1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button>
+                        </a>
+
                     <?php endif; ?>
                 </div>
 
 　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
-                <div class="sub-contents">
-                    <?php if($page == $last_page): ?>
-                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="next"><a href="search.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
+                <div class="sub-contents btn_line">
+                    <?php if($page != $last_page): ?>
+                        <a href="search.php?page=<?php echo $page +1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

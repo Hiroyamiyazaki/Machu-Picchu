@@ -163,10 +163,19 @@ h2{
 .btn_user {
     text-align: right;
 }
+.btn_line {
+    display: inline-block;
+}
+.btn_center {
+    text-align: center;
+}
 
+.like_count {
+    font-size: 10px;
+}
 
+.btn_line ul li {
+    display: inline-block;
 
-.come_form {
-  margin:0;
 }
 

@@ -62,7 +62,7 @@
         $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
         if(isset($_SESSION['id'])) {
-        
+
             $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
 
         } else {
@@ -308,35 +308,26 @@
 
 
                                         <!--=================== filter portfolio end====================-->
-                                        <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                                            <div class="sub-contents">
-                                                <!-- 新しい投稿ページに戻る（前に戻る） -->
-                                                <?php if($page == 1): ?>
-                                                    <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
-                                                        <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                                                    </li>
-                                                    <?php else: ?>
-                                                        <li class="previous"><a href="index.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
-                                                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                                                        </li>
-                                                    <?php endif; ?>
-                                                </div>
+<div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                <div class="sub-contents">
+                    <!-- 新しい投稿ページに戻る（前に戻る） -->
+                    <?php if($page != 1): ?>
+                        <a href="search.php?page=<?php echo $page -1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button>
+                        </a>
 
-                                                　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
-                                                <div class="sub-contents">
-                                                    <?php if($page == $last_page): ?>
-                                                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
-                                                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                                                        </li>
-                                                        <?php else: ?>
-                                                            <li class="next"><a href="index.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
-                                                                <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                                                            </li>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
+                    <?php endif; ?>
+                </div>
 
-
+　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+                <div class="sub-contents">
+                    <?php if($page != $last_page): ?>
+                        <a href="search.php?page=<?php echo $page +1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

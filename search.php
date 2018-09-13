@@ -75,13 +75,13 @@ const CONTENT_PER_PAGE = 12;
         }
 
         if (!empty($_GET['age'])) {
-            $age = '`users`.`age_id` = ?';
+            $age = '`feeds`.`age_id` = ?';
             $sql .= $relation == '' ? $age : ' AND ' . $age;
             $data[] = $_GET['age'];
         }
 
         if (!empty($_GET['job'])) {
-            $job = '`users`.`job_id` = ?';
+            $job = '`feeds`.`job_id` = ?';
             $sql .= $relation == '' && $age == '' ? $job : ' AND ' . $job;
             $data[] = $_GET['job'];
         }

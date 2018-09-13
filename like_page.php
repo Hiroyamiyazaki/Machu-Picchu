@@ -53,34 +53,38 @@ const CONTENT_PER_PAGE = 12;
     }
 
     $hoge = implode(',', $like_data);
+    $allfeeds = array();
+
+    if(!empty($hoge)) {
+
+      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE `feeds`.`id` IN ('.$hoge.') ORDER BY id DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
 
 
-
-      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE `feeds`.`id` IN ('.$hoge.') ORDER BY `id` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
     
         $data = [];
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
 
-    //表示用の配列を初期化
-    $allfeeds = array();
 
-    while (true) {
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($rec  == false){
-        break;
+
+        while (true) {
+            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($rec  == false){
+            break;
+            }
+
+                $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+
+                $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+                $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+                $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+
+
+            $allfeeds[] = $rec;
+
         }
-
-            $rec["like_cnt"] = count_like($dbh, $rec["id"]);
-
-            $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
-
-            $rec["comments"] = get_comment($dbh, $rec["id"]);
-
-            $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
-
-
-        $allfeeds[] = $rec;
 
     }
 

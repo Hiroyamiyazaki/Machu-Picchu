@@ -34,42 +34,55 @@ const CONTENT_PER_PAGE = 12;
 
 
 
-
-
-    $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE `feeds`.`user_id` = ? ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
-
+    $sql = 'SELECT `feed_id` FROM `likes` WHERE `user_id`= ?';
 
     $data = array($signin_user['id']);
-
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-    $allfeeds = array();
+    $like_data = array();
 
-
-    while (1) {
-    // データを１件ずつ取得
+    while (true) {
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($rec == false) {
-           break;
+        if($rec  == false){
+        break;
         }
 
+        $like_data[] = $rec['feed_id'];
 
+    }
 
-        $rec["like_cnt"] = count_like($dbh, $rec["id"]);
-
-        $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
-
-        $rec["comments"] = get_comment($dbh, $rec["id"]);
-
-        $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
+    $hoge = implode(',', $like_data);
 
 
 
-    $allfeeds[] = $rec;
+      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE feeds.id IN ('.$hoge.') ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+    
+        $data = [];
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute($data);
+
+    //表示用の配列を初期化
+    $allfeeds = array();
+
+    while (true) {
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec  == false){
+        break;
+        }
+
+            $rec["like_cnt"] = count_like($dbh, $rec["id"]);
+
+            $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+            $rec["comments"] = get_comment($dbh, $rec["id"]);
+
+            $rec["comment_cnt"] = count_comment($dbh, $rec["id"]);
 
 
-}
+        $allfeeds[] = $rec;
+
+    }
 
 
 
@@ -93,7 +106,7 @@ const CONTENT_PER_PAGE = 12;
     <meta name="author" content="Pharaohlab">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- ========== Title ========== -->
-    <title> MyPage</title>
+    <title> LikesPage</title>
 
 
     <!-- ========== Favicon Ico ========== -->
@@ -138,13 +151,8 @@ const CONTENT_PER_PAGE = 12;
             <header class="ol-lg-12 col-md-12 col-xs-12 row justify-content-center mytitle">
                     <div class="memo sub-contents1">
                         <span class="masking-tape"></span>
-                        <h2>マイページ</h2>
+                        <h2>いいね！</h2>
                     </div>
-                  <div class="sub-contents1">
-                        <a href="post.php">
-                            <i class="fa fa-camera-retro fa-5x"></i>
-                        </a>
-                  </div>
             </header>
             <!--=================== filter portfolio start====================-->
             <div class="portfolio gutters grid img-container">
@@ -160,12 +168,25 @@ const CONTENT_PER_PAGE = 12;
                             <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
                             <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
-                                <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                            <?php if($allfeed['is_liked']): ?>
+                                <button class="btn btn-info btn-sm js-unlike">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                    <span>いいねを取り消す</span>
+                                </button>
+                                <?php else: ?>
+                                    <button class="btn btn-info btn-sm js-like">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        <span>いいね!</span>
+                                    </button>
+                                <?php endif; ?>
                                 <span>いいね数 : </span>
                                 <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <i class="fa fa-comment"></i>
-                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                    <i class="fa fa-comment"></i>
+                                    <span>コメントする</span>
+                                </a>
+                                <span class="comment_count btn_text">コメント数 : <?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                 <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>

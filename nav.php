@@ -96,7 +96,7 @@ if (isset($_GET['event'])) {
                 <a href="#">
                     <img src="assets/img/main-logo.png" class="main_logo" alt="Premori!">
                 </a>
-            </div>
+            </div><br>
             <!--logo end-->
 
 
@@ -106,20 +106,25 @@ if (isset($_GET['event'])) {
             <ul class="menu_nav pro_nav">
                 <li>
                     <span class="user_id">ID:<?php echo $signin_user['user_id']; ?></span>
-                </li>
+                </li><br><br>
                 <li>
                     <a href="mypage.php">
-                        My page
+                        マイページ
+                    </a>
+                </li>
+                <li>
+                    <a href="like_page.php">
+                        いいね！
                     </a>
                 </li>
                 <li>
                     <a href="pro_edit.php">
-                        Profile編集
+                        プロフィール編集
                     </a>
                 </li>
                 <li>
                     <a href="signout.php">
-                        Sign out
+                        ログアウト
                     </a>
                 </li>
             </ul>
@@ -133,30 +138,30 @@ if (isset($_GET['event'])) {
         <ul class="menu_nav">
             <li class="active">
                 <a href="index.php">
-                    Home
+                    ホーム
                 </a>
             </li>
             <?php if(!isset($_SESSION['id'])): ?>
                 <li>
                     <a href="signin.php">
-                        Login
+                        ログイン
                     </a>
                 </li>
                 <li>
                     <a href="signup.php">
-                        Register
+                        アカウント登録
                     </a>
                 </li>
             <?php endif; ?>
             <li>
                 <a href="search.php">
-                    Album
+                    投稿一覧
                 </a>
             </li>
             <li>
 
                 <a href="search.php">
-                    Update
+                    更新
                 </a>
             </li>
         </ul>
@@ -170,7 +175,7 @@ if (isset($_GET['event'])) {
     <div class="search_box">
         <ul class="s_nav">
             <li class="active">
-                <h5>Search</h5>
+                <h5>検索</h5>
             </li>
             <li>
 
@@ -179,7 +184,7 @@ if (isset($_GET['event'])) {
                         <!-- relation -->
                         <div>
                             <select name="relation">
-                                <option value="">--- 相手 ---</option>
+                                <option value="">--- あなたは？ ---</option>
                                 <?php foreach($relations as $relation): ?>
                                     <option value="<?php echo $relation['id']; ?>"
                                         <?php if($relation['id'] == $select_relation) { echo 'selected'; } ?>
@@ -193,7 +198,7 @@ if (isset($_GET['event'])) {
                             <!-- ages generation-->
                             <div>
                                 <select name="age">
-                                     <option value="">--- 年代 ---</option>
+                                     <option value="">--- お相手の年代 ---</option>
                                         <?php foreach ($ages as $age): ?>
                                                 <option value="<?php echo $age['id']; ?>"
                                                     <?php if($age['id'] == $select_age) { echo 'selected'; } ?>
@@ -207,7 +212,7 @@ if (isset($_GET['event'])) {
                                 <!-- jobs -->
                                 <div>
                                     <select name="job">
-                                        <option value="">--- 職業 ---</option>
+                                        <option value="">--- お相手の職業 ---</option>
                                             <?php foreach($jobs as $job): ?>
                                                 <option value="<?php echo $job['id']; ?>"
                                                     <?php if($job['id'] == $select_job) {
@@ -254,16 +259,13 @@ if (isset($_GET['event'])) {
                         <div class="side_menu_bottom_inner">
                             <ul class="social_menu">
                                 <li>
-                                    <a href="#"> <i class="ion ion-social-pinterest"></i> </a>
+                                    <a href="https://www.instagram.com/"> <i class="ion ion-social-instagram"></i> </a>
                                 </li>
                                 <li>
-                                    <a href="#"> <i class="ion ion-social-facebook"></i> </a>
+                                    <a href="https://www.facebook.com/"> <i class="ion ion-social-facebook"></i> </a>
                                 </li>
                                 <li>
-                                    <a href="#"> <i class="ion ion-social-twitter"></i> </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="ion ion-social-dribbble"></i> </a>
+                                    <a href="https://twitter.com/"> <i class="ion ion-social-twitter"></i> </a>
                                 </li>
                             </ul>
                             <div class="copy_right">

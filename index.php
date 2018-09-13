@@ -9,7 +9,12 @@
   const CONTENT_PER_PAGE = 8;
 
 
-  $signin_user = get_user($dbh, $_SESSION['id']);
+
+  if(isset($_SESSION['id'])) {
+
+    $signin_user = get_user($dbh, $_SESSION['id']);
+
+  }
 
 
 
@@ -56,7 +61,14 @@
 
         $rec["like_cnt"] = count_like($dbh, $rec["id"]);
 
-        $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+        if(isset($_SESSION['id'])) {
+        
+            $rec["is_liked"] = is_liked($dbh, $signin_user['id'], $rec["id"]);
+
+        } else {
+
+            $rec["is_liked"] = false;
+        }
 
         $rec["comments"] = get_comment($dbh, $rec["id"]);
 
@@ -189,82 +201,131 @@
                                 <div id="inline-wrap<?php echo $allfeed["id"] ?>" class="mfp-hide hoge">
 
                                     <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
-                                    <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
+                                    <p class="date_rec"><?php echo date('Y.m.d', strtotime($allfeed['date'])) ?></p>
 
-                                    <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
-                                    <?php if($allfeed['is_liked']): ?>
-                                        <button class="btn btn-info btn-sm js-unlike">
-                                            <i class="fa fa-heart" aria-hidden="true"></i>
-                                            <span>いいねを取り消す</span>
-                                        </button>
-                                        <?php else: ?>
-                                            <button class="btn btn-info btn-sm js-like">
-                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                <span>いいね!</span>
-                                            </button>
-                                        <?php endif; ?>
+
+                                    <!-- いいね機能 -->
+                                    <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
+
+                                        <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
                                         <span>いいね数 : </span>
                                         <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                        <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                            <i class="fa fa-comment"></i>
-                                            <span>コメントする</span>
-                                        </a>
-                                        <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                        <?php elseif(isset($_SESSION['id'])): ?>
 
-                                        <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
-                                        <p><?php echo $allfeed['feed']; ?></p>
-                                        <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
-                                            <p><?php echo $allfeed['secret_feed']; ?></p>
-                                        <?php endif; ?>
-                                        <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                            <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
+                                            <?php if($allfeed['is_liked']): ?>
+                                                <button class="btn btn-info btn-sm js-unlike">
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                    <span>いいねを取り消す</span>
+                                                </button>
 
+                                                <?php else: ?>
 
-                                        <div class="btn_user">
-                                            <?php if($allfeed["user_id"]==$_SESSION["id"]): ?>
-                                                <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
-                                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                                    <button class="btn btn-info btn-sm js-like">
+                                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                                        <span>いいね!</span>
+                                                    </button>
+
                                             <?php endif; ?>
-                                            <?php include("comment_view.php"); ?>
+
+                                            <span>いいね数 : </span>
+                                            <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+
+                                            <?php else: ?>
+
+                                            <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                                            <span>いいね数 : </span>
+                                            <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+
+                                        <?php endif; ?>
+                                        <!-- いいね機能end -->
+
+
+                                        <!-- コメント機能 -->
+                                        <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
+
+                                            <i class="fa fa-comment"></i>
+                                            <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+
+
+                                            <?php  elseif(isset($_SESSION['id'])): ?>
+
+                                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                                    <i class="fa fa-comment"></i>
+                                                    <span>コメントする</span>
+                                                </a>
+                                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+
+                                            <?php else: ?>
+
+                                                <i class="fa fa-comment"></i>
+                                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+
+                                          <?php endif; ?>
+                                        <!-- コメント機能end -->
+
+
+
+                                                 <!-- 投稿内容 -->
+                                                        <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
+                                                        <p><?php echo $allfeed['feed']; ?></p>
+                                                        <?php if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
+                                                            <p><?php echo $allfeed['secret_feed']; ?></p>
+                                                        <?php endif; ?>
+                                                        <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                                <!-- 投稿内容end -->
+
+
+                                                <!-- 編集削除ボタン -->
+                                                        <div class="btn_user">
+                                                            <?php if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
+                                                                <a href="edit.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-success btn-sm">編集</a>
+                                                                <a onclick="return confilm('ほんとに消すの？');" href="delete.php?feed_id=<?php echo $allfeed["id"] ?>" class="btn btn-danger btn-sm">削除</a>
+                                                            <?php endif; ?>
+                                                            <?php include("comment_view.php"); ?>
+                                                        </div>
+                                                <!-- 編集削除end -->
+
+
+                                                    </div>
+                                                </div>
+
+                                            <?php endforeach; ?>
                                         </div>
 
 
-                                    </div>
-                                </div>
 
-                            <?php endforeach; ?>
-                        </div>
+                                        <!--=================== filter portfolio end====================-->
+                                        <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
+                                            <div class="sub-contents">
+                                                <!-- 新しい投稿ページに戻る（前に戻る） -->
+                                                <?php if($page == 1): ?>
+                                                    <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
+                                                        <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                                                    </li>
+                                                    <?php else: ?>
+                                                        <li class="previous"><a href="index.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
+                                                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                </div>
+
+                                                　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+                                                <div class="sub-contents">
+                                                    <?php if($page == $last_page): ?>
+                                                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
+                                                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                                                        </li>
+                                                        <?php else: ?>
+                                                            <li class="next"><a href="index.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
+                                                                <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
 
 
-
-                        <!--=================== filter portfolio end====================-->
-            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                <div class="sub-contents">
-                    <!-- 新しい投稿ページに戻る（前に戻る） -->
-                    <?php if($page == 1): ?>
-                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="previous"><a href="index.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
-                    <?php endif; ?>
-                </div>
-
-　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
-                <div class="sub-contents">
-                    <?php if($page == $last_page): ?>
-                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="next"><a href="index.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
-                    <?php endif; ?>
-                </div>
-            </div>
         </div>
     </div>
 </div>

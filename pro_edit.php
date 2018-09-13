@@ -116,9 +116,10 @@
         <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
             
             <header class="row justify-content-center">
-                  <div class="col-lg-12 col-md-12 col-xs-12 sub-contents1">
-                        <h2 class="pro_title">プロフィール編集</h2>
-                 </div>
+                  <div class="memo sub-contents1">
+                        <span class="masking-tape"></span>
+                        <h2>プロフィール編集</h2>
+                    </div>
             </header>
 
 
@@ -159,6 +160,7 @@
                                 <div class="col-sm-10">
                                     <select name="input_gender">
                                         <option value="gender">--- 性別 ---</option>
+
                                         <option>男性</option>
                                         <option>女性</option>
                                     </select>

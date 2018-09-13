@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Premori</title>
-    <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../Machu-Picchu/assets/css/register.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/register.css">
 </head>
 <body style="margin-top: 60px">
     <div class="container">
@@ -23,8 +23,5 @@
         </div>
     </div>
 </div>
-<script src="../Machu-Picchu/assets/js/jquery-3.1.1.js"></script>
-<script src="../Machu-Picchu/assets/js/jquery-migrate-1.4.1.js"></script>
-<script src="..Machu-Picchu/assets/js/bootstrap.js"></script>
 </body>
 </html>

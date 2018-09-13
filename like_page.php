@@ -251,36 +251,31 @@ const CONTENT_PER_PAGE = 12;
             </div>
 
             <!--=================== filter portfolio end====================-->
-            <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                <div class="sub-contents">
+                 <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4 btn_center">
+                <div class="sub-contents btn_line">
                     <!-- 新しい投稿ページに戻る（前に戻る） -->
-                    <?php if($page == 1): ?>
-                        <li class="previous disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="previous"><a href="mypage.php?page=<?php echo $page -1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button></a>
-                        </li>
+                    <?php if($page != 1): ?>
+                        <a href="like_page.php?page=<?php echo $page -1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">前に戻る</button>
+                        </a>
+
                     <?php endif; ?>
                 </div>
 
-<!-- !-- 古い投稿に進む（もっと見る） -->
-                <div class="sub-contents">
-                    <?php if($page == $last_page): ?>
-                        <li class="next disabled"><a><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
-                    <?php else: ?>
-                        <li class="next"><a href="mypage.php?page=<?php echo $page +1; ?>"><span aria-hidden="true">&larr;</span>
-                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button></a>
-                        </li>
+　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
+                <div class="sub-contents btn_line">
+                    <?php if($page != $last_page): ?>
+                        <a href="like_page.php?page=<?php echo $page +1; ?>">
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
+
 
         <!--=================== content body end ====================-->
 

@@ -109,7 +109,6 @@ h2{
 .feed_con {
   position: relative;
   width: 220px;
-
 }
  
 .feed_con img {
@@ -175,6 +174,12 @@ h2{
 
 .btn_user {
     text-align: right;
+}
+.btn_line {
+    display: inline-block;
+}
+.btn_center {
+    text-align: center;
 }
 
 .like_count {

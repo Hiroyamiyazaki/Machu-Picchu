@@ -286,7 +286,7 @@ const CONTENT_PER_PAGE = 12;
 
 
                                                 <!-- コメント一覧 -->
-                                                <?php foreach ($allfeed["comments"] as $comment): ?> 
+                                                <?php foreach ($allfeed["comments"] as $comment): ?>
                                                     <p style="margin-top: 30px; margin-bottom: 30px;">
                                                         <span style="border-radius: 100px!important; -webkit-appearance:none;background-color:#eff1f3;padding:10px;margin-top:10px;"><a href="#"><?php echo $comment["user_id"]; ?></a><?php echo $comment["comment"]; ?></span>
                                                     </p>
@@ -311,28 +311,23 @@ const CONTENT_PER_PAGE = 12;
         </div>
 
             <!--=================== filter portfolio end====================-->
-　　　　　　　 <div class=btn_line>
-                <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                <div class="sub-contents">
+
+                <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4 btn_center">
+                <div class="sub-contents btn_line">
                     <!-- 新しい投稿ページに戻る（前に戻る） -->
                     <?php if($page != 1): ?>
                         <a href="search.php?page=<?php echo $page -1; ?>">
-                            <ul>
-                                <li>
                             <button type="button" class="btn btn-primary btn-lg">前に戻る</button>
-                                </li>
                         </a>
 
                     <?php endif; ?>
                 </div>
 
 　　　　　　　　　　　　　<!-- 古い投稿に進む（もっと見る） -->
-                <div class="sub-contents">
+                <div class="sub-contents btn_line">
                     <?php if($page != $last_page): ?>
                         <a href="search.php?page=<?php echo $page +1; ?>">
-                            <li><button type="button" class="btn btn-primary btn-lg">もっと見る</button>
-                            </li>
-                        </ul>
+                            <button type="button" class="btn btn-primary btn-lg">もっと見る</button>
                         </a>
                     <?php endif; ?>
                 </div>

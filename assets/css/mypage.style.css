@@ -23,7 +23,7 @@ h2{
   box-shadow:0 0 5px rgba(0,0,0,.2);
   padding: 1em;
   color: #65513f;
-  width: 300px;
+  width: 400px;
 }
 .masking-tape{
   position: absolute;
@@ -50,61 +50,8 @@ h2{
     padding-bottom: 100px;
 }
 
-.b_post{
-    display: inline-block;
-    text-decoration: none;
-    color: rgba(152, 152, 152, 0.43);/*アイコン色*/
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    font-size: 40px;
-    border-radius: 50%;
-    text-align: center;
-    vertical-align: middle;
-    overflow: hidden;
-    font-weight: bold;
-    background-image: -webkit-linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
-    background-image: linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
-    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
-    border-bottom: solid 2px #b5b5b5;
-}
-.b_post .fa {
-    line-height: 80px;
-}
-.b_post:active {/*押したとき*/
-    background-image: -webkit-linear-gradient(#efefef 0%, #d6d6d6 100%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
-    border-bottom: none;
-}
 
-.cp_headline01 {
-position: relative;
-padding: 0.3em 0.3em 0.3em 0.8em;
-background: #fffff2;
--webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-}
-.cp_headline01::before,
-.cp_headline01::after {
-position: absolute;
-width: 0;
-height: 51.95px;
-content: '';
--webkit-transform: rotate(-45deg);
-transform: rotate(-45deg);
-border-width: 0 0 0 1px;
-border-style: solid;
-border-color: #e60012;
-}
-.cp_headline01::before {
-top: -15px;
-right: 10px;
-}
-.cp_headline01::after {
-bottom: -15px;
-left: 10px;
-}
+
 
 
 
@@ -122,10 +69,25 @@ left: 10px;
 }
 
 .feed_con {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  width: 220px;
 }
+ 
+.feed_con img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
+}
+ 
+.feed_con p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  }
+
 
 
 
@@ -151,6 +113,25 @@ left: 10px;
     text-align: right;
 }
 
+.modal_btn {
+  float: right;
+  align-content: center;
+}
+
+.fa-heart {
+  color: #DA0C4D;
+}
+
+.fa-comment {
+  color: #20839C;
+}
+
+.s_feed {
+  color: #349966;
+}
+
+
+
 .user_info {
     text-align: right;
 }
@@ -159,6 +140,3 @@ left: 10px;
     text-align: right;
 }
 
-.like_count {
-    font-size: 10px;
-}

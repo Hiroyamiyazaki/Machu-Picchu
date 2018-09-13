@@ -150,7 +150,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper2">
-                                <img src="assets/img/uses/main_3.png" class="top_img2">
+                                <img src="assets/img/uses/main_5.png" class="top_img2">
                         </div>
                         <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
                             <h3 class="intro">Premori!って？</h3>
@@ -173,9 +173,16 @@
                                     あなたの大切な人への思い出を<br>
                                 プレゼントすることができます。</p>
                             </div>
+                            </div><br><br><br>
+                            <div class="tape">
+                            <div class="paper">
+                                <p>あなたの立場、<br>
+                                    お相手の年代・職業、イベントから<br>
+                                喜ばれるプレゼントを探してみましょう。</p>
+                            </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper3">
+                        <div class="col-lg-6 col-md-12 col-xs-12 top-wrapper4">
                             <img src="assets/img/uses/main_4.png" class="top_img3">
                         </div>
                     </div>
@@ -186,11 +193,16 @@
 
 
 
-                    <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper4">
-                        <h3 class="intro">みんなの思い出</h3>
+                    <div class="col-lg-12 col-md-12 col-xs-12 top-wrapper5">
+                        <div class="memo">
+                            <span class="masking-tape"></span>
+                            <h2>プレゼント一覧</h2>
+                        </div>
                     </div>
 
-                    <div class="portfolio gutters grid img-container">
+                    <div class="portfolio gutters grid img-container conbo">
+                        <span hidden class="signin_user"><?= $signin_user["id"] ?></span>
+
 
                         <?php foreach ($allfeeds as $allfeed): ?>
 
@@ -204,11 +216,12 @@
                                     <p class="date_rec"><?php echo date('Y.m.d', strtotime($allfeed['date'])) ?></p>
 
 
+
+                                    <div class="modal_btn">
                                     <!-- いいね機能 -->
                                     <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
-                                        <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
-                                        <span>いいね数 : </span>
+                                        <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                                         <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php elseif(isset($_SESSION['id'])): ?>
@@ -229,13 +242,11 @@
 
                                             <?php endif; ?>
 
-                                            <span>いいね数 : </span>
                                             <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                             <?php else: ?>
 
                                             <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
-                                            <span>いいね数 : </span>
                                             <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
                                         <?php endif; ?>
@@ -245,25 +256,25 @@
                                         <!-- コメント機能 -->
                                         <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
-                                            <i class="fa fa-comment"></i>
-                                            <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                            <i class="fa fa-comment fa-2x"></i>
+                                            <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
 
                                             <?php  elseif(isset($_SESSION['id'])): ?>
 
                                                 <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                                    <i class="fa fa-comment"></i>
-                                                    <span>コメントする</span>
+                                                    <i class="fa fa-comment fa-2x"></i>
                                                 </a>
-                                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                             <?php else: ?>
 
-                                                <i class="fa fa-comment"></i>
-                                                <span class="comment_count btn_text">コメント数 :<?= $allfeed["comment_cnt"] ?></span><br><br>
+                                                <i class="fa fa-comment fa-2x"></i>
+                                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
 
                                           <?php endif; ?>
                                         <!-- コメント機能end -->
+                                    </div><br><br><br>
 
 
 

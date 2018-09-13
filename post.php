@@ -187,7 +187,7 @@
                 <div class="col-lg-12 col-md-12 col-12 top-wrapper1">
                     <div class="memo">
                         <span class="masking-tape"></span>
-                        <h2>投稿</h2>
+                        <h2 class="m_title">投稿</h2>
                     </div>
                 </div>
             </div>

@@ -56,7 +56,7 @@ const CONTENT_PER_PAGE = 12;
 
 
 
-      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE feeds.id IN ('.$hoge.') ORDER BY `created` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
+      $sql = 'SELECT `feeds`.*, `users`.`user_id`  as name, `relations`.`relation_name`, `events`.`event_name`, `ages`.`generation`, `jobs`.`job_name` FROM `feeds` LEFT JOIN `users` ON `feeds`.`user_id` = `users`.id  LEFT JOIN `relations` ON `relations`.`id` = `relation_id` LEFT JOIN `events` ON `events`.`id`= `event_id` LEFT JOIN `ages` ON `ages`.`id` = `feeds`.`age_id` LEFT JOIN `jobs` ON `jobs`.`id` = `feeds`.`job_id` WHERE `feeds`.`id` IN ('.$hoge.') ORDER BY `id` DESC LIMIT '. CONTENT_PER_PAGE .' OFFSET ' . $start;
     
         $data = [];
         $stmt = $dbh->prepare($sql);
@@ -129,8 +129,7 @@ const CONTENT_PER_PAGE = 12;
     <!-- Custom by us -->
     <link rel="stylesheet"  href="assets/css/style.css">
     <link rel="stylesheet"  href="assets/css/mypage.style.css">
-    <link rel="stylesheet"  href="assets/css/index.css">
-    <!-- ページネーション作成のため、moc index.php を参照しました。 -->
+
 </head>
 <body>
 <div class="loader">
@@ -167,31 +166,74 @@ const CONTENT_PER_PAGE = 12;
                             <div class="image"><img src="./assets/img/post_img/<?php echo $allfeed['img_name'] ?>"></div><br>
                             <p class="date_rec"><?php echo date('Ymd', strtotime($allfeed['date'])) ?></p>
 
-                            <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
-                            <?php if($allfeed['is_liked']): ?>
-                                <button class="btn btn-info btn-sm js-unlike">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                    <span>いいねを取り消す</span>
-                                </button>
-                                <?php else: ?>
-                                    <button class="btn btn-info btn-sm js-like">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <span>いいね!</span>
-                                    </button>
-                                <?php endif; ?>
-                                <span>いいね数 : </span>
-                                <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
 
-                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
-                                    <i class="fa fa-comment"></i>
-                                    <span>コメントする</span>
-                                </a>
-                                <span class="comment_count btn_text">コメント数 : <?= $allfeed["comment_cnt"] ?></span><br><br>
+                                <div class="modal_btn">
+                                    <!-- いいね機能 -->
+                                    <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
 
+                                        <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                                        <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+
+                                        <?php elseif(isset($_SESSION['id'])): ?>
+
+                                            <span hidden class="feed-id"><?= $allfeed["id"] ?></span>
+                                            <?php if($allfeed['is_liked']): ?>
+                                                <button class="btn btn-info btn-sm js-unlike">
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                    <span>いいねを取り消す</span>
+                                                </button>
+
+                                                <?php else: ?>
+
+                                                    <button class="btn btn-info btn-sm js-like">
+                                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                                        <span>いいね!</span>
+                                                    </button>
+
+                                            <?php endif; ?>
+
+                                            <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+
+                                            <?php else: ?>
+
+                                            <i class="fa fa-heart fa-xs" aria-hidden="true"></i>
+                                            <span class="like_count"><?= $allfeed['like_cnt'] ?></span>
+
+                                        <?php endif; ?>
+                                        <!-- いいね機能end -->
+
+
+                                        <!-- コメント機能 -->
+                                        <?php  if(isset($_SESSION['id']) && $allfeed["user_id"]==$_SESSION["id"]): ?>
+
+                                            <i class="fa fa-comment fa-2x"></i>
+                                            <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
+
+
+                                            <?php  elseif(isset($_SESSION['id'])): ?>
+
+                                                <a href="#collapseComment<?= $allfeed["id"] ?>" data-toggle="collapse" aria-expanded="false">
+                                                    <i class="fa fa-comment fa-2x"></i>
+                                                </a>
+                                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
+
+                                            <?php else: ?>
+
+                                                <i class="fa fa-comment fa-2x"></i>
+                                                <span class="comment_count btn_text"><?= $allfeed["comment_cnt"] ?></span><br><br>
+
+                                          <?php endif; ?>
+                                        <!-- コメント機能end -->
+                                    </div><br><br><br>
+
+
+
+                                    <!-- 投稿内容 -->
                                 <p><?php echo $allfeed['relation_name']; ?> / <?php echo $allfeed['event_name']; ?></p>
                                 <p><?php echo $allfeed['feed']; ?></p>
-                                <p><?php echo $allfeed['secret_feed']; ?></p>
-                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?></p>
+                                <p class="s_feed"><?php echo $allfeed['secret_feed']; ?></p>
+                                <p class="user_info"><?php echo $allfeed['name']; ?> / <?php echo $allfeed['generation']; ?> / <?php echo $allfeed['gender']; ?> / <?php echo $allfeed['job_name']; ?></p>
+                                <!-- 投稿内容end -->
 
 
 

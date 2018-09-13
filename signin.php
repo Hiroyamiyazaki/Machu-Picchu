@@ -81,9 +81,12 @@
                         <img class="reg_title" src="assets/img/main-logo.png">
                 </div>
                 <div class="col-ld-6 col-md-12 col-xs-12">
-                    <div class="log_con">
-                        <h2 class="text-center content_header">ログイン</h2>
+                 <div class="sub-contents1 ">
+                    <div class="memo">
+                        <span class="masking-tape"></span>
+                        <h2 class="m_title">ログイン</h2>
                     </div>
+                  </div>
 
                     <form method="POST" action="" enctype="multipart/form-data">
                          <?php if(isset($errors['signin']) && $errors['signin'] == 'blank'): ?>

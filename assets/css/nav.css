@@ -1,5 +1,6 @@
 .menu_block  {
-    background-image: url(../img/uses/nav_back.jpeg);
+    /*background-image: url(../img/uses/nav_back.jpeg);*/
+    background-color: #7E5926;
     background-repeat: repeat;
 }
 
